@@ -19,10 +19,10 @@ const RegisterScreen = () => {
   //1) hacer el usoForm con el objeto que necesito obtener
   //este vendría siendo mi objeto, desestructuro el formValues y el handleInputChange, el reset por ahora no
   const [formValues, handleInputChange] = useForm({
-    name: 'Macarena',
-    email: 'spalen@gmail.com',
-    password: '123456',
-    password2: '123456'
+    name: '',
+    email: '',
+    password: '',
+    password2: ''
   });
 
   //2) Desestructurar los datos del objeto
