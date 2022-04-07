@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import validator from 'validator';
 import { setError, removeError } from '../../actions/ui'
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth'
-import Swal from 'sweetalert2';
 
 const LoginScreen = () => {
 
@@ -13,12 +12,12 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   //Para obtener cosas del state vamos a usar el useSelector que recibe un callback -> useSelector "()"
-  const { msgError, loading } = useSelector( state => state.ui )
+  const { loading } = useSelector( state => state.ui )
 
   //este vendría siendo mi objeto, desestructuro el formValues y el handleInputChange, el reset por ahora no
   const [ formValues, handleInputChange ] = useForm({
-      email: 'spalen@gmail.com',
-      password: '123456'
+      email: '',
+      password: ''
   });
 
   //Acá desestructuro del formValues el mail y la pass
