@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { authReducer } from '../reducers/authReducer';
+import { productoReducer } from '../reducers/productoReducer';
 import { uiReducer } from '../reducers/uiReducer';
 
 //Esto es para poder ocupar dos middleware
@@ -9,7 +10,8 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 //como el createStore recibe UN SOLO reducer tenemos que usar el combineReducer
 const reducers = combineReducers({
     auth: authReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    prod: productoReducer
 })
 
 

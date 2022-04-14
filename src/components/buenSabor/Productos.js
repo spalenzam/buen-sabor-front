@@ -1,16 +1,17 @@
 import { Grid } from '@material-ui/core';
-import React, { useState } from 'react';
 import Tarjeta from './Tarjeta';
 import moment from 'moment';
-import axios from 'axios'; 
+import React, { useEffect, useState } from 'react';
+
 
 const Productos = ({ productos, agregarACarrito }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
-    const [close] = useState();
+    const [close, set] = useState();
 
     const [state] = useState({
-        searchTerm:""
+        searchTerm: "",
+        close
     });
 
     const today = moment().toDate();
@@ -29,39 +30,25 @@ const Productos = ({ productos, agregarACarrito }) => {
     endtWeekend.setHours(15);
     endtWeekend.setMinutes(59);
 
-    //   today.setHours(10);
-    //   today.setMinutes(0);
+    return (
+        <>
+            <input
+                className="inputVinos"
+                type="text"
+                placeholder="Buscar"
+                onChange={(event) => {
+                    //state.searchTerm = event.target.value;
+                    setSearchTerm(event.target.value);
+                }} />
 
-    // console.log(today);
-    // console.log(start);
-    // console.log(end);
-
-    // axios.get(`/api/buensabor/articulosmanufacturados`)
-    //   .then(res => {
-    //     const persons = res.data;
-    //     console.log(persons);
-    //   })
-console.log("hola");
-console.log(searchTerm);
-return (
-    <>
-        <input
-            className="inputVinos"
-            type="text"
-            placeholder="Buscar"
-            onChange={(event) => {
-                //state.searchTerm = event.target.value;
-                setSearchTerm(event.target.value);
-            }} />
-
-        <div>
-        {console.log(searchTerm)}
-        </div>
-        <Grid container justifyContent="center" spacing={4}>
+            <div>
+                {console.log(searchTerm)}
+            </div>
+            <Grid container justifyContent="center" spacing={4}>
                 {productos.filter((producto) => {
                     if (searchTerm == "") {
                         return producto
-                    } else if (producto.instrumento.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (producto.denominacion.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return producto
                     }
                 }).map((producto) => (
@@ -83,8 +70,8 @@ return (
                 )}
             </Grid>
 
-    </>
-)
+        </>
+    )
 }
 
 export default Productos

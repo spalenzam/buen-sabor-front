@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom'
 
 const Carrito = ({ cart, handleModificarCantidad, handleEliminarItems, handleVaciar }) => {
 
+    const handleDeleteProducto = () =>{
+        dispatchEvent( deleteProducto(id));
+    }
+
+
     const CarritoVacio = () => (
         <Typography variant="subtitle1">No hay productos en el carrito!
             <Link to="/productos" > Agregar </Link>
@@ -42,6 +47,8 @@ const Carrito = ({ cart, handleModificarCantidad, handleEliminarItems, handleVac
     );
 
     if (!cart.line_items) return 'Cargando';
+
+    
     return (
         <Container>
             <div />

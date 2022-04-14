@@ -9,18 +9,15 @@ const Tarjeta = ({ product, agregarACarrito, close }) => {
         <>
             <Card style={{ width: '18rem' }} className="margenesTarjeta">
                 <a href={`/detalle/${product.id}`}>
-                    <Card.Img variant="top" className="maxAltoImg" src={require(`../../assets/images/${product.imagen}`)} alt="Instrumento" />
+                    <Card.Img variant="top" className="maxAltoImg" alt="Instrumento" />
                 </a>
                 <Card.Body>
-                    <Card.Title>{product.instrumento}</Card.Title>
+                    <Card.Title>{product.denominacion}</Card.Title>
                     <Card.Text>
-                        ${product.precio}
+                        ${product.precioVenta}
                     </Card.Text>
                     <Card.Text style={{ color: 'orange' }}>
-                        {product.costoEnvio === "G" ? <span><img src={camion} alt="camion" /> <span style={{ color: 'green' }}>"Envio gratis a todo el país"</span> </span> : `Costo de Envio interior de Argentina $ ${product.costoEnvio}`}
-                    </Card.Text>
-                    <Card.Text>
-                        {product.cantidadVendida} Vendidos
+                        {product.precioVenta === "G" ? <span><img src={camion} alt="camion" /> <span style={{ color: 'green' }}>"Envio gratis a todo el país"</span> </span> : `Costo de Envio interior de Argentina $ ${product.precioVenta}`}
                     </Card.Text>
                 </Card.Body>
                 {
@@ -28,7 +25,7 @@ const Tarjeta = ({ product, agregarACarrito, close }) => {
                         ?
                         <Button
                             disabled={true}
-                            onClick={() => agregarACarrito(product.id, 1)}
+                            //onClick={() => agregarACarrito(product.id, 1)}
                         >
                             Cerrado momentaneamente
                         </Button>
@@ -37,7 +34,7 @@ const Tarjeta = ({ product, agregarACarrito, close }) => {
                         :
                         <Button
                             disabled={false}
-                            onClick={() => agregarACarrito(product.id, 1)}
+                            //onClick={() => agregarACarrito(product.id, 1)}
                         >
                             Agregar al carrito
                         </Button>
