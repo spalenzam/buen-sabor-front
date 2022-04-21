@@ -1,8 +1,8 @@
 import { Grid } from '@material-ui/core';
-import React, { useState } from 'react';
 import Tarjeta from './Tarjeta';
 import moment from 'moment';
-import axios from 'axios'; 
+import React, { useEffect, useState } from 'react';
+
 
 const Productos = ({ productos, agregarACarrito }) => {
 
@@ -10,7 +10,8 @@ const Productos = ({ productos, agregarACarrito }) => {
     const [close] = useState();
 
     const [state] = useState({
-        searchTerm:""
+        searchTerm:"", 
+        close
     });
 
     const today = moment().toDate();
@@ -29,24 +30,10 @@ const Productos = ({ productos, agregarACarrito }) => {
     endtWeekend.setHours(15);
     endtWeekend.setMinutes(59);
 
-    //   today.setHours(10);
-    //   today.setMinutes(0);
 
-    // console.log(today);
-    // console.log(start);
-    // console.log(end);
-
-    // axios.get(`/api/buensabor/articulosmanufacturados`)
-    //   .then(res => {
-    //     const persons = res.data;
-    //     console.log(persons);
-    //   })
-console.log("hola");
-console.log(searchTerm);
 return (
     <>
         <input
-            className="inputVinos"
             type="text"
             placeholder="Buscar"
             onChange={(event) => {
@@ -55,13 +42,13 @@ return (
             }} />
 
         <div>
-        {console.log(searchTerm)}
+            {console.log(searchTerm)}
         </div>
         <Grid container justifyContent="center" spacing={4}>
                 {productos.filter((producto) => {
-                    if (searchTerm == "") {
+                    if (searchTerm === "") {
                         return producto
-                    } else if (producto.instrumento.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (producto.denominacion.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return producto
                     }
                 }).map((producto) => (
@@ -69,6 +56,7 @@ return (
                         <Tarjeta
                             product={producto}
                             agregarACarrito={agregarACarrito}
+                           
                             close={(today >= start && today <= end) ?
                                 false :
 
