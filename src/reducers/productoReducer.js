@@ -9,7 +9,6 @@ export const productoReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case types.getAllProducto:
-            console.log(action.payload)
             return {
                 //esto es para retornar siempre un estado nuevo, no pisar el anterior
                 ...state,

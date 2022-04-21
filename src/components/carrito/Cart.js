@@ -19,10 +19,9 @@ const Cart = ({cart, agregarACarrito, eliminarDeCarrito}) => {
 
     
     const total = cart.reduce(
-      (previous, product) => previous + product.cant * product.precio,
-      0
-  );
+      (previous, product) => previous + product.cant * product.precioVenta, 0);
    
+  console.log(total);
 
     return (
     <div className='cartContainer'>

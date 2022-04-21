@@ -11,7 +11,7 @@ const ProductosItems = ({comida, agregarACarrito, eliminarDeCarrito}) => {
             </div>
             <div>
                 {comida.cant}
-                <p>Total= ${comida.cant * comida.precio_venta}</p>
+                <p>Total= ${comida.cant * comida.precioVenta}</p>
             </div>
         </div>
     )

@@ -41,9 +41,6 @@ return (
                 setSearchTerm(event.target.value);
             }} />
 
-        <div>
-            {console.log(searchTerm)}
-        </div>
         <Grid container justifyContent="center" spacing={4}>
                 {productos.filter((producto) => {
                     if (searchTerm === "") {
