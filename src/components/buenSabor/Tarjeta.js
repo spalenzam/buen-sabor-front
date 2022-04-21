@@ -4,45 +4,44 @@ import Card from 'react-bootstrap/Card';
 import camion from '../../assets/images/camion.png';
 
 const Tarjeta = ({ product, agregarACarrito, close }) => {
-    console.log(close);
+    
     return (
         <>
             <Card style={{ width: '18rem' }} className="margenesTarjeta">
                 <a href={`/detalle/${product.id}`}>
-                    <Card.Img variant="top" className="maxAltoImg" src={require(`../../assets/images/${product.imagen}`)} alt="Instrumento" />
+                    <Card.Img variant="top" className="maxAltoImg" alt="Instrumento" />
                 </a>
                 <Card.Body>
-                    <Card.Title>{product.instrumento}</Card.Title>
+                    <Card.Title>{product.denominacion}</Card.Title>
                     <Card.Text>
-                        ${product.precio}
+                        ${product.precioVenta}
                     </Card.Text>
-                    <Card.Text style={{ color: 'orange' }}>
+                    {/* <Card.Text style={{ color: 'orange' }}>
                         {product.costoEnvio === "G" ? <span><img src={camion} alt="camion" /> <span style={{ color: 'green' }}>"Envio gratis a todo el país"</span> </span> : `Costo de Envio interior de Argentina $ ${product.costoEnvio}`}
-                    </Card.Text>
-                    <Card.Text>
-                        {product.cantidadVendida} Vendidos
-                    </Card.Text>
+                    </Card.Text> */}
+                    
                 </Card.Body>
                 {
                     close
                         ?
                         <Button
                             disabled={true}
-                            onClick={() => agregarACarrito(product.id, 1)}
+                            onClick={() => agregarACarrito(product)}
                         >
                             Cerrado momentaneamente
                         </Button>
 
-
                         :
                         <Button
                             disabled={false}
-                            onClick={() => agregarACarrito(product.id, 1)}
+                            onClick={() => agregarACarrito(product)}
                         >
                             Agregar al carrito
                         </Button>
+                        
 
                 }
+                {console.log(agregarACarrito)}
             </Card>
         </>
     )

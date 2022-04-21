@@ -11,7 +11,6 @@ import { useLocation } from 'react-router-dom';
 import { IconButton, Badge } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
 
-
 const NavBar = ({ totalItems }) => {
     const dispatch = useDispatch();
 
@@ -31,7 +30,8 @@ const NavBar = ({ totalItems }) => {
                     <Nav.Link href="/productos">Productos</Nav.Link>
                     <Nav.Link href="/dondeEstamos">Donde Estamos</Nav.Link>
                 </Nav>
-                <div >
+                
+                {/* <div >
                         {ubicacion.pathname === '/productos' ? (
                         <div className='btn btn-primary'>
                             <IconButton href="/carrito" aria-label="Show cart items" color="inherit">
@@ -40,7 +40,7 @@ const NavBar = ({ totalItems }) => {
                                 </Badge>
                             </IconButton>
                         </div>) : null}
-                    </div>
+                    </div> */}
                 <button
                     className='btn btn-primary'
                     onClick={handleLogout}
