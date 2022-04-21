@@ -79,6 +79,7 @@ const DashBoardRoutes = () => {
     }, []);
 
     console.log(productos);
+    console.log(cart);
 
     return (
         <>

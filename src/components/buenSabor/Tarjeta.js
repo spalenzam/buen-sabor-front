@@ -41,7 +41,6 @@ const Tarjeta = ({ product, agregarACarrito, close }) => {
                         
 
                 }
-                {console.log(agregarACarrito)}
             </Card>
         </>
     )
