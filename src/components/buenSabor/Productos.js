@@ -45,13 +45,13 @@ return (
                 {productos.filter((producto) => {
                     if (searchTerm === "") {
                         return producto
-                    } else if (producto.denominacion.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (producto.articuloManufacturado.denominacion.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return producto
                     }
                 }).map((producto) => (
-                    <Grid item key={producto.id} xs={12} sm={6} md={4} lg={3} >
+                    <Grid item key={producto.articuloManufacturado.id} xs={12} sm={6} md={4} lg={3} >
                         <Tarjeta
-                            product={producto}
+                            product={producto.articuloManufacturado}
                             agregarACarrito={agregarACarrito}
                            
                             close={(today >= start && today <= end) ?

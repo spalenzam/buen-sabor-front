@@ -25,7 +25,8 @@ export const getProductos = () => async (dispatch) => {
     //como es asíncrona tenemos que hacer el callback al dispatch
     try {
         //Obtengo los productos
-        const res = await axios.get(`/api/buensabor/articulosmanufacturados`)
+        const res = await axios.get(`/api/buensabor/articulosmanufacturados/cantidad-disponible`)
+        console.log(res.data);
         //Actualizo el state del store
         dispatch(productosActivos(res.data))
         return res.data;
