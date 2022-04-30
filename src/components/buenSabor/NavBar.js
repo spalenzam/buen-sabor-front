@@ -1,15 +1,9 @@
 import React from 'react';
-import useStyles from './styles';
-import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import FormControl from 'react-bootstrap/FormControl';
-import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux'
 import { startLogout } from '../../actions/auth';
 import { useLocation } from 'react-router-dom';
-import { IconButton, Badge } from '@material-ui/core';
-import { ShoppingCart } from '@material-ui/icons';
 
 const NavBar = ({ totalItems }) => {
     const dispatch = useDispatch();
@@ -18,8 +12,6 @@ const NavBar = ({ totalItems }) => {
   const handleLogout = () =>{
     dispatch( startLogout() );
   }
-
-  const ubicacion = useLocation();
 
     return (
         <>

@@ -1,7 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import camion from '../../assets/images/camion.png';
 
 const Tarjeta = ({ product, agregarACarrito, close }) => {
 

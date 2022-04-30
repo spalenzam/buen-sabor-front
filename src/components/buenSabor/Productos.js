@@ -1,18 +1,17 @@
 import { Grid } from '@material-ui/core';
 import Tarjeta from './Tarjeta';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 
 const Productos = ({ productos, agregarACarrito }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
-    const [close] = useState();
 
-    const [state] = useState({
-        searchTerm:"", 
-        close
-    });
+    // const [state] = useState({
+    //     searchTerm:"", 
+    //     close
+    // });
 
     const today = moment().toDate();
     const todayDay = moment().format('dddd');

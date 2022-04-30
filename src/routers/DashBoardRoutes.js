@@ -4,9 +4,8 @@ import BuenSaborScreen from '../components/buenSabor/BuenSaborScreen';
 import NavBar from '../components/buenSabor/NavBar';
 import Productos from '../components/buenSabor/Productos';
 import Cart from '../components/carrito/Cart';
-import instrumentos from '../datos/instrumentos.json';
-import { useDispatch , useSelector} from 'react-redux'
-import { getProductos, productosActivos } from '../actions/productos';
+import { useDispatch } from 'react-redux'
+import { getProductos } from '../actions/productos';
 
 const DashBoardRoutes = () => {
 
@@ -78,8 +77,6 @@ const DashBoardRoutes = () => {
         fetchProductos();
     }, []);
 
-    console.log(productos);
-    console.log(cart);
 
     return (
         <>
