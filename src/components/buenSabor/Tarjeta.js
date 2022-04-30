@@ -4,12 +4,13 @@ import Card from 'react-bootstrap/Card';
 import camion from '../../assets/images/camion.png';
 
 const Tarjeta = ({ product, agregarACarrito, close }) => {
+
     
     return (
         <>
             <Card style={{ width: '18rem' }} className="margenesTarjeta">
                 <a href={`/detalle/${product.id}`}>
-                    <Card.Img variant="top" className="maxAltoImg" alt="Instrumento" />
+                    <Card.Img variant="top" src={`http://localhost:8090/api/buensabor/articulosmanufacturados/uploads/img/${product.id}`} className="maxAltoImg" alt="Instrumento" />
                 </a>
                 <Card.Body>
                     <Card.Title>{product.denominacion}</Card.Title>
