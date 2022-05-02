@@ -13,21 +13,25 @@ const RegisterScreen = () => {
 
   //Para obtener cosas del state vamos a usar el useSelector que recibe un callback -> useSelector "()"
   const { msgError } = useSelector( state => state.ui )
-  console.log(msgError);
 
   //Pasos para hacer un form 
   //1) hacer el usoForm con el objeto que necesito obtener
   //este vendría siendo mi objeto, desestructuro el formValues y el handleInputChange, el reset por ahora no
   const [formValues, handleInputChange] = useForm({
     name: '',
+    lastname: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
+    telefono: '',
+    numeroCalle: '',
+    calle: '',
+    localidad: ''
   });
 
   //2) Desestructurar los datos del objeto
   //Acá desestructuro del formValues 
-  const { name, email, password, password2 } = formValues;
+  const { name, lastname, email, password, password2, telefono, numeroCalle, calle, localidad } = formValues;
 
   //3)
   //los nombre de los atributos del formValue tienen que coincidir con el name de los input del formulario
@@ -41,7 +45,7 @@ const RegisterScreen = () => {
     e.preventDefault();
 
     if (isFormValid()) {
-      dispatch( startRegisterWithEmailPasswordName( email, password, name ));
+      dispatch(startRegisterWithEmailPasswordName(name, lastname, email, password, telefono, numeroCalle, calle, localidad));
     }
 
   }
@@ -94,6 +98,16 @@ const RegisterScreen = () => {
 
         <input
           type="text"
+          placeholder='Lastname'
+          name='lastname'
+          className='auth__input'
+          autoComplete='off'
+          value={lastname}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="text"
           placeholder='Email'
           name='email'
           className='auth__input'
@@ -117,6 +131,42 @@ const RegisterScreen = () => {
           name='password2'
           className='auth__input'
           value={password2}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="telefono"
+          placeholder='Teléfono'
+          name='telefono'
+          className='auth__input'
+          value={telefono}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="numeroCalle"
+          placeholder='Número Calle'
+          name='numeroCalle'
+          className='auth__input'
+          value={numeroCalle}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="calle"
+          placeholder='Nombre calle'
+          name='calle'
+          className='auth__input'
+          value={calle}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="localidad"
+          placeholder='Localidad'
+          name='localidad'
+          className='auth__input'
+          value={localidad}
           onChange={handleInputChange}
         />
 
