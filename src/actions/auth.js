@@ -17,7 +17,7 @@ export const startLoginEmailPassword = (email, password) => {
                 dispatch(finishLoading());
 
                 const names = user.displayName.split(" ");
-                dispatch(login(user.uid, names[0], names[1], user.email, user.phoneNumber, null));
+                dispatch(login(user.uid, names[0], names[1], user.email));
             })
             .catch(e => {
                 //Hay que dejarlo habilitado si la persona se esquivoca 
@@ -37,15 +37,16 @@ export const startRegisterWithEmailPasswordName = (name, lastname, email, passwo
     //retorna una función callback por es asíncrona, esto es callback return () =>{}
     return (dispatch) => {
         //Para que el loading se ponga en true y se bloquee el botón de loading mientras se está realizando la acción de logueo
-        dispatch(startLoading());
+       
         //Esto nos da una promesa, que la podemos poner con then o con async-await
         //Con esto ya se me guarda el usuario pero sin el displayName
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async ({ user }) => {
-                dispatch(finishLoading());
+                
                 //Con esto le seteamos el displayName
                 //Tmb devuelve una promesa, pero en vez de hacerlo con then lo vamos a hacer son async awair
                 const displayName = name + " " + lastname
+                console.log(displayName);
                 await user.updateProfile({ displayName: displayName })
                 //Creamos el domicilio
                 const direction = {
@@ -53,8 +54,9 @@ export const startRegisterWithEmailPasswordName = (name, lastname, email, passwo
                     calle: calle,
                     localidad: localidad
                 }
+                
+                dispatch(login(user.uid, name, lastname, email));
                 dispatch(saveUser(name, lastname, email, telefono, direction));
-                dispatch(login(user.uid, name, lastname, email, telefono, direction));
 
             })
             .catch(e => {
@@ -91,14 +93,16 @@ export const saveUser = (name, lastname, email, telefono, direction) => async (d
 export const startGoogleLogin = () => {
     //como es asíncrona tenemos que hacer el callback al dispatch
     return (dispatch) => {
-
+console.log(googleAuthProvider)
         firebase.auth().signInWithPopup(googleAuthProvider)
+        
             //Extraemos el usuarion que nos da el googleProvider
             .then(({ user }) => {
+                console.log(user);
                 //Separamos el display en nombre y apellido
                 const names = user.displayName.split(" ");
 
-                dispatch(login(user.uid, names[0], names[1], user.email, user.phoneNumber, null));
+                dispatch(login(user.uid, names[0], names[1], user.email));
             })
             .catch(e => {
                 console.log(e);
@@ -119,16 +123,14 @@ export const startGoogleLogin = () => {
 }*/
 
 //Como la función solo retorna un elemento, podemos enviarlo de esta manera, en ves de la anterior 
-export const login = (uid, name, lastname, email, phoneNumber, direction) => ({
+export const login = (uid, name, lastname, email) => ({
 
     type: types.login,
     payload: {
         uid,
         name,
         lastname,
-        email,
-        phoneNumber,
-        ...direction
+        email
     }
 
 })

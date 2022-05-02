@@ -22,11 +22,15 @@ const AppRouter = () => {
   useEffect(() => {
     //El onAuthStateChanged es un observable que va a estar pendiente de el cambio del estado del user, recién cuando cambie de usuario es cuando se va a volver a cmabiar el login
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user)
+      console.log(user);
       //Si estoy autenticado
       if (user?.uid) {
-        const names= user.displayName.split(" ");
-        dispatch(login(user.uid, names[0], names[1], user.email, user.phoneNumber, null));
+        if(user.displayName != null){
+          const names= user.displayName?.split(" ");
+          dispatch(login(user.uid, names[0], names[1], user.email));
+        }else{
+          dispatch(login(user.uid, user.displayName, user.displayName, user.email));
+        }
         //Si entró acá es porque está logueado, entonces lo pongo en true
         setIsLoggedIn(true)
       } else {
