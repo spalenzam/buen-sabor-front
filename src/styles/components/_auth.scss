@@ -10,27 +10,33 @@
 
 .auth__box-container{
     background-color: white;
-    box-shadow: 0px 3px $dark-grey;
-    border-radius: 2px;
+    box-shadow: 0px 3px 6px #363636;
+    border-radius: 10px;
     padding: 20px;
-    width: 250px;
+    width: 310px;
 }
 
 .auth__title{
     color: darken($color: $primary, $amount: 20);
     margin-bottom: 20px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 22px;
 }
 
 .auth__input{
     color: $dark-grey;
     border: 0px;
-    border-bottom: 1px solid $light-grey;
-    font-size: 16px;
+    border-bottom: 1px solid #d8d8d8;
+    font-size: 14px;
     margin-bottom: 10px;
-    height: 20px;
+    height: 40px;
     width: 100%;
-
-    transition: border-bottom .3s ease;
+    transition: border-bottom 0.3s ease;
+    border-radius: 5px;
+    padding: 0 15px;
 
     &:focus{
         border-bottom: 1px solid $primary;
@@ -44,7 +50,7 @@
     justify-content: center;
     flex-direction: column;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     width: 100%;
 }
 
@@ -56,4 +62,19 @@
     justify-content: center;
     margin-bottom: 10px;
     padding: 5px;
+}
+
+.p-title-networks{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #31368a;
+    text-align: left;
+    width: 100%;
+}
+
+.link-login{
+    text-decoration: underline;
+    font-size: 14px;
+    font-style: italic;
 }
