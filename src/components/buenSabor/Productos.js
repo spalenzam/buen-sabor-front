@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, { useState } from 'react';
 
 
-const Productos = ({ productos, agregarACarrito }) => {
+const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -29,7 +29,19 @@ const Productos = ({ productos, agregarACarrito }) => {
     endtWeekend.setHours(15);
     endtWeekend.setMinutes(59);
 
+let cantPropPedido;
 
+const itemPedido = (productoId) => {
+    cantPedida.find((cantPed) => {
+        if (cantPed.id === productoId){
+            cantPropPedido = cantPed.cant;
+            return cantPropPedido
+        } else {
+            return cantPropPedido = 0;
+        }
+    })  
+}
+    
 return (
     <>
         <input
@@ -49,10 +61,12 @@ return (
                     }
                 }).map((producto) => (
                     <Grid item key={producto.articuloManufacturado.id} xs={12} sm={6} md={4} lg={3} >
+                         {itemPedido(producto.articuloManufacturado.id)}
                         <Tarjeta
                             product={producto.articuloManufacturado}
+                            cantidadDisponible = {producto.cantidadDisponible}
+                            cantPedida = {cantPropPedido}
                             agregarACarrito={agregarACarrito}
-                           
                             close={(today >= start && today <= end) ?
                                 false :
 
