@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-const Tarjeta = ({ product, agregarACarrito, close }) => {
+const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedida }) => {
 
     
     return (
@@ -16,6 +16,10 @@ const Tarjeta = ({ product, agregarACarrito, close }) => {
                     <Card.Text>
                         ${product.precioVenta}
                     </Card.Text>
+                    <Card.Text>
+                        Cant. Disponible: {parseInt(cantidadDisponible, 10)}
+                    </Card.Text>
+
                     {/* <Card.Text style={{ color: 'orange' }}>
                         {product.costoEnvio === "G" ? <span><img src={camion} alt="camion" /> <span style={{ color: 'green' }}>"Envio gratis a todo el país"</span> </span> : `Costo de Envio interior de Argentina $ ${product.costoEnvio}`}
                     </Card.Text> */}
@@ -31,15 +35,19 @@ const Tarjeta = ({ product, agregarACarrito, close }) => {
                             Cerrado momentaneamente
                         </Button>
 
-                        :
-                        <Button
-                            disabled={false}
-                            onClick={() => agregarACarrito(product)}
-                        >
-                            Agregar al carrito
-                        </Button>
-                        
+                        : (cantPedida+1 > cantidadDisponible) ? 
+                            
+                            <Button
+                                disabled={true}
+                                onClick={() => agregarACarrito(product)}
+                            > No hay más productos disponibles
+                            </Button> :
 
+                            <Button
+                                disabled={false}
+                                onClick={() => agregarACarrito(product)}
+                                > Agregar al Carrito
+                            </Button>
                 }
             </Card>
         </>

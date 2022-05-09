@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { getProductos } from '../actions/productos';
 
 const DashBoardRoutes = () => {
-
+ 
     //Estado donde guardamos los productos
     const [productos, setProductos] = useState([]);
     
@@ -27,7 +27,6 @@ const DashBoardRoutes = () => {
 
     useEffect(() => {
         localStorage.setItem("cartProducts", JSON.stringify(cart));
-        //console.log(cart)
     }, [cart]);
 
     //consigo los productos
@@ -44,9 +43,9 @@ const DashBoardRoutes = () => {
             setCarrito(
                 cart.map((productInCart) => {
                     if(productInCart.id === product.id) {
-                        return {...inCart, cant: inCart.cant + 1};
+                        return {...inCart, cant: inCart.cant + 1}; 
                     } else return productInCart;
-                })
+                })            
             );
         } else {
             setCarrito([...cart, {...product, cant: 1}]);
@@ -77,7 +76,7 @@ const DashBoardRoutes = () => {
         fetchProductos();
     }, []);
 
-
+    
     return (
         <>
             <NavBar totalItems={10}/> 
@@ -86,8 +85,8 @@ const DashBoardRoutes = () => {
                     <Route path="/" element={<BuenSaborScreen />} />
                     <Route path="/productos" element={
                         <>
-                            <Cart cart = {cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} /> 
-                            <Productos productos = {productos } agregarACarrito={addFood}/>        
+                            <Productos productos = {productos} agregarACarrito={addFood} cantPedida = {cart}/>        
+                            <Cart cart = {cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos}/> 
                          </>
                     }/> 
                     </Routes>

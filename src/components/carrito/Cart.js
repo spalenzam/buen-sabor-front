@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './Cart.css';
-import ProductosItem from "../buenSabor/ProductosItems";
+import ProductosItem from "./ProductosItems";
 
-const Cart = ({cart, agregarACarrito, eliminarDeCarrito}) => {
+const Cart = ({cart, agregarACarrito, eliminarDeCarrito, cantDisponible}) => {
     
     const [cartOpen, setCartOpen] = useState (false);
     const [productsLength, setProductsLength] = useState (0);
@@ -22,6 +22,19 @@ const Cart = ({cart, agregarACarrito, eliminarDeCarrito}) => {
       (previous, product) => previous + product.cant * product.precioVenta, 0);
    
   console.log(total);
+
+  let cantidadDisponible;
+  
+  function itemDisponible (comidaId) {
+      cantDisponible.find((cantDisp) => {
+          if (cantDisp.articuloManufacturado.id === comidaId){   
+              cantidadDisponible = (parseInt(cantDisp.cantidadDisponible,10))
+              return cantidadDisponible
+          } else {
+              return 0;
+          }
+      })
+    }
 
     return (
     <div className='cartContainer'>
@@ -79,8 +92,10 @@ const Cart = ({cart, agregarACarrito, eliminarDeCarrito}) => {
             <div className='productsContainer'>
               {cart.map((comida, i) => (
                     <div key={i}>
+                      {itemDisponible(comida.id)}
                       <ProductosItem  
                         comida = {comida}
+                        cantDisponible={cantidadDisponible}
                         agregarACarrito = {agregarACarrito}
                         eliminarDeCarrito = {eliminarDeCarrito}
                         />  
@@ -89,8 +104,13 @@ const Cart = ({cart, agregarACarrito, eliminarDeCarrito}) => {
               ))}
             </div>
           )}
-
-          <h2 className='total'>Total: ${total}</h2>
+          {
+            (total !== 0) && 
+            <div>
+              <h2 className='total'>Total: ${total}</h2>
+              {/* <button>Pagar</button> */}
+            </div>
+           }
         </div>
         )}
       </div>
