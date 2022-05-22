@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { authReducer } from '../reducers/authReducer';
 import { productoReducer } from '../reducers/productoReducer';
 import { uiReducer } from '../reducers/uiReducer';
+import { usuarioReducer } from '../reducers/usuarioReducer';
 
 //Esto es para poder ocupar dos middleware
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -11,7 +12,8 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const reducers = combineReducers({
     auth: authReducer,
     ui: uiReducer,
-    prod: productoReducer
+    prod: productoReducer,
+    usuarios:usuarioReducer
 })
 
 

@@ -78,7 +78,7 @@ export const saveUser = (name, lastname, email, telefono, direction) => async (d
             domicilio: direction
         }
         console.log(cliente);
-        const res = await axios.post('/api/buensabor/clientes', cliente)
+        await axios.post('/api/buensabor/clientes', cliente)
 
 
     }
@@ -93,16 +93,14 @@ export const saveUser = (name, lastname, email, telefono, direction) => async (d
 export const startGoogleLogin = () => {
     //como es asíncrona tenemos que hacer el callback al dispatch
     return (dispatch) => {
-console.log(googleAuthProvider)
         firebase.auth().signInWithPopup(googleAuthProvider)
-        
             //Extraemos el usuarion que nos da el googleProvider
             .then(({ user }) => {
-                console.log(user);
                 //Separamos el display en nombre y apellido
                 const names = user.displayName.split(" ");
 
                 dispatch(login(user.uid, names[0], names[1], user.email));
+                dispatch(saveUser(names[0], names[1], user.email, user.phoneNumber, null));
             })
             .catch(e => {
                 console.log(e);

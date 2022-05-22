@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Routes, Route } from "react-router-dom";
 import BuenSaborScreen from '../components/buenSabor/BuenSaborScreen';
 import NavBar from '../components/buenSabor/NavBar';
@@ -31,9 +31,9 @@ const DashBoardRoutes = () => {
     }, [cart]);
 
     //consigo los productos
-    const fetchProductos = async () => {
+    const fetchProductos = useCallback(async () => {
         setProductos(await dispatch(getProductos()))
-    }
+    },[dispatch]);
 
     //Función que agrega al carrito los productos
     const addFood = (product) => {
@@ -75,7 +75,7 @@ const DashBoardRoutes = () => {
     //llamo a la función para que me traiga la lista de productos de commerce
     useEffect(() => {
         fetchProductos();
-    }, []);
+    }, [fetchProductos]);
 
     
     return (

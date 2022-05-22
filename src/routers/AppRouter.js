@@ -7,6 +7,8 @@ import { login } from '../actions/auth';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import DashBoardRoutes from './DashBoardRoutes';
+import Admin from "../components/admin/Admin"
+
 
 const AppRouter = () => {
 
@@ -67,6 +69,11 @@ const AppRouter = () => {
           <PublicRoute isAuthenticated={isLoggedIn}>
             <AuthRouter />
           </PublicRoute>
+        }
+        />
+
+        <Route path="admin/*" element={
+          <Admin />
         }
         />
 
