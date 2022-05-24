@@ -1,5 +1,6 @@
 import { types } from "../types/types";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 // export const getProductos = () => {
 //     //como es asíncrona tenemos que hacer el callback al dispatch
@@ -28,25 +29,29 @@ export const getProductos = () => async (dispatch) => {
         const res = await axios.get(`/api/buensabor/articulosmanufacturados/cantidad-disponible`)
         console.log(res.data);
         //Actualizo el state del store
-        dispatch(productosActivos(res.data))
+        dispatch({
+            type: types.getAllProducto,
+            payload: 
+                res.data     
+        })
         return res.data;
 
     }
     catch (e) {
-        console.log("No puede traer los productos");
+        Swal.fire('Error', 'No se pueden traer los productos', 'error')
     }
 
 
 }
 
-export const productosActivos = (productosList) => {
-    console.log(productosList);
-    return {
-        type: types.getAllProducto,
-        payload: 
-            productosList     
-    }
-}
+// export const productosActivos = (productosList) => {
+//     console.log(productosList);
+//     return {
+//         type: types.getAllProducto,
+//         payload: 
+//             productosList     
+//     }
+// }
 
 export const deleteProducto = (id) => async (dispatch) => {
     try {
@@ -66,3 +71,37 @@ export const deleteProductoStore = ( id ) =>({
     type: types.deleteProducto,
     payload: id
 }) 
+
+export const getProductosSinCantidad = () => async (dispatch) => {
+    //como es asíncrona tenemos que hacer el callback al dispatch
+    try {
+        //Obtengo los productos
+        const res = await axios.get(`/api/buensabor/articulosmanufacturados/alta`)
+        console.log(res.data);
+        //Actualizo el state del store
+        dispatch({
+            type: types.getAllProducto,
+            payload: 
+                res.data     
+        })
+        return res.data;
+
+    }
+    catch (e) {
+        Swal.fire('Error', 'No se pueden traer los productos', 'error')
+    }
+
+
+}
+
+export const getProductoById = (id) => async (dispatch) => {
+    try {
+        //Obtengo el producto
+        const res = await axios.get(`/api/buensabor/articulosmanufacturados/${id}`);
+        // localStorage.setItem('user', JSON.stringify(res.data))
+        return res.data
+
+    } catch (e) {
+        Swal.fire('Error', 'No se encontró el usuario', 'error')
+    }
+}

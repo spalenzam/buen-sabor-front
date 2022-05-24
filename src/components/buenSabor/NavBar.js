@@ -3,7 +3,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { useDispatch } from 'react-redux'
 import { startLogout } from '../../actions/auth';
-import { useLocation } from 'react-router-dom';
 
 const NavBar = ({ totalItems }) => {
     const dispatch = useDispatch();

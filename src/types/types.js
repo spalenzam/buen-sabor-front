@@ -8,5 +8,9 @@ export const types = {
     uiFinishLoading: '[UI] Finish Loading',
 
     getAllProducto:'[Prod] Get All Producto',
-    deleteProducto:'[Prod] Delete Producto'
+    deleteProducto:'[Prod] Delete Producto',
+    
+    getAllUsuarios:'[User] Get All Usuarios',
+    deleteUsuario:'[User] Delete Usuario',
+    updateUsuario: '[User] Update Usuario',
 }
