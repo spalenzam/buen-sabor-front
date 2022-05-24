@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getUsuarioById, updateUsuario } from '../../../../actions/usuarios';
 import { setError, removeError } from '../../../../actions/ui';
-import Swal from 'sweetalert2';
 
 const User = () => {
 

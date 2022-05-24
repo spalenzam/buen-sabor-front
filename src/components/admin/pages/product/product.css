@@ -10,7 +10,7 @@
   }
   
   .productAddButton {
-    width: 80px;
+    width: 125px;
     border: none;
     padding: 5px;
     background-color: teal;
@@ -25,8 +25,16 @@
   }
   
   /* .productTopLeft, */
-  .productTopRight {
+  .productTopLeft {
+    padding: 20px;
+    margin: 20px;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     flex: 1;
+  }
+
+  .productTopRight {
+    flex: 2;
   }
   
   .productTopRight {
@@ -58,11 +66,15 @@
   }
   
   .productInfoItem {
-    width: 150px;
+    width: 250px;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
   }
   
+  /* .productInfoKey {
+    font-weight: 300;
+  } */
+
   .productInfoValue {
     font-weight: 300;
   }
