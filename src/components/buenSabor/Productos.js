@@ -2,6 +2,7 @@ import { Grid } from '@material-ui/core';
 import Tarjeta from './Tarjeta';
 import moment from 'moment';
 import React, { useState } from 'react';
+import DetallePlato from './DetallePlato';
 
 
 const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
@@ -26,8 +27,8 @@ const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
     end.setMinutes(59);
     startWeekend.setHours(11);
     startWeekend.setMinutes(0);
-    endtWeekend.setHours(15);
-    endtWeekend.setMinutes(59);
+    endtWeekend.setHours(21);
+    endtWeekend.setMinutes(0);
 
 let cantPropPedido;
 

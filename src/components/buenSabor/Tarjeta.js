@@ -1,9 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedida }) => {
-
     
     return (
         <>
@@ -16,9 +16,12 @@ const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedi
                     <Card.Text>
                         ${product.precioVenta}
                     </Card.Text>
-                    <Card.Text>
-                        Cant. Disponible: {parseInt(cantidadDisponible, 10)}
-                    </Card.Text>
+                   {/* <Button>
+                        <a href={`/detallePlato/${product.id}`}>Detalle del producto</a>
+                    </Button> */}
+                    <Link to={ "/detallePlato/" + product.id}>
+                    <button>Detalle del producto</button>
+                    </Link>
 
                     {/* <Card.Text style={{ color: 'orange' }}>
                         {product.costoEnvio === "G" ? <span><img src={camion} alt="camion" /> <span style={{ color: 'green' }}>"Envio gratis a todo el país"</span> </span> : `Costo de Envio interior de Argentina $ ${product.costoEnvio}`}
