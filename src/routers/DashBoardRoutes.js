@@ -6,6 +6,7 @@ import Productos from '../components/buenSabor/Productos';
 import Cart from '../components/carrito/Cart';
 import { useDispatch } from 'react-redux'
 import { getProductos } from '../actions/productos';
+import DetallePlato from '../components/buenSabor/DetallePlato';
 
 const DashBoardRoutes = () => {
  
@@ -89,11 +90,12 @@ const DashBoardRoutes = () => {
                             <Cart cart = {cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos}/> 
                          </>
                     }/> 
+                    <Route path="/detallePlato/:id" element={<DetallePlato productos = {productos}/>} />
                     </Routes>
             </div>
             
         </>
-    )
+      )
 }
 
 export default DashBoardRoutes
