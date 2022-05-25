@@ -2,11 +2,13 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { Routes, Route } from "react-router-dom";
 import BuenSaborScreen from '../components/buenSabor/BuenSaborScreen';
 import NavBar from '../components/buenSabor/NavBar';
+import Inicio from '../components/buenSabor/Inicio';
 import Productos from '../components/buenSabor/Productos';
 import Cart from '../components/carrito/Cart';
 import { useDispatch } from 'react-redux'
 import { getProductos } from '../actions/productos';
 import DetallePlato from '../components/buenSabor/DetallePlato';
+import Footer from '../components/buenSabor/Footer';
 
 const DashBoardRoutes = () => {
  
@@ -84,16 +86,17 @@ const DashBoardRoutes = () => {
             <div className='container'>
                 <Routes>
                     <Route path="/" element={<BuenSaborScreen />} />
+                    <Route path="/inicio" element={<Inicio />} />
                     <Route path="/productos" element={
                         <>
-                            <Productos productos = {productos} agregarACarrito={addFood} cantPedida = {cart}/>        
                             <Cart cart = {cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos}/> 
-                         </>
+                            <Productos productos = {productos} agregarACarrito={addFood} cantPedida = {cart}/>        
+                        </>
                     }/> 
                     <Route path="/detallePlato/:id" element={<DetallePlato productos = {productos}/>} />
                     </Routes>
             </div>
-            
+            <Footer />
         </>
       )
 }

@@ -2,12 +2,13 @@ import Button from 'react-bootstrap/Button';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import './tarjeta.css';
 
 const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedida }) => {
     
     return (
         <>
-            <Card style={{ width: '18rem' }} className="margenesTarjeta">
+            <Card className="margenesTarjeta">
                 <a href={`/detalle/${product.id}`}>
                     <Card.Img variant="top" src={`http://localhost:8090/api/buensabor/articulosmanufacturados/uploads/img/${product.id}`} className="maxAltoImg" alt="producto" />
                 </a>
