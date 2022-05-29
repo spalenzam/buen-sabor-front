@@ -9,7 +9,6 @@ const DetallePlato = ({productos})=>{
      console.log(producto)
     return (
         <div>
-        <h1>Holaaaa</h1>
         <img src={`http://localhost:8090/api/buensabor/articulosmanufacturados/uploads/img/${producto[0].articuloManufacturado.id}`} alt={producto[0].articuloManufacturado.denominacion} className="productInfoImg" /> 
         {producto[0].articuloManufacturado.denominacion}
         {producto[0].articuloManufacturado.precioVenta}
