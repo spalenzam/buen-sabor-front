@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { getProductos } from '../actions/productos';
 import DetallePlato from '../components/buenSabor/DetallePlato';
 import Footer from '../components/buenSabor/Footer';
+import Nosotros from '../components/buenSabor/Nosotros';
 
 const DashBoardRoutes = () => {
  
@@ -84,8 +85,8 @@ const DashBoardRoutes = () => {
         <>
             <NavBar totalItems={10}/> 
             <div className='container'>
-                <Routes>
-                    <Route path="/" element={<BuenSaborScreen />} />
+            <Routes>
+                    <Route path="/" element={<Inicio />} />
                     <Route path="/inicio" element={<Inicio />} />
                     <Route path="/productos" element={
                         <>
@@ -94,6 +95,7 @@ const DashBoardRoutes = () => {
                         </>
                     }/> 
                     <Route path="/detallePlato/:id" element={<DetallePlato productos = {productos}/>} />
+                    <Route path="/Nosotros" element={<Nosotros />} />
                     </Routes>
             </div>
             <Footer />

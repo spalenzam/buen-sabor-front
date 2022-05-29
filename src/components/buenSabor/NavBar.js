@@ -15,11 +15,11 @@ const NavBar = ({ totalItems }) => {
     return (
         <>
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/home">INICIO</Navbar.Brand>
+                <Navbar.Brand href="/inicio">INICIO</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/inicio">Inicio</Nav.Link>
                     <Nav.Link href="/productos">Productos</Nav.Link>
-                    <Nav.Link href="/dondeEstamos">Donde Estamos</Nav.Link>
+                    <Nav.Link href="/nosotros">Sobre nosotros</Nav.Link>
                 </Nav>
                 
                 {/* <div >
