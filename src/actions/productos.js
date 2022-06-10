@@ -327,7 +327,7 @@ export const createProductoManufacturadoConImagen = (denominacionProducto, preci
         formData.append('archivo', imagen);
 
 
-        const res = await axios.post('/api/buensabor/articulosmanufacturados/crear-con-rubro', formData,
+        const res = await axios.post('/api/buensabor/articulosmanufacturados/crear-con-imagen', formData,
         {headers: {
                    'Content-Type': 'multipart/form-data'
                  }
