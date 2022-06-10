@@ -28,7 +28,6 @@ const Product = () => {
         idRubro: '',
         denominacionRubro: '',
         fechaBaja: null
-
     });
 
     const { denominacion, precioVenta, tiempoEstimadoCocina, denominacionRubro, idRubro, imagen, fechaBaja } = formValues;
@@ -71,7 +70,6 @@ const Product = () => {
         dispatch(getRubroGeneral()).then(setRubrosGeneral);
 
     }, []);
-
 
     return (
         <div className="product">
@@ -127,6 +125,7 @@ const Product = () => {
                     <div className="productInfoItemArticulo">
                         <AgregarArticulo idProducto={id} />
                     </div>
+
                     <Link to="../newArticuloDetalle" state={{ producto }}>
                         {/* <Link to="../newArticuloDetalle"> */}
                         <button className="productAddButton">Agregar articulo</button>

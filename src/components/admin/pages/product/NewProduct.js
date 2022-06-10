@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 
 const SelectArticulo = (props) => {
   console.log(props.input);
+
   const [articulos, setArticulos] = useState([]);
 
   const dispatch = useDispatch();
@@ -174,13 +175,16 @@ const NewProduct = () => {
 
             {/* <Link to="../newArticuloDetalle" state={{ productoManufacturado }}> */}
 
+
           </div>
         </div>
         <button className="addProductButton">Crear</button>
       </form>
+
       <Link to={"../product/"}>
         <button className="addProductButton">Volver</button>
       </Link>
+
     </div>
   )
 }
