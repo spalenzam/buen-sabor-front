@@ -90,8 +90,8 @@ const DashBoardRoutes = () => {
                     <Route path="/inicio" element={<Inicio />} />
                     <Route path="/productos" element={
                         <>
-                            <Cart cart = {cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos}/> 
                             <Productos productos = {productos} agregarACarrito={addFood} cantPedida = {cart}/>        
+                            <Cart cart = {cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos}/> 
                         </>
                     }/> 
                     <Route path="/detallePlato/:id" element={<DetallePlato productos = {productos}/>} />
