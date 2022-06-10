@@ -2,8 +2,6 @@ import { Grid } from '@material-ui/core';
 import Tarjeta from './Tarjeta';
 import moment from 'moment';
 import React, { useState } from 'react';
-import DetallePlato from './DetallePlato';
-
 
 const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
 
