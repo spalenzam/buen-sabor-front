@@ -10,6 +10,8 @@ import NewUser from './pages/user/NewUser';
 import ProductList from './pages/product/ProductList';
 import Product from './pages/product/Product';
 import NewProduct from './pages/product/NewProduct';
+import NewArticuloDetalle from './pages/articuloDetalle/NewArticuloDetalle';
+import ArticuloDetalle from './pages/articuloDetalle/ArticuloDetalle';
 
 const Admin = () => {
   return (
@@ -26,6 +28,9 @@ const Admin = () => {
           <Route path="/product" element={<ProductList />} />
           <Route path="/product/:productId" element={<Product />} /> 
           <Route path="/newProduct" element={<NewProduct />} />  
+          <Route path="/articuloDetalle/:articuloId" element={<ArticuloDetalle />} />
+          <Route path="/newArticuloDetalle" element={<NewArticuloDetalle />} />
+          {/* <Route path="/newArtManufacturadoDetalle/:productId" element={<AgregarArticulo />} /> */}
         </Routes>
       </div>
     </>

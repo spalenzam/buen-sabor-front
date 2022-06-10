@@ -37,3 +37,26 @@
     font-weight: 600;
     cursor: pointer;
   }
+
+  .productTop {
+    display: flex;
+  }
+  
+  .productTopRight {
+    flex: 2;
+  }
+  
+  .productTopRight {
+    padding: 0px;
+    margin: 0px;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  }
+
+  .productTopLeft {
+    padding: 20px;
+    margin: 20px;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    flex: 1;
+  }
