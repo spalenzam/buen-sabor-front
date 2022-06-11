@@ -27,6 +27,9 @@ const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
     startWeekend.setMinutes(0);
     endtWeekend.setHours(21);
     endtWeekend.setMinutes(0);
+    
+    today.setHours(21);
+    today.setMinutes(0);
 
 let cantPropPedido;
 
@@ -40,7 +43,7 @@ const itemPedido = (productoId) => {
         }
     })  
 }
-    
+
 return (
     <>
         <div className='buen-sabor__main-content'>
