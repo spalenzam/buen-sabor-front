@@ -1,5 +1,6 @@
 import React from 'react';
 import './inicio.css';
+import { Link } from 'react-router-dom';
 
 const Inicio = ({rubro}) => {
 
@@ -19,12 +20,16 @@ const Inicio = ({rubro}) => {
           <div className="col-12">
             <h3>Categorías</h3>
           </div>
+          
           <div className="col-md-3">
+            <a href='/productos'>
               <div className="tarjeta-categoria">
                 <img src="#" alt="Categoría Ejemplo" />
                 <h4>Nombre Categoría</h4>
-              </div>
+              </div> 
+            </a>
           </div>
+        
           <div className="col-md-3">
               <div className="tarjeta-categoria">
                 <img src="#" alt="Categoría Ejemplo" />
