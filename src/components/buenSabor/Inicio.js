@@ -1,7 +1,7 @@
 import React from 'react';
 import './inicio.css';
 
-const Inicio = () => {
+const Inicio = ({rubro}) => {
 
   return (
     <div className='buen-sabor__main-content'>

@@ -7,15 +7,16 @@ import Productos from '../components/buenSabor/Productos';
 import Cart from '../components/carrito/Cart';
 import { useDispatch } from 'react-redux'
 import { getProductos } from '../actions/productos';
+import { getRubroGeneral } from '../actions/rubrogeneral';
 import DetallePlato from '../components/buenSabor/DetallePlato';
 import Footer from '../components/buenSabor/Footer';
 import Nosotros from '../components/buenSabor/Nosotros';
 
 const DashBoardRoutes = () => {
- 
+
     //Estado donde guardamos los productos
     const [productos, setProductos] = useState([]);
-    
+
     const dispatch = useDispatch();
 
     //Es el estado que permite ver el num en el carrito cuando voy agregando productos
@@ -36,23 +37,23 @@ const DashBoardRoutes = () => {
     //consigo los productos
     const fetchProductos = useCallback(async () => {
         setProductos(await dispatch(getProductos()))
-    },[dispatch]);
+    }, [dispatch]);
 
     //Función que agrega al carrito los productos
     const addFood = (product) => {
         const inCart = cart.find(
             (productInCart) => productInCart.id === product.id
         );
-        if (inCart){
+        if (inCart) {
             setCarrito(
                 cart.map((productInCart) => {
-                    if(productInCart.id === product.id) {
-                        return {...inCart, cant: inCart.cant + 1}; 
+                    if (productInCart.id === product.id) {
+                        return { ...inCart, cant: inCart.cant + 1 };
                     } else return productInCart;
-                })            
+                })
             );
         } else {
-            setCarrito([...cart, {...product, cant: 1}]);
+            setCarrito([...cart, { ...product, cant: 1 }]);
         }
     }
 
@@ -60,17 +61,17 @@ const DashBoardRoutes = () => {
     const delFood = (product) => {
         //find porque es un solo elemento con ese id
         const inCart = cart.find((productInCart) => productInCart.id === product.id);
-        
-        if (inCart.cant ===1) {
+
+        if (inCart.cant === 1) {
             setCarrito(cart.filter(productInCart => productInCart.id !== product.id)
-            ) ;
+            );
         } else {
             setCarrito(
                 cart.map((productInCart) => {
-            if(productInCart.id === product.id){
-                return {...inCart, cant: inCart.cant -1}
-            } else return productInCart;
-        }));
+                    if (productInCart.id === product.id) {
+                        return { ...inCart, cant: inCart.cant - 1 }
+                    } else return productInCart;
+                }));
         }
     }
 
@@ -80,27 +81,39 @@ const DashBoardRoutes = () => {
         fetchProductos();
     }, [fetchProductos]);
 
-    
+    //Estado donde guardamos las categorías
+    const [rubroGeneral, setRubroGeneral] = useState([]);
+
+    //consigo categorías 
+    const fetchRubroGeneral = useCallback(async () => {
+        setRubroGeneral(await dispatch(getRubroGeneral()))
+    }, [dispatch]);
+
+    useEffect(() => {
+        fetchRubroGeneral();
+    }, [fetchRubroGeneral]);
+
+
     return (
         <>
-            <NavBar totalItems={10}/> 
+            <NavBar totalItems={10} />
             <div className='container'>
-            <Routes>
-                    <Route path="/" element={<Inicio />} />
-                    <Route path="/inicio" element={<Inicio />} />
+                <Routes>
+                    <Route path="/" element={<Inicio rubro={rubroGeneral} />} />
+                    <Route path="/inicio" element={<Inicio rubro={rubroGeneral} />} />
                     <Route path="/productos" element={
                         <>
-                            <Productos productos = {productos} agregarACarrito={addFood} cantPedida = {cart}/>        
-                            <Cart cart = {cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos}/> 
+                            <Productos productos={productos} agregarACarrito={addFood} cantPedida={cart} />
+                            <Cart cart={cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos} />
                         </>
-                    }/> 
-                    <Route path="/detallePlato/:id" element={<DetallePlato productos = {productos}/>} />
+                    } />
+                    <Route path="/detallePlato/:id" element={<DetallePlato productos={productos} />} />
                     <Route path="/Nosotros" element={<Nosotros />} />
-                    </Routes>
+                </Routes>
             </div>
             <Footer />
         </>
-      )
+    )
 }
 
 export default DashBoardRoutes
