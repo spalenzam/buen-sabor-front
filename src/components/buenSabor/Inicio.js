@@ -2,7 +2,7 @@ import React from 'react';
 import './inicio.css';
 
 const Inicio = ({rubro}) => {
-
+console.log({rubro})
   return (
     <div className='buen-sabor__main-content'>
 
@@ -24,7 +24,7 @@ const Inicio = ({rubro}) => {
             <a href='/productos'>
               <div className="tarjeta-categoria">
                 <img src="#" alt="Categoría Ejemplo" />
-                <h4>Nombre Categoría</h4>
+                <h4></h4>
               </div> 
             </a>
           </div>
