@@ -13,4 +13,6 @@ export const types = {
     getAllUsuarios:'[User] Get All Usuarios',
     deleteUsuario:'[User] Delete Usuario',
     updateUsuario: '[User] Update Usuario',
+
+    getRubroGeneral:'[RubG] Get All RubroGeneral',
 }
