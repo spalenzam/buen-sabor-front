@@ -111,6 +111,7 @@ const DashBoardRoutes = () => {
                     <Route path="/detallePlato/:id" element={<DetallePlato productos={productos} />} />
                     <Route path="/Nosotros" element={<Nosotros />} />
                     <Route path='/tienda' element={<FinalProductList cart={cart}/> }/>
+
                 </Routes>
             </div>
             <Footer />
