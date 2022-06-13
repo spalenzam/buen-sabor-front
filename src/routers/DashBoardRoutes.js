@@ -11,6 +11,7 @@ import { getRubroGeneral } from '../actions/rubrogeneral';
 import DetallePlato from '../components/buenSabor/DetallePlato';
 import Footer from '../components/buenSabor/Footer';
 import Nosotros from '../components/buenSabor/Nosotros';
+import FinalProductList from '../components/carrito/FinalProductList';
 
 const DashBoardRoutes = () => {
 
@@ -109,6 +110,7 @@ const DashBoardRoutes = () => {
                     } />
                     <Route path="/detallePlato/:id" element={<DetallePlato productos={productos} />} />
                     <Route path="/Nosotros" element={<Nosotros />} />
+                    <Route path='/tienda' element={<FinalProductList cart={cart}/> }/>
                 </Routes>
             </div>
             <Footer />
