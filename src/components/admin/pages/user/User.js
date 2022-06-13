@@ -65,9 +65,9 @@ const User = () => {
       console.log(data);
       setUsuarioSeleccionado(data)
       setFormValues({
-        ...data, 
-        clave2:data.clave,
-        apellido:data.cliente?.apellido,
+        ...data,
+        clave2: data.clave,
+        apellido: data.cliente?.apellido,
         nombre: data.cliente?.nombre,
         email: data.cliente?.email,
         telefono: data.cliente?.telefono,
@@ -83,9 +83,6 @@ const User = () => {
 
       <div className="userTitleContainer">
         <h1 className="userTitle">Editar Usuario</h1>
-        <Link to="../newUser">
-          <button className="userAddButton">Crear Usuario</button>
-        </Link>
       </div>
 
       <div className="userContainer">
@@ -222,7 +219,7 @@ const User = () => {
                     </div>
                   </div>
                   <div className="userUpdateRight">
-                  <div className="userUpdateItem">
+                    <div className="userUpdateItem">
                       <label>Email</label>
                       <input
                         type="text"
@@ -312,16 +309,16 @@ const User = () => {
                       />
                     </div>
                     <div className="userUpdateItem">
-                    <label>Confirmar clave</label>
-                    <input
-                      type="password"
-                      placeholder='Confirmar clave'
-                      name='clave2'
-                      className="userUpdateInput"
-                      value={clave2}
-                      onChange={handleInputChange}
-                    />
-                  </div> 
+                      <label>Confirmar clave</label>
+                      <input
+                        type="password"
+                        placeholder='Confirmar clave'
+                        name='clave2'
+                        className="userUpdateInput"
+                        value={clave2}
+                        onChange={handleInputChange}
+                      />
+                    </div>
                   </div>
                   <button type="submit" className="userUpdateButton">Actualizar</button>
                 </form>
@@ -331,6 +328,9 @@ const User = () => {
 
         </div>
       </div>
+      <Link to={"../user/"}>
+        <button className="addProductButton">Volver</button>
+      </Link>
     </div>
   )
 }

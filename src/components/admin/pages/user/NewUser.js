@@ -5,6 +5,8 @@ import { useForm } from '../../../../hooks/useForm';
 import validator from 'validator';
 import { removeError, setError } from '../../../../actions/ui';
 import { guardarUsuario } from '../../../../actions/usuarios';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const NewUser = () => {
 
@@ -30,6 +32,14 @@ const NewUser = () => {
       dispatch(guardarUsuario(email, clave, rol));
     }
 
+    Swal.fire({
+      title: 'Empleado creado con éxito',
+      icon: 'success',
+      html:
+        'Volver a  ' +
+        '<a href="../admin/user">Usuarios</a> ',
+    })
+
   }
 
   const isFormValid = () => {
@@ -51,7 +61,7 @@ const NewUser = () => {
 
   return (
     <div className="newUser">
-      <h1 className="newUserTitle">Nuevo Usuario</h1>
+      <h1 className="newUserTitle">Nuevo Empleado</h1>
 
       <form onSubmit={handleCreate} className="newUserForm">
         {
@@ -71,8 +81,9 @@ const NewUser = () => {
           />
         </div>
         <div className="newUserItem">
-        <label>Rol</label>
-          <select name='rol' value={rol} onChange={handleInputChange}  className="newUserGender">
+          <label>Rol</label>
+          <select name='rol' value={rol} onChange={handleInputChange} className="newUserGender">
+            <option value="">Seleccione una opción</option>
             <option value="Cajero">Cajero</option>
             <option value="Cocinero">Cocinero</option>
             <option value="Delivery">Delivery</option>
@@ -134,6 +145,9 @@ const NewUser = () => {
         <button type="submit" className="newUserButton">Crear</button>
       </form>
 
+      <Link to={"../user/"}>
+        <button className="addProductButton">Volver</button>
+      </Link>
     </div>
   )
 }

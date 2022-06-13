@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
-import { AddBox, Publish } from "@material-ui/icons";
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { createProductoManufacturado, getRubroGeneral, updateProduct, getArticuloInsumo, createProductoManufacturadoConImagen } from '../../../../actions/productos';
 import "./newProduct.css";
 import List from '../../../../util/list';
+import Swal from 'sweetalert2';
 
 
 const SelectArticulo = (props) => {
-
+  console.log(props.input);
   const [articulos, setArticulos] = useState([]);
 
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const SelectArticulo = (props) => {
     <select name="idArticulo" value={props.input.value?.id || ''} placeholder="Articulo"
       onChange={(e) => { props.input.onChange(articulos.find((elemt) => elemt.id == e.target.value)) }}
     >
-      <option value="">Select option</option>
+      <option value="">Selecione una opción</option>
       {articulos.map((art, index) => (
         <option key={index} value={art.id}>{art.denominacion}</option>
       ))}
@@ -29,7 +29,23 @@ const SelectArticulo = (props) => {
   )
 }
 
+const SelectUnidadDeMedida = (props) => {
+console.log(props.input);
+  return (
+    <select name="unidadMedida" value={props.input.value} 
+    onChange={(e) => { props.input.onChange(e.target.value) }} >
+            <option>Seleccione una opción</option>
+            <option value="gr">gr</option>
+            <option value="kg">kg</option>
+            <option value="l">l</option>
+            <option value="ml">ml</option>
+          </select>
+  )
+}
+
 const NewProduct = () => {
+
+  let navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -78,26 +94,28 @@ const NewProduct = () => {
       await dispatch(createProductoManufacturadoConImagen(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles, imagen))
       .then(setProductoManufacturado);
 
-    } else {
+     } else {
       await dispatch(createProductoManufacturado(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles))
       .then(setProductoManufacturado);
 
-    }
-    
+     }
+
+  Swal.fire({
+    title: 'Producto Creado con Éxito',
+    icon: 'success',
+    html:
+      'Volver a  ' +
+      '<a href="../admin/product">Productos Manufacturados</a> ',
+  })
+   
+    // navigate("../product");
 
   }
 
   useEffect(() => {
-
-    // if(bandera==0){
-    //   dispatch(createProductoManufacturado(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja)).then(setProductoManufacturado);
-    //   setBandera(1);
-    // }
-
     dispatch(getRubroGeneral()).then(setRubrosGeneral);
   }, []);
 
-  console.log(productoManufacturado);
 
   return (
     <div className="newProduct">
@@ -108,7 +126,6 @@ const NewProduct = () => {
             <div className="addProductItem">
               <label>Image</label>
               <input type="file" id="imagen" name='imagen' value={imagen?.files?.at(0).path || ""} onChange={handleInputChange} />
-              <input type="file" id="imagen" name='imagen' value={imagen?.files?.at(0).path || ""} style={{ display: "none" }} onChange={handleInputChange} />
             </div>
             <div className="addProductItem">
               <label>Nombre del producto</label>
@@ -140,6 +157,7 @@ const NewProduct = () => {
               <br />
               <label>Rubro</label>
               <select name="idRubro" value={idRubro} id="rubro" onChange={handleInputChange}>
+              <option value="">Selecione una opción</option>
                 {rubrosGeneral.map((rubro, index) => (
                   <option key={index} value={rubro.id}>{rubro.denominacion}</option>
                 ))}
@@ -149,35 +167,20 @@ const NewProduct = () => {
           </div>
           <div className="productTopRight">
             <span className="productName">INGREDIENTES</span>
-            {/* <br />
-                    {producto?.articulomanufacturadodetalles?.map((prod, index) => (
-                        <div key={index}>
-                            <div className="productInfoItem">
-                                <span className="productInfoValue">{prod?.articuloinsumo?.denominacion + " " + prod?.cantidad + " " + prod?.unidadMedida}</span>
-                            </div>
-                        </div>
-                    ))
-                    }
-                    <Link to={"../newArtManufacturadoDetalle/" + id}>
-                        <button type="button" className="productButton">Editar</button>
-                    </Link> */}
 
-            {/* <div className="productInfoItemArticulo">
-              <AgregarArticulo idProducto={productoManufacturado?.id} />
-            </div> */}
             <List input={{ value: formValues.articulomanufacturadodetalles, onChange: handleInputSelectArticulo }}
               options={{ articuloinsumo: { component: SelectArticulo, showAttr: "denominacion" }, cantidad: { input: {} }, unidadMedida: { input: {} } }}
             />
 
             {/* <Link to="../newArticuloDetalle" state={{ productoManufacturado }}> */}
-            {/* <Link to="../newArticuloDetalle"> */}
-            {/* <button className="productAddButton">Agregar articulo</button> */}
-            {/* </Link> */}
 
           </div>
         </div>
         <button className="addProductButton">Crear</button>
       </form>
+      <Link to={"../product/"}>
+        <button className="addProductButton">Volver</button>
+      </Link>
     </div>
   )
 }

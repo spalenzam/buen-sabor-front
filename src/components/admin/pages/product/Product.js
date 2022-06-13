@@ -27,7 +27,7 @@ const Product = () => {
         imagen: '',
         idRubro: '',
         denominacionRubro: '',
-        fechaBaja:null
+        fechaBaja: null
 
     });
 
@@ -72,14 +72,12 @@ const Product = () => {
 
     }, []);
 
-    
+
     return (
         <div className="product">
             <div className="productTitleContainer">
                 <h1 className="productTitle">Producto</h1>
-                <Link to="../newproduct">
-                    <button className="productAddButton">Crear producto</button>
-                </Link>
+
             </div>
 
             <div className="productTop">
@@ -129,7 +127,7 @@ const Product = () => {
                     <div className="productInfoItemArticulo">
                         <AgregarArticulo idProducto={id} />
                     </div>
-                    <Link to="../newArticuloDetalle" state= {{producto}}>
+                    <Link to="../newArticuloDetalle" state={{ producto }}>
                         {/* <Link to="../newArticuloDetalle"> */}
                         <button className="productAddButton">Agregar articulo</button>
                     </Link>
@@ -189,7 +187,11 @@ const Product = () => {
                         <button type="submit " className="productButton">Actualizar</button>
                     </div>
                 </form>
+
             </div>
+            <Link to={"../product/"}>
+                <button className="addProductButton">Volver</button>
+            </Link>
         </div>
     )
 }

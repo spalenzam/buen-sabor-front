@@ -65,6 +65,9 @@ const ProductList = () => {
 
   return (
     <div className="productList">
+      <Link to="../newproduct">
+        <button className="productAddButton">Crear producto</button>
+      </Link>
       <DataGrid
         rows={productos}
         disableSelectionOnClick
