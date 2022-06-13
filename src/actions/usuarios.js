@@ -118,7 +118,7 @@ export const guardarUsuario = (email, clave, rol) => async (dispatch) => {
         console.log(usuario);
         await axios.post('/api/buensabor/usuarios', usuario)
 
-        Swal.fire('Creado', 'Usuario creado con éxito', 'success')
+        //Swal.fire('Creado', 'Usuario creado con éxito', 'success')
     }
     catch (e) {
         Swal.fire('Error', 'No se pudo guardar el usuario', 'error')

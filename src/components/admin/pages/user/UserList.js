@@ -17,7 +17,7 @@ const UserList = () => {
   //consigo los usuarios
   const fetchUsuarios = useCallback(async () => {
     setUsuarios(await dispatch(getUsuarios()))
-  },[dispatch]);
+  }, [dispatch]);
 
   const handleDelete = async (id) => {
     await dispatch(deleteUsuarios(id))
@@ -25,13 +25,13 @@ const UserList = () => {
   };
 
   //solo se ejecutara al ppio del renderizado
-    //llamo a la función para que me traiga la lista de productos de commerce
-    useEffect(() => {
-      fetchUsuarios();
+  //llamo a la función para que me traiga la lista de productos de commerce
+  useEffect(() => {
+    fetchUsuarios();
   }, [fetchUsuarios]);
 
   console.log(usuarios)
-  
+
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     { field: "usuario", headerName: "Usuario", width: 180 },
@@ -67,13 +67,13 @@ const UserList = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={ "" + params.row.id}>
+            <Link to={"" + params.row.id}>
               <button className="userListEdit">Editar</button>
             </Link>
             <DeleteOutline
               className="userListDelete"
               onClick={() => handleDelete(params.row.id)}
-            /> 
+            />
           </>
         );
       },
@@ -82,6 +82,9 @@ const UserList = () => {
 
   return (
     <div className="userList">
+      <Link to="../newUser">
+        <button className="userAddButton">Nuevo Empleado</button>
+      </Link>
       <DataGrid
         rows={usuarios}
         disableSelectionOnClick
