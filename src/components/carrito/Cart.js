@@ -37,50 +37,6 @@ const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible }) => {
     })
   }
 
-  const mercadopago = new window.MercadoPago('TEST-74348839-fe10-495f-af97-8cf12e55ce3e', {
-    locale: 'es-AR'
-  });
-
-  async function saveMP(total) {
-    
-    const orderData = {
-      descripcion: "Comida - Buen Sabor",
-      cantidad: 1,
-      totalPagar: total
-    }
-
-    fetch('http://localhost:3000/api/buensabor/mercadoPagoDatos/payment', {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      }).then(function (response) {
-        console.log('post: ', response)
-        console.log('response.json: ', response)
-        return Promise.resolve(response.json());
-
-      })
-      .then(function (preference) {
-        console.log(preference)
-        createCheckoutButton(preference.id);
-      })
-      .catch(function() {
-       console.log('errrrrrrror');
-      })
-  }
-
-  function createCheckoutButton(preferenceId) {
-    console.log("preference id: ",preferenceId)
-
-    mercadopago.checkout({
-      preference: {
-        id: preferenceId
-      },
-      autoOpen: true,
-    });
-  }
-
   return (
 
     <div className='cartContainer'>
@@ -159,7 +115,6 @@ const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible }) => {
               </Link>
               <button onClick={() => saveMP(total)} >Confirmar pedido</button>
             </div> 
-
           }
         </div>
       )}
