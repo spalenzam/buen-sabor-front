@@ -94,6 +94,7 @@ export const getRubroGeneral = () => async () => {
 
 export const updateProductoConImagen = (id, denominacion, precioVenta, tiempoEstimadoCocina, idRubro, imagen) => async () => {
     try {
+
         const formData = new FormData();
         formData.append('denominacion', denominacion);
         formData.append('precioVenta', precioVenta);
@@ -160,7 +161,6 @@ export const getArtManuDetalle = (id) => async () => {
 }
 
 export const getArtManuDetalleById = (id) => async () => {
-
     try {
         //Obtengo el producto
         const res = await axios.get(`/api/buensabor/artmanufacturadodetalle/${id}`);
@@ -261,7 +261,6 @@ export const createProductoManufacturado = (denominacionProducto, precioVenta, t
             fechaBaja: fechaBaja,
             rubrogeneral: rubro,
         }
-
         const res = await axios.post('/api/buensabor/articulosmanufacturados/crear-con-rubro', articulomanufacturado)
 
         res.data.articulomanufacturadodetalles = articulomanufacturadodetalles
@@ -280,7 +279,6 @@ export const createProductoManufacturado = (denominacionProducto, precioVenta, t
 
 export const createProductoManufacturadoConImagen = (denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles, imagen) => async () => {
     try {
-
         console.log(imagen);
         const formData = new FormData();
         formData.append('denominacion', denominacionProducto);

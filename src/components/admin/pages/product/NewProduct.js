@@ -173,18 +173,15 @@ const NewProduct = () => {
               options={{ articuloinsumo: { component: SelectArticulo, showAttr: "denominacion" }, cantidad: { input: {} }, unidadMedida: { input: {} } }}
             />
 
-            {/* <Link to="../newArticuloDetalle" state={{ productoManufacturado }}> */}
-
+            {/* <Link to="../newArticuloDetalle" state={{ productoManufacturado }}> */}1f1d91... Teminé algunos detalles del guardado de productos
 
           </div>
         </div>
         <button className="addProductButton">Crear</button>
       </form>
-
       <Link to={"../product/"}>
         <button className="addProductButton">Volver</button>
       </Link>
-
     </div>
   )
 }

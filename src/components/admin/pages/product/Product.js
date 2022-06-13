@@ -125,7 +125,6 @@ const Product = () => {
                     <div className="productInfoItemArticulo">
                         <AgregarArticulo idProducto={id} />
                     </div>
-
                     <Link to="../newArticuloDetalle" state={{ producto }}>
                         {/* <Link to="../newArticuloDetalle"> */}
                         <button className="productAddButton">Agregar articulo</button>
