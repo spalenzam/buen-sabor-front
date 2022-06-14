@@ -1,3 +1,37 @@
+.navbar{
+    background-color: #fccd4d !important;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.16);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.16);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.16);
+}
+.logoHeader{
+    width: 250px;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #37241f;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+    color: #b83422;
+}
+.navbar-expand .navbar-nav {
+    margin: 0px auto;
+}
+.btn-nav{
+    background-color: #b83422;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 8px 25px;
+    cursor:pointer;
+    border:0;
+    color:#fff;
+}
+.btn-nav:hover{
+    background-color: #fff;
+    color: #b83422;
+}
 .tarjeta-categoria {
     border-radius: 15px;
     padding: 20px;

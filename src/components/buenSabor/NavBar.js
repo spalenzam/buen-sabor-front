@@ -3,6 +3,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { useDispatch } from 'react-redux'
 import { startLogout } from '../../actions/auth';
+import logo from '../../assets/images/buensabor.png';
+import './inicio.css';
 
 const NavBar = ({ totalItems }) => {
     const dispatch = useDispatch();
@@ -11,11 +13,13 @@ const NavBar = ({ totalItems }) => {
   const handleLogout = () =>{
     dispatch( startLogout() );
   }
-
+ 
     return (
         <>
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/inicio">INICIO</Navbar.Brand>
+                <Navbar.Brand href="/inicio">
+                    <img src={logo} alt="Logo Buen Sabor" className="logoHeader" />
+                </Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/inicio">Inicio</Nav.Link>
                     <Nav.Link href="/productos">Productos</Nav.Link>
@@ -33,10 +37,10 @@ const NavBar = ({ totalItems }) => {
                         </div>) : null}
                     </div> */}
                 <button
-                    className='btn btn-primary'
+                    className='btn-nav'
                     onClick={handleLogout}
                 >
-                    Logout
+                    Cerrar Sesión
                 </button>
             </Navbar>
         </>
