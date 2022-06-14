@@ -1,8 +1,14 @@
 import React from 'react';
 import './inicio.css';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+
 
 const Inicio = ({rubro}) => {
-console.log({rubro})
+
+  const { id } = useParams();
+  let rub = rubro.filter((rub) => rub.id == id);
+
   return (
     <div className='buen-sabor__main-content'>
 
@@ -21,18 +27,18 @@ console.log({rubro})
           </div>
           
           <div className="col-md-3">
-            <a href='/productos'>
+          <a href={`http://localhost:8090/api/buensabor/articulosmanufacturados/${rub[0]}`}>
               <div className="tarjeta-categoria">
                 <img src="#" alt="Categoría Ejemplo" />
-                <h4></h4>
+                <h4>{rubro[0]?.denominacion}</h4>
               </div> 
-            </a>
+          </a>
           </div>
         
           <div className="col-md-3">
               <div className="tarjeta-categoria">
                 <img src="#" alt="Categoría Ejemplo" />
-                <h4>Nombre Categoría</h4>
+                <h4>{rubro[1]?.denominacion}</h4>
               </div>
           </div>
           <div className="col-md-3">
