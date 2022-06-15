@@ -9,8 +9,9 @@
 }
 .navbar-dark .navbar-nav .nav-link {
     color: #37241f;
-    text-transform: uppercase;
     font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
 }
 .navbar-dark .navbar-nav .nav-link:hover{
     color: #b83422;

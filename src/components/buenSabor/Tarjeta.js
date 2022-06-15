@@ -14,44 +14,41 @@ const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedi
                 </a>
                 <Card.Body>
                     <Card.Title>{product.denominacion}</Card.Title>
+                    <Link to={ "/detallePlato/" + product.id}>
+                    <button className="detalleTarjeta">Detalle del producto</button>
+                    </Link>
                     <Card.Text>
                         ${product.precioVenta}
                     </Card.Text>
-                   {/* <Button>
-                        <a href={`/detallePlato/${product.id}`}>Detalle del producto</a>
-                    </Button> */}
-                    <Link to={ "/detallePlato/" + product.id}>
-                    <button>Detalle del producto</button>
-                    </Link>
-
-                    {/* <Card.Text style={{ color: 'orange' }}>
-                        {product.costoEnvio === "G" ? <span><img src={camion} alt="camion" /> <span style={{ color: 'green' }}>"Envio gratis a todo el país"</span> </span> : `Costo de Envio interior de Argentina $ ${product.costoEnvio}`}
-                    </Card.Text> */}
+                    
                     
                 </Card.Body>
                 {
                     close
                         ?
-                        <Button
+                        <button
                             disabled={true}
                             onClick={() => agregarACarrito(product)}
+                            className="btnTarjeta"
                         >
                             Cerrado momentaneamente
-                        </Button>
+                        </button>
 
                         : (cantPedida+1 > cantidadDisponible) ? 
                             
-                            <Button
+                            <button
                                 disabled={true}
                                 onClick={() => agregarACarrito(product)}
+                                className="btnTarjeta"
                             > No hay más productos disponibles
-                            </Button> :
+                            </button> :
 
-                            <Button
+                            <button
                                 disabled={false}
                                 onClick={() => agregarACarrito(product)}
+                                className="btnTarjeta"
                                 > Agregar al Carrito
-                            </Button>
+                            </button>
                 }
             </Card>
         </>

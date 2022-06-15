@@ -111,9 +111,8 @@ const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible }) => {
             <div>
               <h2 className='total'>Total: ${total}</h2>
               <Link to={"/tienda"} >
-                <button>Confirmar pedido</button>
+                <button className="btnConfirmar">Confirmar pedido</button>
               </Link>
-              <button onClick={() => saveMP(total)} >Confirmar pedido</button>
             </div> 
           }
         </div>

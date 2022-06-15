@@ -47,6 +47,7 @@ return (
             <input
                 type="text"
                 placeholder="Buscar"
+                className="inputSearch"
                 onChange={(event) => {
                     //state.searchTerm = event.target.value;
                     setSearchTerm(event.target.value);
