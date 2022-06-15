@@ -63,7 +63,7 @@ const FinalProductList = ({ cart }) => {
     }
 
     return (
-        <div>
+        <div className='buen-sabor__main-content'>
             <Link to={"/productos"} >
                 <button> Volver </button>
             </Link>

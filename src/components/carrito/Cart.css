@@ -1,14 +1,17 @@
 .cartContainer {
-    width: 100%;
+    width: 50%;
     height: 50px;
     display: flex;
     justify-content: flex-end;
+    float: right;
+    margin-top: 24px;
+    position: relative;
+    z-index: 999;
 }  
 
 .buttonCartContainer {
       position: absolute;
-      margin-top: 10px;
-      margin-right: 20px;
+      margin-top: 15px;
       cursor: pointer;
       z-index: 2;
 } 
@@ -19,9 +22,9 @@ svg {
 }
   
 .buttonCart {
-    background-color: #222222;
-    width: 60px;
-    height: 60px;
+    background-color: #37241f;
+    width: 55px;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,17 +50,24 @@ svg {
 .cart {
     position: absolute;
     margin-top: 10px;
-    margin-right: 20px;
+    margin-right: 29px;
     border-radius: 30px;
-    width: 400px;
-    background-color: #222222;
-    color: white;
+    width: 300px;
+    background-color: #fff;
+    text-align: center;
+    padding: 0 0 20px 0;
+    box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 16%);
+    -webkit-box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 16%);
+    -moz-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.16);
+    font-weight: 600;
 }
 
 h2 {
   text-align: center;
   font-weight: bold;
-  margin-top: 35px;
+  margin-top: 20px;
+  font-size: 27px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
   
 .cartVacio {
@@ -68,9 +78,22 @@ h2 {
   
 .total {
   text-align: center;
-  font-weight: bold;
-  margin-top: 15px;
-  padding-bottom: 35px;
+    font-weight: bold;
+    margin-top: 0;
+    padding-bottom: 3px;
+}
+.btnConfirmar{
+  font-size: 16px;
+    cursor: pointer;
+    border: 0;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    width: fit-content;
+    background-color: #b83422;
+    color: #fff;
+    padding: 11px 25px 13px;
+    border-radius: 8px;
+    line-height: 1;
 }
   
 .productsContainer{
@@ -78,7 +101,20 @@ h2 {
   overflow-y: scroll;
   margin-top: 5px;
 }
-
+.productsContainer button{
+  font-size: 14px;
+  cursor: pointer;
+  border: 0;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', sans-serif;
+  width: fit-content;
+  background-color: #b83422;
+  color: #fff;
+  padding: 10px 19px;
+  border-radius: 8px;
+  line-height: 1;
+  margin: 10px 5px;
+}
 ::-webkit-scrollbar {
   -webkit-appearance: none;
 }

@@ -75,6 +75,7 @@ export const getProductoById = (id) => async (dispatch) => {
 
     } catch (e) {
         Swal.fire('Error', 'No se encontró el producto', 'error')
+
     }
 }
 
@@ -100,7 +101,6 @@ export const updateProductoConImagen = (id, denominacion, precioVenta, tiempoEst
         formData.append('tiempoEstimadoCocina', tiempoEstimadoCocina);
         formData.append('rubrogeneral.id', idRubro);
         formData.append('archivo', imagen);
-
         const res = await axios.put(`/api/buensabor/articulosmanufacturados/editar-con-imagen/${id}`, formData,
             {
                 headers: {
@@ -118,7 +118,6 @@ export const updateProductoConImagen = (id, denominacion, precioVenta, tiempoEst
         Swal.fire('Error', 'No se pudo guardar el producto', 'error')
     }
 }
-
 
 export const updateProducto = (id, denominacion, precioVenta, tiempoEstimadoCocina, idRubro, fechaBaja) => async () => {
     try {
@@ -144,7 +143,6 @@ export const updateProducto = (id, denominacion, precioVenta, tiempoEstimadoCoci
         Swal.fire('Error', 'No se pudo guardar el producto', 'error')
     }
 }
-
 
 export const getArtManuDetalle = (id) => async () => {
     try {
@@ -175,6 +173,7 @@ export const getArtManuDetalleById = (id) => async () => {
 }
 
 export const getArticuloInsumo = () => async () => {
+
     try {
         //Obtengo el producto
         const res = await axios.get(`/api/buensabor/articuloinsumo/alta`);
@@ -183,14 +182,12 @@ export const getArticuloInsumo = () => async () => {
 
         //const result = resData.filter(articulo => articulo.articulomanufacturado.id == id);
 
-
         return resData
 
     } catch (e) {
         Swal.fire('Error', 'No se encontraron los insumos', 'error')
     }
 }
-
 
 export const updateArticuloDetalle = (id, denominacionArticulo, unidadMedida, cantidad) => async () => {
     try {
@@ -233,7 +230,6 @@ export const guardarArticuloDetalle = (producto, idArticulo, unidadMedida, canti
         //     id:parseInt(idArticulo)
         // }
 
-
         const articulomanufacturadodetalle = {
             unidadMedida: unidadMedida,
             cantidad: cantidad,
@@ -264,9 +260,7 @@ export const createProductoManufacturado = (denominacionProducto, precioVenta, t
             tiempoEstimadoCocina: tiempoEstimadoCocina,
             fechaBaja: fechaBaja,
             rubrogeneral: rubro,
-
         }
-
         const res = await axios.post('/api/buensabor/articulosmanufacturados/crear-con-rubro', articulomanufacturado)
 
         res.data.articulomanufacturadodetalles = articulomanufacturadodetalles
@@ -285,8 +279,6 @@ export const createProductoManufacturado = (denominacionProducto, precioVenta, t
 
 export const createProductoManufacturadoConImagen = (denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles, imagen) => async () => {
     try {
-
-
         console.log(imagen);
         const formData = new FormData();
         formData.append('denominacion', denominacionProducto);
@@ -312,7 +304,6 @@ export const createProductoManufacturadoConImagen = (denominacionProducto, preci
     }
     catch (e) {
         throw { error: Swal.fire('Error', 'No se pudo guardar el producto', 'error') }
-
     }
 }
 

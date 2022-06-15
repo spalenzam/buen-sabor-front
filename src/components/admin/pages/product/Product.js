@@ -28,7 +28,6 @@ const Product = () => {
         idRubro: '',
         denominacionRubro: '',
         fechaBaja: null
-
     });
 
     const { denominacion, precioVenta, tiempoEstimadoCocina, denominacionRubro, idRubro, imagen, fechaBaja } = formValues;
@@ -71,7 +70,6 @@ const Product = () => {
         dispatch(getRubroGeneral()).then(setRubrosGeneral);
 
     }, []);
-
 
     return (
         <div className="product">
