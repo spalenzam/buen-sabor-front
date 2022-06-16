@@ -10,7 +10,12 @@ const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
     const [searchTerm, setSearchTerm] = useState("");
 
     console.log(rubro)
-    
+    console.log(productos)
+    if (rubro != 'defaultValue') {
+        productos = productos.filter((x) => x.articuloManufacturado?.rubroGeneral?.id == rubro?.id)
+    }
+
+   
     // const [state] = useState({
     //     searchTerm:"", 
     //     close
