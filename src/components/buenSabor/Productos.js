@@ -2,11 +2,15 @@ import { Grid } from '@material-ui/core';
 import Tarjeta from './Tarjeta';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom'
 
 const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
-
+    const location = useLocation()
+    const { rubro = 'defaultValue' } = location.state || {};
     const [searchTerm, setSearchTerm] = useState("");
 
+    console.log(rubro)
+    
     // const [state] = useState({
     //     searchTerm:"", 
     //     close
