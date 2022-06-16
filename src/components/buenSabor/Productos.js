@@ -2,11 +2,20 @@ import { Grid } from '@material-ui/core';
 import Tarjeta from './Tarjeta';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom'
 
 const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
-
+    const location = useLocation()
+    const { rubro = 'defaultValue' } = location.state || {};
     const [searchTerm, setSearchTerm] = useState("");
 
+    console.log(rubro)
+    console.log(productos)
+    if (rubro != 'defaultValue') {
+        productos = productos.filter((x) => x.articuloManufacturado?.rubroGeneral?.id == rubro?.id)
+    }
+
+   
     // const [state] = useState({
     //     searchTerm:"", 
     //     close
@@ -27,6 +36,9 @@ const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
     startWeekend.setMinutes(0);
     endtWeekend.setHours(21);
     endtWeekend.setMinutes(0);
+    
+    today.setHours(21);
+    today.setMinutes(0);
 
 let cantPropPedido;
 
@@ -40,7 +52,7 @@ const itemPedido = (productoId) => {
         }
     })  
 }
-    
+
 return (
     <>
         <div className='buen-sabor__main-content'>

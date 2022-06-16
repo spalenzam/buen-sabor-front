@@ -79,6 +79,7 @@ const DashBoardRoutes = () => {
     //solo se ejecutara al ppio del renderizado
     //llamo a la función para que me traiga la lista de productos de commerce
     useEffect(() => {
+       
         fetchProductos();
     }, [fetchProductos]);
 
@@ -91,6 +92,7 @@ const DashBoardRoutes = () => {
     }, [dispatch]);
 
     useEffect(() => {
+        
         fetchRubroGeneral();
     }, [fetchRubroGeneral]);
 

@@ -170,35 +170,6 @@ export const getArtManuDetalleById = (id) => async () => {
     }
 }
 
-<<<<<<< HEAD
-export const getArticuloInsumo = () => async () => {
-
-    try {
-        //Obtengo el producto
-        const res = await axios.get(`/api/buensabor/articuloinsumo/alta`);
-=======
-// export const getArticuloInsumo = () => async () => {
-//     try {
-//         //Obtengo el producto
-//         const res = await axios.get(`/api/buensabor/articuloinsumo/alta`);
->>>>>>> ef3d469... empecé crud articulos
-
-//         const resData = res.data
-
-//         //const result = resData.filter(articulo => articulo.articulomanufacturado.id == id);
-
-<<<<<<< HEAD
-        return resData
-=======
-
-//         return resData
->>>>>>> ef3d469... empecé crud articulos
-
-//     } catch (e) {
-//         Swal.fire('Error', 'No se encontraron los insumos', 'error')
-//     }
-// }
-
 export const updateArticuloDetalle = (id, denominacionArticulo, unidadMedida, cantidad) => async () => {
     try {
 
