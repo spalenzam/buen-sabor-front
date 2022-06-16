@@ -11,7 +11,6 @@ const Inicio = ({rubro}) => {
 
   return (
     <div className='buen-sabor__main-content'>
-
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -27,12 +26,12 @@ const Inicio = ({rubro}) => {
           </div>
           
           <div className="col-md-3">
-          <a href={`http://localhost:8090/api/buensabor/articulosmanufacturados/${rub[0]}`}>
+          <Link to="../productos" state={{ rubro }}>
               <div className="tarjeta-categoria">
                 <img src="#" alt="Categoría Ejemplo" />
                 <h4>{rubro[0]?.denominacion}</h4>
               </div> 
-          </a>
+          </Link>
           </div>
         
           <div className="col-md-3">
