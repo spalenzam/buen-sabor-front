@@ -4,7 +4,8 @@ import "./articuloDetalle.css";
 import { useParams } from 'react-router';
 import { removeError, setError } from '../../../../actions/ui';
 import { useDispatch, useSelector } from 'react-redux';
-import { getArticuloInsumo, getArtManuDetalleById, guardarArticuloDetalle } from '../../../../actions/productos';
+import { guardarArticuloDetalle } from '../../../../actions/productos';
+import { getArticuloInsumo } from '../../../../actions/articulos';
 import { useLocation } from 'react-router-dom'
 
 const NewArticuloDetalle = () => {

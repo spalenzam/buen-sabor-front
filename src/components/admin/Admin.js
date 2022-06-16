@@ -12,6 +12,7 @@ import Product from './pages/product/Product';
 import NewProduct from './pages/product/NewProduct';
 import NewArticuloDetalle from './pages/articuloDetalle/NewArticuloDetalle';
 import ArticuloDetalle from './pages/articuloDetalle/ArticuloDetalle';
+import ArticuloList from './pages/articulo/ArticuloList';
 
 const Admin = () => {
   return (
@@ -30,7 +31,7 @@ const Admin = () => {
           <Route path="/newProduct" element={<NewProduct />} />  
           <Route path="/articuloDetalle/:articuloId" element={<ArticuloDetalle />} />
           <Route path="/newArticuloDetalle" element={<NewArticuloDetalle />} />
-          {/* <Route path="/newArtManufacturadoDetalle/:productId" element={<AgregarArticulo />} /> */}
+          <Route path="/articulo" element={<ArticuloList />} />
         </Routes>
       </div>
     </>

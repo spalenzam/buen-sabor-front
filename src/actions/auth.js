@@ -56,7 +56,7 @@ export const startRegisterWithEmailPasswordName = (name, lastname, email, passwo
                 }
                 
                 dispatch(login(user.uid, name, lastname, email));
-                dispatch(saveUser(name, lastname, email, telefono, direction));
+                dispatch(saveUser(name, lastname, email, telefono, direction, password));
 
             })
             .catch(e => {
@@ -66,7 +66,7 @@ export const startRegisterWithEmailPasswordName = (name, lastname, email, passwo
     }
 }
 
-export const saveUser = (name, lastname, email, telefono, direction) => async (dispatch) => {
+export const saveUser = (name, lastname, email, telefono, direction, password) => async (dispatch) => {
     //como es asíncrona tenemos que hacer el callback al dispatch
     try {
         //Creo el objecto
@@ -78,12 +78,32 @@ export const saveUser = (name, lastname, email, telefono, direction) => async (d
             domicilio: direction
         }
         console.log(cliente);
-        await axios.post('/api/buensabor/clientes', cliente)
+        //const res = await axios.post('/api/buensabor/clientes', cliente)
 
+        //NO HACE FALTA CREAR EL CLIENTE PORQUE CUANDO SE CREA EL USUARIO POR DEFECTO SE CREA EL CLIENTE POR LO QUE TIENE EL CASCADE.TYPEALL
+        const usuario = {
+            clave: password, 
+            rol:'Cliente', 
+            usuario: email,
+            cliente: cliente,
+        }
+
+        await axios.post('/api/buensabor/usuarios/crear', usuario)
+
+// console.log("Hola, estoy en usuario");
+//         const formData = new FormData();
+//         formData.append('nombre', name);
+//         formData.append('apellido', lastname);
+//         formData.append('telefono', telefono);
+//         formData.append('email', email);
+//         formData.append('domicilio', direction);
+//         formData.append('contrasena', password);
+
+//         await axios.post('/api/buensabor/clientes/crearUsuarioYCliente', formData)
 
     }
     catch (e) {
-        console.log("No se pudo guardar el usuario");
+        Swal.fire('Error', "No se pudo guardar el usuario", 'error')
     }
 }
 
@@ -100,7 +120,8 @@ export const startGoogleLogin = () => {
                 const names = user.displayName.split(" ");
 
                 dispatch(login(user.uid, names[0], names[1], user.email));
-                dispatch(saveUser(names[0], names[1], user.email, user.phoneNumber, null));
+                dispatch(saveUser(names[0], names[1], user.email, null, null, "contra"));
+                 console.log("Estoy creando usuario");
             })
             .catch(e => {
                 console.log(e);

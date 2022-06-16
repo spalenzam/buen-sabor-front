@@ -35,12 +35,12 @@ const Sidebar = () => {
         <div className='sidebarMenu'>
           <h3 className='sidebarTitle'>Administrador</h3>
           <ul className='sidebarList'>
-            {/* <Link to="product" className="link"> */}
+            <Link to="articulo" className="link">
               <li className='sidebarListItem'>
                 <StorefrontOutlined className='sidebarIcon' />
                 Artículos
               </li>
-            {/* </Link> */}
+            </Link>
             <Link to="product" className="link">
               <li className='sidebarListItem'>
                 <FastfoodOutlined className='sidebarIcon' />
