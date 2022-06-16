@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { createProductoManufacturado, getRubroGeneral, updateProduct, getArticuloInsumo, createProductoManufacturadoConImagen } from '../../../../actions/productos';
+import { Link, useNavigate } from 'react-router-dom';
+import { createProductoManufacturado, getRubroGeneral, createProductoManufacturadoConImagen } from '../../../../actions/productos';
+import { getArticuloInsumo } from '../../../../actions/articulos';
 import "./newProduct.css";
 import List from '../../../../util/list';
 import Swal from 'sweetalert2';

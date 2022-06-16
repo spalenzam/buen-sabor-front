@@ -1,8 +1,6 @@
 import { types } from "../types/types";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import imagenVacia from '../assets/images/istockphoto-1222357475-612x612.jpg'
-import { FilterBAndW } from "@material-ui/icons";
 
 export const getProductos = () => async (dispatch) => {
     //como es asíncrona tenemos que hacer el callback al dispatch
@@ -172,22 +170,34 @@ export const getArtManuDetalleById = (id) => async () => {
     }
 }
 
+<<<<<<< HEAD
 export const getArticuloInsumo = () => async () => {
 
     try {
         //Obtengo el producto
         const res = await axios.get(`/api/buensabor/articuloinsumo/alta`);
+=======
+// export const getArticuloInsumo = () => async () => {
+//     try {
+//         //Obtengo el producto
+//         const res = await axios.get(`/api/buensabor/articuloinsumo/alta`);
+>>>>>>> ef3d469... empecé crud articulos
 
-        const resData = res.data
+//         const resData = res.data
 
-        //const result = resData.filter(articulo => articulo.articulomanufacturado.id == id);
+//         //const result = resData.filter(articulo => articulo.articulomanufacturado.id == id);
 
+<<<<<<< HEAD
         return resData
+=======
 
-    } catch (e) {
-        Swal.fire('Error', 'No se encontraron los insumos', 'error')
-    }
-}
+//         return resData
+>>>>>>> ef3d469... empecé crud articulos
+
+//     } catch (e) {
+//         Swal.fire('Error', 'No se encontraron los insumos', 'error')
+//     }
+// }
 
 export const updateArticuloDetalle = (id, denominacionArticulo, unidadMedida, cantidad) => async () => {
     try {

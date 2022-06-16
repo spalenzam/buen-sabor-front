@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteArticuloDetalle, getArticuloInsumo, getArtManuDetalle } from '../../../../actions/productos';
+import { deleteArticuloDetalle, getArtManuDetalle } from '../../../../actions/productos';
 import { Link, useParams } from "react-router-dom";
 import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from "@material-ui/icons";
