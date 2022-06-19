@@ -1,5 +1,6 @@
 .productList{
     flex: 4;
+    padding: 20px;
 }
 
 .productListItem{
@@ -17,15 +18,21 @@
 
 .productListEdit{
     border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    background-color: #3bb077;
-    color: white;
     cursor: pointer;
     margin-right: 20px;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #b83422;
+    color: #fff;
+    border-radius: 8px;
+    line-height: 1;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .productListDelete{
-    color: red;
+    color: #b83422;
     cursor: pointer;
 }

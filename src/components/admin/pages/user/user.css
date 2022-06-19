@@ -3,6 +3,11 @@
     padding: 20px;
   }
   
+  .userTitle{
+    font-weight: bold;
+    font-size: 30px;
+    color: #37241f;
+  }
   .userTitleContainer {
     display: flex;
     align-items: center;
@@ -97,9 +102,14 @@
   }
   
   .userUpdateForm{
-      display: flex;
+      display: block;
       justify-content: space-between;
       margin-top: 20px;
+  }
+  .userUpdateLeft, .userUpdateRight{
+    width: 50%;
+    display: inline-block;
+    margin-bottom: 20px;
   }
   
   .userUpdateItem{
