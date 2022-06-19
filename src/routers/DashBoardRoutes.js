@@ -100,21 +100,21 @@ const DashBoardRoutes = () => {
     return (
         <>
             <NavBar totalItems={10} />
-            <div className='container'>
                 <Routes>
                     <Route path="/" element={<Inicio rubro={rubroGeneral} />} />
                     <Route path="/inicio" element={<Inicio rubro={rubroGeneral} />} />
                     <Route path="/productos" element={
                         <>
-                            <Cart cart={cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos} />
-                            <Productos productos = {productos} agregarACarrito={addFood} cantPedida = {cart}/>        
+                            <div className="container position-relative">
+                                <Cart cart={cart} agregarACarrito={addFood} eliminarDeCarrito={delFood} cantDisponible={productos} />
+                                <Productos productos = {productos} agregarACarrito={addFood} cantPedida = {cart}/>
+                            </div>        
                         </>
                     } />
                     <Route path="/detallePlato/:id" element={<DetallePlato productos={productos} />} />
                     <Route path="/Nosotros" element={<Nosotros />} />
                     <Route path='/tienda' element={<FinalProductList cart={cart}/> }/>
                 </Routes>
-            </div>
             <Footer />
         </>
     )

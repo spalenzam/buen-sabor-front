@@ -21,11 +21,16 @@ footer ul li a:hover{
     color:#fccd4d;
     text-decoration: none;
 }
-footer ul li {
-    line-height: 25px;
+footer ul li{
     font-weight: 300;
+}
+footer ul li, footer p {
+    line-height: 25px;
     font-size: 14px;
     letter-spacing: 1px;
+}
+footer p{
+    margin-bottom: 0;
 }
 .text-copyright {
     margin: 0;
@@ -34,4 +39,12 @@ footer ul li {
     border-top: 1px solid #fff;
     padding-top: 10px;
     margin-top: 20px;
+}
+.redes-bs{
+    width: 100%;
+    margin-top: 15px;
+}
+.redes-bs i{
+    font-size: 25px; 
+    margin-right: 20px;
 }

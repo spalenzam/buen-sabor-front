@@ -2,6 +2,10 @@ import React from 'react';
 import './inicio.css';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import portada from '../../assets/images/portada.jpg';
+import caracteristica1 from '../../assets/images/caracteristicas-01.png';
+import caracteristica2 from '../../assets/images/caracteristicas-02.png';
+import caracteristica3 from '../../assets/images/caracteristicas-03.png';
 
 
 const Inicio = ({rubro}) => {
@@ -10,23 +14,46 @@ const Inicio = ({rubro}) => {
   let rub = rubro.filter((rub) => rub.id == id);
 
   return (
-    <div className='buen-sabor__main-content'>
+    <div className='buen-sabor__main-content paddt'>
+      <div className="portada">
+        <img src={portada} alt="Portada Buen Sabor" className="img-fluid" />
+      </div>
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h4>El delivery de comida que estabas esperando</h4>
-            <h2>Desde el Buen Sabor nos encargamos de lo que necesites para que sigas disfrutando de tus actividades</h2>
+            <h4 className="subtitulo-inicio">El delivery de comida que estabas esperando</h4>
+            <h2 className="titulo-inicio">Desde el Buen Sabor nos encargamos de todo para que sigas disfrutando de tus actividades</h2>
           </div> 
         </div>  
       </div> 
+      <div className="container caracteristicas-bs">
+        <div className="row">
+          <div className="col-md-4">
+            <img src={caracteristica1} alt="Caractística 1" className="img-fluid" />
+            <h3>Descargá nuestra App</h3>
+            <p>Hace tus pedidos de la forma más cómoda</p>
+          </div> 
+          <div className="col-md-4">
+            <img src={caracteristica2} alt="Caractística 2" className="img-fluid" />
+            <h3>Máxima calidad</h3>
+            <p>Eligimos nuestros ingredientes con los mejores proveedores</p>
+          </div> 
+          <div className="col-md-4">
+            <img src={caracteristica3} alt="Caractística 3" className="img-fluid" />
+            <h3>Delivery propio</h3>
+            <p>Consultá las tárifas segun tu zona</p>
+          </div> 
+        </div>  
+      </div>
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h3>Categorías</h3>
+            <h4 className="subtitulo-inicio">¿Algún antojo?</h4>
+            <h2 className="titulo-inicio">Nuestras Categorías</h2>
           </div>
           
           <div className="col-md-3">
-          <Link to="../productos" state={{ rubro }}>
+          <Link to="../productos" state={{ rubro }} className="link-cat">
               <div className="tarjeta-categoria">
                 <img src="#" alt="Categoría Ejemplo" />
                 <h4>{rubro[0]?.denominacion}</h4>

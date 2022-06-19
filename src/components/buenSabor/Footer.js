@@ -10,7 +10,15 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-4">
-              
+              <h4>Contactanos</h4>
+              <p><b>Dirección:</b> Calle Nombre 000, Localidad, Mendoza.</p>
+              <p><b>Teléfonos:</b> 0261-0000000 / 0261-0000000</p>
+              <p><b>Correo:</b> buensabor@gmail.com</p>
+              <div className="redes-bs">
+                <i className="fab fa-facebook"></i>
+                <i className="fab fa-instagram"></i>
+                <i className="fab fa-twitter"></i>
+              </div>
             </div>
             <div className="col-md-2">
               <h4>Menú</h4>
