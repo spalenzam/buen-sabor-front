@@ -52,7 +52,7 @@ const Inicio = ({rubro}) => {
             <h2 className="titulo-inicio">Nuestras Categorías</h2>
           </div>
           
-          <div className="col-md-3">
+          <div className="display-tarjeta">
           {rubro.map((ru) => (
                         
                         <Link key={ru.id} to="../productos" state={{ ru }} >
