@@ -6,13 +6,11 @@ import { useLocation } from 'react-router-dom'
 
 const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
     const location = useLocation()
-    const { rubro = 'defaultValue' } = location.state || {};
+    const { ru = 'defaultValue' } = location.state || {};
     const [searchTerm, setSearchTerm] = useState("");
 
-    console.log(rubro)
-    console.log(productos)
-    if (rubro != 'defaultValue') {
-        productos = productos.filter((x) => x.articuloManufacturado?.rubroGeneral?.id == rubro?.id)
+    if (ru) {
+        productos = productos.filter((x) => x.articuloManufacturado?.rubrogeneral?.id == ru?.id)
     }
 
    

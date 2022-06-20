@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 export const getRubroGeneral = () => async (dispatch) => {
     
     try {
-        const res = await axios.get(`api/buensabor/rubrogeneral`)
+        const res = await axios.get(`api/buensabor/rubrogeneral/alta`)
 
         dispatch({
             type: types.getRubroGeneral,

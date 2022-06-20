@@ -53,31 +53,17 @@ const Inicio = ({rubro}) => {
           </div>
           
           <div className="col-md-3">
-          <Link to="../productos" state={{ rubro }} className="link-cat">
-              <div className="tarjeta-categoria">
-                <img src="#" alt="Categoría Ejemplo" />
-                <h4>{rubro[0]?.denominacion}</h4>
-              </div> 
-          </Link>
-          </div>
-        
-          <div className="col-md-3">
-              <div className="tarjeta-categoria">
-                <img src="#" alt="Categoría Ejemplo" />
-                <h4>{rubro[1]?.denominacion}</h4>
-              </div>
-          </div>
-          <div className="col-md-3">
-              <div className="tarjeta-categoria">
-                <img src="#" alt="Categoría Ejemplo" />
-                <h4>Nombre Categoría</h4>
-              </div>
-          </div>
-          <div className="col-md-3">
-              <div className="tarjeta-categoria">
-                <img src="#" alt="Categoría Ejemplo" />
-                <h4>Nombre Categoría</h4>
-              </div>
+          {rubro.map((ru) => (
+                        
+                        <Link key={ru.id} to="../productos" state={{ ru }} >
+                        <div className="tarjeta-categoria">
+                          <img src="#" alt="Categoría Ejemplo" />
+                          <h4>{ru?.denominacion}</h4>
+                        </div> 
+                    </Link>
+                    )
+                    )}
+
           </div>
         </div>
       </div> 
