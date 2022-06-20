@@ -71,6 +71,11 @@
     margin-bottom: 0;
     text-transform: capitalize;
 }
+
+.display-tarjeta{
+    display:flex;
+}
+
 .caracteristicas-bs{
     margin-top: 30px;
     margin-bottom: 80px;
