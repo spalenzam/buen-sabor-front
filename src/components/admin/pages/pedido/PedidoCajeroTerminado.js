@@ -15,8 +15,6 @@ const PedidoCajeroTerminado = () => {
         dispatch(getPedidosCajeroTerminado()).then(setPedidosCajeroTerminado)
     }, []);
 
-    console.log(pedidosCajeroTerminado);
-    
     return (
         <div className="productList">
             <PedidoList pedido={pedidosCajeroTerminado} boton={"Entregar"} />

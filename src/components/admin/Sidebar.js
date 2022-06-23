@@ -14,13 +14,13 @@ const Sidebar = () => {
             <Link to="pedidoPagado" className="link">
               <li className='sidebarListItem'>
                 <ShoppingCartOutlined className='sidebarIcon' />
-                Pedidos Pagados
+                Pedidos Pendientes
               </li>
             </Link>
             <Link to="pedidoTerminado" className="link">
               <li className='sidebarListItem'>
                 <ShoppingCartOutlined className='sidebarIcon' />
-                Pedidos Terminados
+                Pedidos Listos
               </li>
             </Link>
             <li className='sidebarListItem'>

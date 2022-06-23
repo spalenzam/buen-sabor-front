@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { getEstados, getEstadosInternos, getPedidoById, getPedidos, getPedidosCajeroPagado, getPedidosCajeroTerminado, getPedidosCocinero, getPedidosDelivery, updateEstadoPedido } from '../../../../actions/articulos';
+import { createFactura, getEstados, getEstadosInternos, getPedidoById, getPedidos, getPedidosCajeroPagado, getPedidosCajeroTerminado, getPedidosCocinero, getPedidosDelivery, updateEstadoPedido } from '../../../../actions/articulos';
 import { Link, useLocation } from "react-router-dom";
 import { DataGrid } from "@material-ui/data-grid";
 import Swal from 'sweetalert2';
@@ -51,6 +51,7 @@ const PedidoList = (props) => {
 
                 await dispatch(updateEstadoPedido(id, estadoFacturado.at(0)?.nombre, estadoInternoCajero.at(0)?.nombre))
                 setPedidos(await dispatch(getPedidosCajeroTerminado()))
+                await dispatch(createFactura(pedido))
                 Swal.fire('Pedido facturado', '', 'success')
 
             }
@@ -58,6 +59,7 @@ const PedidoList = (props) => {
 
             await dispatch(updateEstadoPedido(id, estadoFacturado.at(0)?.nombre, estadoInternoCajero.at(0)?.nombre))
             setPedidos(await dispatch(getPedidosDelivery()))
+            await dispatch(createFactura(pedido))
             Swal.fire('Pedido facturado', '', 'success')
         }
 
