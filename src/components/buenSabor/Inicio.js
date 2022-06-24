@@ -53,17 +53,14 @@ const Inicio = ({rubro}) => {
           </div>
           
           <div className="display-tarjeta">
-          {rubro.map((ru) => (
-                        
-                        <Link key={ru.id} to="../productos" state={{ ru }} >
-                        <div className="tarjeta-categoria">
-                          <img src="#" alt="Categoría Ejemplo" />
-                          <h4>{ru?.denominacion}</h4>
-                        </div> 
-                    </Link>
-                    )
-                    )}
-
+            {rubro.map((ru) => (       
+              <Link key={ru.id} to="../productos" state={{ ru }} >
+                <div className="tarjeta-categoria">
+                  <img src="#" alt="Categoría Ejemplo" />
+                  <h4>{ru?.denominacion}</h4>
+                </div> 
+              </Link>
+            ))}
           </div>
         </div>
       </div> 

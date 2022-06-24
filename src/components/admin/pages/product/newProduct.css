@@ -81,3 +81,16 @@
     flex: 1 1;
     background-color: #fff;
   }
+
+@media screen and (max-width: 575px) {
+  .productTopLeft {
+    margin: 0 0 20px 0;
+  }
+  .productTop {
+    flex-direction: column;
+  }
+  .addProductTitle{
+    font-size: 22px;
+  }
+}
+  

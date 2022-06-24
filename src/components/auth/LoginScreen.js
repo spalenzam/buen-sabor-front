@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import validator from 'validator';
 import { setError, removeError } from '../../actions/ui'
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth'
+import logo from '../../assets/images/buensabor.png';
 
 const LoginScreen = () => {
 
@@ -59,7 +60,7 @@ const LoginScreen = () => {
 
   return (
     <>
-      <h3 className='auth__title'>Buen Sabor</h3>
+      <img src={logo} alt="Logo Buen Sabor" className="logoLogin img-fluid" />
 
       <form onSubmit={ handleLogin }>
 
@@ -92,7 +93,7 @@ const LoginScreen = () => {
 
         <button
           type="submit"
-          className='btn btn-primary btn-block btn-login'
+          className='btn btn-block btn-login'
           disabled={ loading }
         >
           Iniciar Sesión

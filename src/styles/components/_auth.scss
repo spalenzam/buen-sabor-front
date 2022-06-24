@@ -1,11 +1,12 @@
 .auth__main{
     align-items: center;
-    background-color: $primary;
+    background-color: #fccd4d;
     display: flex;
     justify-content: center;
     margin: 0px;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
+    padding: 30px 0;
 }
 
 .auth__box-container{
@@ -17,7 +18,7 @@
 }
 
 .auth__title{
-    color: darken($color: $primary, $amount: 20);
+    color: #b83422;
     margin-bottom: 20px;
     font-weight: 500;
     text-align: center;
@@ -68,7 +69,7 @@
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #31368a;
+    color: #37241f;
     text-align: left;
     width: 100%;
 }
@@ -77,4 +78,11 @@
     text-decoration: underline;
     font-size: 14px;
     font-style: italic;
+}
+.logoLogin{
+    margin-bottom: 20px;
+}
+.mt-20{
+    margin-top:20px;
+    display: block;
 }
