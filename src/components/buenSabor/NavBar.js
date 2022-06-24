@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import { useDispatch } from 'react-redux'
 import { startLogout } from '../../actions/auth';
 import logo from '../../assets/images/buensabor.png';
+import { useState } from 'react';
 import './inicio.css';
 
 const NavBar = ({ totalItems }) => {
@@ -13,35 +14,47 @@ const NavBar = ({ totalItems }) => {
   const handleLogout = () =>{
     dispatch( startLogout() );
   }
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
  
     return (
         <>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark" className="navigation">
                 <Navbar.Brand href="/inicio">
                     <img src={logo} alt="Logo Buen Sabor" className="logoHeader" />
                 </Navbar.Brand>
-                <Nav className="mr-auto">
-                    <Nav.Link href="/inicio">Inicio</Nav.Link>
-                    <Nav.Link href="/productos">Productos</Nav.Link>
-                    <Nav.Link href="/nosotros">Sobre nosotros</Nav.Link>
-                </Nav>
-                
-                {/* <div >
-                        {ubicacion.pathname === '/productos' ? (
-                        <div className='btn btn-primary'>
-                            <IconButton href="/carrito" aria-label="Show cart items" color="inherit">
-                                <Badge badgeContent={totalItems} color="secondary">
-                                    <ShoppingCart />
-                                </Badge>
-                            </IconButton>
-                        </div>) : null}
-                    </div> */}
-                <button
-                    className='btn-nav'
-                    onClick={handleLogout}
-                >
-                    Cerrar Sesión
+                <button className="hamburger" onClick={() => {
+                    setIsNavExpanded(!isNavExpanded);
+                    }}>
+                     
+                    {/* icon from heroicons.com */}
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="white"
+                    >
+                    <path
+                        fillRule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                        clipRule="evenodd"
+                    />
+                    </svg>
                 </button>
+                <div className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/inicio">Inicio</Nav.Link>
+                        <Nav.Link href="/productos">Productos</Nav.Link>
+                        <Nav.Link href="/nosotros">Sobre nosotros</Nav.Link>
+                    </Nav>
+                    <button
+                        className='btn-nav'
+                        onClick={handleLogout}
+                    >
+                        Cerrar Sesión
+                    </button>
+                </div>
+                
+                
             </Navbar>
         </>
     )

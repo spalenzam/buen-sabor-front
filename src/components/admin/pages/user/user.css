@@ -158,10 +158,17 @@
       border: none;
       padding: 5px;
       cursor: pointer;
-      background-color: darkblue;
+      background-color: #b83422;
       color: white;
       font-weight: 500;
       height: 40px;
       display: flex;
       margin-top: 220px;
   }
+
+@media screen and (max-width: 575px) {
+  .userTitle{
+    font-size: 22px;
+  }
+}
+  

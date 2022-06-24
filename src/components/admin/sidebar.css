@@ -46,3 +46,11 @@
       margin-right: 5px;
       font-size: 20px !important;
   }
+
+@media screen and (max-width: 575px) {
+  .sidebar {
+      height: auto;
+      position: relative;
+      top: 0;
+  }
+}

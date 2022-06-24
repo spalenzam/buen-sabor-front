@@ -17,7 +17,9 @@
     color: #b83422;
 }
 .navbar-expand .navbar-nav {
-    margin: 0px auto;
+    display: flex;
+    width: calc(100% - 250px);
+    justify-content: center;
 }
 .btn-nav{
     background-color: #b83422;
@@ -33,6 +35,36 @@
     background-color: #fff;
     color: #b83422;
 }
+.hamburger {
+    border: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #b83422;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    display: none;
+    outline: none !important;
+}
+.hamburger svg{
+    fill:#fff;
+}
+.hamburger:hover {
+    background-color: #fff;
+}
+.hamburger:hover svg{
+    fill:#b83422;
+}
+.navigation-menu{
+    width: 100%;
+    display: flex;
+}
+
 .portada{
     margin-bottom: 50px;
 }
@@ -74,6 +106,15 @@
 
 .display-tarjeta{
     display:flex;
+    padding: 0px 5px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.display-tarjeta a{
+    width: 20%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    color: #000;
 }
 
 .caracteristicas-bs{
@@ -103,4 +144,102 @@
 }
 .mapabs{
     margin-top: 30px;
+}
+
+@media screen and (max-width: 992px){
+    .titulo-inicio {
+        font-size: 40px;
+        line-height: 45px;
+    }
+    .caracteristicas-bs img {
+        max-width: 150px;
+    }
+    .caracteristicas-bs h3 {
+        font-size: 20px;
+    }
+    .caracteristicas-bs p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .caracteristicas-bs {
+        margin-top: 0px;
+        margin-bottom: 50px;
+    }
+    .hamburger {
+        display: block;
+    }
+    .navigation-menu {
+      display: none;
+    }
+    .navigation-menu.expanded {
+        display: block;
+        position: absolute;
+        top: 86px;
+        background-color: #fccd4d !important;
+        left: 0;
+        border-radius: 0 0 10px 10px;
+        padding-bottom: 20px;
+    }
+    .navigation-menu ul {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        height: calc(100vh - 77px);
+        background-color: white;
+        border-top: 1px solid black;
+    }
+    .navigation-menu li {
+        text-align: center;
+        margin: 0;
+    }
+    .navigation-menu li a {
+        color: black;
+        width: 100%;
+        padding: 1.5rem 0;
+    }
+    .navigation-menu li:hover {
+        background-color: #eee;
+    }
+    .navbar-expand .navbar-nav {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-nav {
+        margin: 0px auto;
+        display: block;
+        margin-top: 7px;
+    }
+    .display-tarjeta a{
+        width: 33.33%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .logoHeader {
+        width: 180px;
+    }
+    .navigation-menu.expanded{
+        top: 70px;
+    }
+    .navbar-dark .navbar-nav .nav-link, .subtitulo-inicio{
+        font-size: 16px;
+    }
+    .portada {
+        margin-bottom: 30px;
+    }
+    .titulo-inicio {
+        font-size: 25px;
+        line-height: 30px;
+    }
+    .buen-sabor__main-content {
+        padding: 20px 0;
+    }
+    .display-tarjeta a{
+        width: 50%;
+    }
 }

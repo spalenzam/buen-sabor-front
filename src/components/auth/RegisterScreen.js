@@ -5,6 +5,7 @@ import validator from 'validator';
 import { setError, removeError } from '../../actions/ui'
 import { useDispatch, useSelector } from 'react-redux';
 import { startRegisterWithEmailPasswordName } from '../../actions/auth';
+import logo from '../../assets/images/buensabor.png';
 
 const RegisterScreen = () => {
 
@@ -75,7 +76,8 @@ const RegisterScreen = () => {
 
   return (
     <>
-      <h3 className='auth__title'>Register</h3>
+      <img src={logo} alt="Logo Buen Sabor" className="logoLogin img-fluid" />
+      <h3 className='auth__title'>Registro</h3>
 
       <form onSubmit={handleRegister}>
 
@@ -88,7 +90,7 @@ const RegisterScreen = () => {
 
         <input
           type="text"
-          placeholder='Name'
+          placeholder='Nombre'
           name='name'
           className='auth__input'
           autoComplete='off'
@@ -98,7 +100,7 @@ const RegisterScreen = () => {
 
         <input
           type="text"
-          placeholder='Lastname'
+          placeholder='Apellido'
           name='lastname'
           className='auth__input'
           autoComplete='off'
@@ -118,7 +120,7 @@ const RegisterScreen = () => {
 
         <input
           type="password"
-          placeholder='Password'
+          placeholder='Contraseña'
           name='password'
           className='auth__input'
           value={password}
@@ -127,7 +129,7 @@ const RegisterScreen = () => {
 
         <input
           type="password"
-          placeholder='Confirm Password'
+          placeholder='Confirmar Contraseña'
           name='password2'
           className='auth__input'
           value={password2}
@@ -172,16 +174,16 @@ const RegisterScreen = () => {
 
         <button
           type="submit"
-          className='btn btn-primary btn-block mb-5'
+          className='btn btn-block btn-login mt-20'
         >
-          Register
+          Registrarse
         </button>
 
         <Link
           to="/auth/login"
-          className='link'
+          className='link mt-20'
         >
-          Already registered?
+          ¿Ya tenés una cuenta?
         </Link>
 
       </form>

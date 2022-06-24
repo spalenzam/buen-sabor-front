@@ -127,3 +127,18 @@ h2 {
   background-color: #797979;
   border-radius: 20px;
 }
+
+@media screen and (max-width: 765px) {
+  .cartContainer {
+    width: 20%;
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .cart {
+    margin-top: 33px;
+    margin-right: 0px;
+    border-radius: 20px;
+    width: 287px;
+  }
+}
