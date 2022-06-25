@@ -53,7 +53,6 @@ const Inicio = ({rubro}) => {
           </div>
           
           <div className="display-tarjeta">
-<<<<<<< HEAD
             {rubro.map((ru) => (       
               <Link key={ru.id} to="../productos" state={{ ru }} >
                 <div className="tarjeta-categoria">
@@ -62,20 +61,6 @@ const Inicio = ({rubro}) => {
                 </div> 
               </Link>
             ))}
-=======
-          {rubro.map((ru) => (
-                        
-                        <Link key={ru.id} to="/productos" state={{ ru }} >
-                        <div className="tarjeta-categoria">
-                          <img src="#" alt="Categoría Ejemplo" />
-                          <h4>{ru?.denominacion}</h4>
-                        </div> 
-                    </Link>
-                    
-                    )
-                    )}
-
->>>>>>> a4fe980 (Arreglo pagina productos)
           </div>
         </div>
       </div> 
