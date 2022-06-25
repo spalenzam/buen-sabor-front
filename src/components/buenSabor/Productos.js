@@ -4,14 +4,15 @@ import moment from 'moment';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom'
 
+
 const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
-    const location = useLocation()
-    const { ru = 'defaultValue' } = location.state || {};
+    const location = useLocation();
+    const { ru } = location.state || {};
     const [searchTerm, setSearchTerm] = useState("");
 
     if (ru) {
         productos = productos.filter((x) => x.articuloManufacturado?.rubrogeneral?.id == ru?.id)
-    }
+    }else{console.log('Sin ru')}
 
    
     // const [state] = useState({
