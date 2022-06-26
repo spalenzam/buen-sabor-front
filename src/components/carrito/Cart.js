@@ -8,8 +8,6 @@ const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible }) => {
   const [cartOpen, setCartOpen] = useState(false);
   const [productsLength, setProductsLength] = useState(0);
 
-  console.log(cart)
-
   useEffect(() => {
     if (cart) {
       setProductsLength(
@@ -21,8 +19,6 @@ const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible }) => {
 
   const total = cart.reduce(
     (previous, product) => previous + product.cant * product.precioVenta, 0);
-
-  console.log(total);
 
   let cantidadDisponible;
 

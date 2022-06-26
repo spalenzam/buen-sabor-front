@@ -120,7 +120,7 @@ export const startGoogleLogin = () => {
                 const names = user.displayName.split(" ");
 
                 dispatch(login(user.uid, names[0], names[1], user.email));
-                dispatch(saveUser(names[0], names[1], user.email, null, null, "contra"));
+                dispatch(saveUser(names[0], names[1], user.email, 1, null, "contra"));
                  console.log("Estoy creando usuario");
             })
             .catch(e => {
