@@ -189,6 +189,9 @@ export const createFactura = (pedido) => async (dispatch) => {
                 console.log(totalCostoPedido);
                 totalCostoPedido = totalCostoPedido + articulo.articuloinsumo?.precioCompra * articulo.cantidad / 1
             })
+
+            totalCostoPedido = totalCostoPedido * deta.cantidad
+
         })
 
         let descuento = 0.0
