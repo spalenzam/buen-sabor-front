@@ -117,7 +117,7 @@ const User = () => {
                   </div>
                   <div className="userShowInfo">
                     <LocationSearching className="userShowIcon" />
-                    <span className="userShowInfoTitle">{usuarioSeleccionado.cliente.domicilio.calle + " " + usuarioSeleccionado.cliente.domicilio.numero + " " + usuarioSeleccionado.cliente.domicilio.localidad}</span>
+                    <span className="userShowInfoTitle">{usuarioSeleccionado.cliente?.domicilio?.calle + " " + usuarioSeleccionado.cliente?.domicilio?.numero + " " + usuarioSeleccionado.cliente?.domicilio?.localidad}</span>
                   </div>
                 </div>
                 :
@@ -245,7 +245,7 @@ const User = () => {
                       <label>Calle</label>
                       <input
                         type="text"
-                        placeholder={usuarioSeleccionado.cliente.domicilio.calle}
+                        placeholder={usuarioSeleccionado.cliente?.domicilio?.calle}
                         name='calle'
                         className="userUpdateInput"
                         value={calle}
@@ -256,7 +256,7 @@ const User = () => {
                       <label>Número calle</label>
                       <input
                         type="text"
-                        placeholder={usuarioSeleccionado.cliente.domicilio.numero}
+                        placeholder={usuarioSeleccionado.cliente?.domicilio?.numero} 
                         name='numero'
                         className="userUpdateInput"
                         value={numero}
@@ -267,7 +267,7 @@ const User = () => {
                       <label>Localidad</label>
                       <input
                         type="text"
-                        placeholder={usuarioSeleccionado.cliente.domicilio.localidad}
+                        placeholder={usuarioSeleccionado.cliente?.domicilio?.localidad}
                         name='localidad'
                         className="userUpdateInput"
                         value={localidad}
