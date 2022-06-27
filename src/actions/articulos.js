@@ -242,7 +242,13 @@ export const createFactura = (pedido) => async (dispatch) => {
 
         res.data.detallefacturas = detallesFactura
 
-        await axios.put(`/api/buensabor/facturas/${res.data.id}`, res.data);
+        const facturaLista = await axios.put(`/api/buensabor/facturas/${res.data.id}`, res.data);
+
+        const facturaPDF = {factura : facturaLista.data}
+
+        console.log(facturaLista.data.id);
+
+        const pdf = await dispatch(generarPDF(facturaLista.data.id))
 
         Swal.fire('Create', 'Factura creada con éxito', 'success')
 
@@ -250,6 +256,20 @@ export const createFactura = (pedido) => async (dispatch) => {
     }
     catch (e) {
         throw { error: Swal.fire('Error', 'No se pudo guardar la factura', 'error') }
+
+    }
+}
+
+export const generarPDF = (factura) => async () => {
+    try {
+
+        console.log(factura);
+        const res = await axios.get(`/api/buensabor/facturas/generarPDF/${factura}`);
+
+        return res.data
+    }
+    catch (e) {
+        throw { error: Swal.fire('Error', 'No se pudo obtener ninguna factura', 'error') }
 
     }
 }
