@@ -40,7 +40,7 @@ const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedi
                                 disabled={true}
                                 onClick={() => agregarACarrito(product)}
                                 className="btnTarjetaDisabled"
-                            > No hay más productos disponibles
+                            > Fuera de stock
                             </button> :
 
                             <button
