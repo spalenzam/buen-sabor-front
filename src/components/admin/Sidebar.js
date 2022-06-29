@@ -11,10 +11,18 @@ const Sidebar = () => {
         <div className='sidebarMenu'>
           <h3 className='sidebarTitle'>Cajero</h3>
           <ul className='sidebarList'>
-            <li className='sidebarListItem'>
-              <ShoppingCartOutlined className='sidebarIcon' />
-              Pedidos
-            </li>
+            <Link to="pedidoPagado" className="link">
+              <li className='sidebarListItem'>
+                <ShoppingCartOutlined className='sidebarIcon' />
+                Pedidos Pendientes
+              </li>
+            </Link>
+            <Link to="pedidoTerminado" className="link">
+              <li className='sidebarListItem'>
+                <ShoppingCartOutlined className='sidebarIcon' />
+                Pedidos Listos
+              </li>
+            </Link>
             <li className='sidebarListItem'>
               <ReceiptOutlined className='sidebarIcon' />
               Facturas
@@ -25,10 +33,24 @@ const Sidebar = () => {
         <div className='sidebarMenu'>
           <h3 className='sidebarTitle'>Cocinero</h3>
           <ul className='sidebarList'>
-            <li className='sidebarListItem'>
-              <AddShoppingCartOutlined className='sidebarIcon' />
-              Pedidos pendientes
-            </li>
+            <Link to="pedidoCocinero" className="link">
+              <li className='sidebarListItem'>
+                <AddShoppingCartOutlined className='sidebarIcon' />
+                Pedidos pendientes
+              </li>
+            </Link>
+          </ul>
+        </div>
+
+        <div className='sidebarMenu'>
+          <h3 className='sidebarTitle'>Delivery</h3>
+          <ul className='sidebarList'>
+            <Link to="pedidoDelivery" className="link">
+              <li className='sidebarListItem'>
+                <ShoppingCartOutlined className='sidebarIcon' />
+                Pedidos para entregar
+              </li>
+            </Link>
           </ul>
         </div>
 
@@ -45,6 +67,18 @@ const Sidebar = () => {
               <li className='sidebarListItem'>
                 <FastfoodOutlined className='sidebarIcon' />
                 Artículos Manufacturados
+              </li>
+            </Link>
+            <Link to="pedidoAdmin" className="link">
+              <li className='sidebarListItem'>
+                <ShoppingCartOutlined className='sidebarIcon' />
+                Pedidos
+              </li>
+            </Link>
+            <Link to="facturaAdmin" className="link">
+              <li className='sidebarListItem'>
+                <ReceiptOutlined className='sidebarIcon' />
+                Facturas
               </li>
             </Link>
             <li className='sidebarListItem'>
