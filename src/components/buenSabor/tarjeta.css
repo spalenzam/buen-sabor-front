@@ -39,6 +39,13 @@
     border-radius: 8px;
     line-height: 1;
 }
+.btnTarjetaDisabled{
+    background-color: #858585;
+    color: #fff;
+    padding: 11px 25px 13px;
+    border-radius: 8px;
+    line-height: 1;
+}
 .detalleTarjeta, .btnTarjeta{
     font-size: 16px;
     cursor: pointer;
