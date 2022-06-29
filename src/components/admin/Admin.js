@@ -19,6 +19,7 @@ import PedidoCajeroTerminado from './pages/pedido/PedidoCajeroTerminado';
 import PedidoCocinero from './pages/pedido/PedidoCocinero';
 import PedidoDelivery from './pages/pedido/PedidoDelivery';
 import PedidoAdmin from './pages/pedido/PedidoAdmin';
+import FacturaAdmin from './pages/factura/FacturaAdmin';
 
 const Admin = () => {
   return (
@@ -43,6 +44,7 @@ const Admin = () => {
           <Route path="/pedidoCocinero" element={<PedidoCocinero />} />
           <Route path="/pedidoDelivery" element={<PedidoDelivery />} />
           <Route path="/pedidoAdmin" element={<PedidoAdmin />} />
+          <Route path="/facturaAdmin" element={<FacturaAdmin />} />
         </Routes>
       </div>
     </>

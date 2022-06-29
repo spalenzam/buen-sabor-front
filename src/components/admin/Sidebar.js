@@ -75,6 +75,12 @@ const Sidebar = () => {
                 Pedidos
               </li>
             </Link>
+            <Link to="facturaAdmin" className="link">
+              <li className='sidebarListItem'>
+                <ReceiptOutlined className='sidebarIcon' />
+                Facturas
+              </li>
+            </Link>
             <li className='sidebarListItem'>
               <AssessmentOutlined className='sidebarIcon' />
               Reportes

@@ -169,10 +169,21 @@ export const getAllFacturas = () => async () => {
     }
 }
 
+export const getFacturaById = (id) => async () => {
+    try {
+
+        const res = await axios.get(`/api/buensabor/facturas/${id}`);
+
+        return res.data
+
+    } catch (e) {
+        Swal.fire('Error', 'No se encontró la factura', 'error')
+    }
+}
+
 export const createFactura = (pedido) => async (dispatch) => {
     try {
 
-        console.log(pedido);
         const facturas = await dispatch(getAllFacturas())
         const ultimoNumero = facturas[facturas.length - 1].numeroFactura
 
@@ -238,18 +249,17 @@ export const createFactura = (pedido) => async (dispatch) => {
             detallesFactura.push(detalleFactura)
         })
 
-        console.log(detallesFactura);
-
         res.data.detallefacturas = detallesFactura
 
         const facturaLista = await axios.put(`/api/buensabor/facturas/${res.data.id}`, res.data);
 
-        const facturaPDF = {factura : facturaLista.data}
-
-        console.log(facturaLista.data.id);
-
         const pdf = await dispatch(generarPDF(facturaLista.data.id))
 
+        console.log(pdf);
+
+        const mail = await dispatch(enviarMail(factura.numeroFactura, pedido.cliente.email))
+
+        console.log(mail);
         Swal.fire('Create', 'Factura creada con éxito', 'success')
 
         return res.data
@@ -263,7 +273,6 @@ export const createFactura = (pedido) => async (dispatch) => {
 export const generarPDF = (factura) => async () => {
     try {
 
-        console.log(factura);
         const res = await axios.get(`/api/buensabor/facturas/generarPDF/${factura}`);
 
         return res.data
@@ -273,3 +282,83 @@ export const generarPDF = (factura) => async () => {
 
     }
 }
+
+export const descargarPDF = (factura) => async () => {
+    try {
+
+        const res = axios(`/api/buensabor/facturas/generarPDF/${factura}`, {
+            method: 'GET',
+            responseType: 'blob' //Force to receive data in a Blob Format
+        })
+        .then(response => {
+        //Create a Blob from the PDF Stream
+            const file = new Blob(
+              [response.data], 
+              {type: 'application/pdf'});
+        //Build a URL from the file
+            const fileURL = URL.createObjectURL(file);
+        //Open the URL on new Window
+            window.open(fileURL);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        // const res = await axios.get(`/api/buensabor/facturas/generarPDF/${factura}`, {
+        //     headers: {
+        //         'Respo': 'blob'
+        //     }
+        // });
+
+        console.log(res);
+        
+    }
+    catch (e) {
+        throw { error: Swal.fire('Error', 'No se pudo obtener ninguna factura', 'error') }
+
+    }
+}
+
+
+
+export const enviarMail = (numfactura, mail) => async () =>{
+    try {
+
+        const uno = "c://temp/factura "
+        const dos = numfactura
+        const tres = ".pdf"
+        const archivo = uno + dos + tres
+
+        const email = {
+            to: mail,
+            message: "A continuación adjuntamos la factura de la compra realizada en el local Buen Sabor",
+            subject: "Factura Buen Sabor",
+            attachment:archivo,
+        }
+        console.log(email);
+        /*  */const res = await axios.post(`/api/buensabor/email//sendMailAdjunto`, email);
+
+        return res.data
+
+
+        // const formData = new FormData();
+        // formData.append('to', "spalenzam@gmail.com");
+        // formData.append('message', "Hola");
+        // formData.append('subject', "Prueba dos");
+        // formData.append('attachment', pdf);
+
+        // const res = await axios.post('api/buensabor/email/sendMailAdjunto', formData,
+        //     {
+        //         headers: {
+        //             'Content-Type': 'multipart/form-data'
+        //         }
+        //     })
+
+        // console.log(res);
+    }
+    catch (e) {
+        throw { error: Swal.fire('Error', 'No se pudo enviar el mail', 'error') }
+
+    }
+}
+
