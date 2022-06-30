@@ -9,9 +9,9 @@ const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedi
     return (
         <>
             <Card className="margenesTarjeta">
-                <a href={`/detalle/${product.id}`}>
+                <Link to={ "/detallePlato/" + product.id}>
                     <Card.Img variant="top" src={`http://localhost:8090/api/buensabor/articulosmanufacturados/uploads/img/${product.id}`} className="maxAltoImg" alt="producto" />
-                </a>
+                    </Link>
                 <Card.Body>
                     <Card.Title>{product.denominacion}</Card.Title>
                     <Link to={ "/detallePlato/" + product.id}>
@@ -39,8 +39,8 @@ const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedi
                             <button
                                 disabled={true}
                                 onClick={() => agregarACarrito(product)}
-                                className="btnTarjeta"
-                            > No hay más productos disponibles
+                                className="btnTarjetaDisabled"
+                            > Fuera de stock
                             </button> :
 
                             <button

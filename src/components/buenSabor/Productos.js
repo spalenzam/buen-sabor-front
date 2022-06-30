@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 
 const Productos = ({ productos, agregarACarrito, cantPedida=0 }) => {
     const location = useLocation();
-    const { ru } = location.state || {};
+    const {ru} = location.state || {};
     const [searchTerm, setSearchTerm] = useState("");
     
     if (ru) {
