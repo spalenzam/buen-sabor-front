@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import "./product.css";
-import { AddBox, Publish } from "@material-ui/icons";
+import { Publish } from "@material-ui/icons";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getProductoById, getRubroGeneral, updateProducto, updateProductoConImagen } from '../../../../actions/productos';
-import { IconButton } from '@material-ui/core';
 import AgregarArticulo from './AgregarArticulo';
 
 const Product = () => {
@@ -127,7 +126,7 @@ const Product = () => {
                     </div>
                     <Link to="../newArticuloDetalle" state={{ producto }}>
                         {/* <Link to="../newArticuloDetalle"> */}
-                        <button className="productAddButton">Agregar articulo</button>
+                        <button className="productAddButton">Agregar artículo</button>
                     </Link>
 
                 </div>

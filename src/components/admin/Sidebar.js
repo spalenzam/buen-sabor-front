@@ -23,10 +23,12 @@ const Sidebar = () => {
                 Pedidos Listos
               </li>
             </Link>
-            <li className='sidebarListItem'>
-              <ReceiptOutlined className='sidebarIcon' />
-              Facturas
-            </li>
+            <Link to="facturaAdmin" className="link">
+              <li className='sidebarListItem'>
+                <ReceiptOutlined className='sidebarIcon' />
+                Facturas
+              </li>
+            </Link>
           </ul>
         </div>
 

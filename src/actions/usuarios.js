@@ -43,7 +43,10 @@ export const deleteUsuarios = (id) => async (dispatch) => {
     try {
         //Obtengo los usuarios
         await axios.put(`/api/buensabor/usuarios/dar-de-baja/${id}`);
+        
         dispatch(deleteUsuarioStore(id))
+
+        Swal.fire('Delete', 'Usuario eliminado con éxito', 'success')
 
     } catch (e) {
         console.log("No puede eliminar el usuario");

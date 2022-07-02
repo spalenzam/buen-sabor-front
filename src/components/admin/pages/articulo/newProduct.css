@@ -1,0 +1,96 @@
+.newProduct {
+    flex: 4;
+    padding: 20px;
+  }
+  
+  .addProductTitle{
+    font-weight: bold;
+    font-size: 30px;
+    color: #37241f;
+  }
+  .addProductForm {
+    margin-top: 10px;
+  }
+  
+  .addProductItem {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .addProductItem > label {
+    color: gray;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .addProductItem > input {
+    padding: 10px;
+  }
+  
+  .addProductItem > select {
+    padding: 10px;
+  }
+  
+  .addProductButton {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #b83422;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .productTop {
+    display: flex;
+  }
+  
+  .productTopRight {
+    flex: 2;
+  }
+  
+  .productTopRight {
+    padding: 20px;
+    margin: 0px;
+    box-shadow: 0px 0px 15px -10px rgb(0 0 0 / 75%);
+    background-color: #fff;
+  }
+  .productTopRight .userList{
+    padding: 20px 0;
+  }
+  .productTopRight .MuiDataGrid-root {
+    height: 100% !important;
+    background-color: #fff;
+    padding: 0 10px;
+    min-height: 300px;
+    display: flex;
+    position: relative !important;
+  }
+  .productTopRight .productAddButton{
+    margin-bottom: 0;
+  }
+
+  .productTopLeft {
+    padding: 20px;
+    margin: 0 20px 0 0;
+    box-shadow: 0px 0px 15px -10px rgb(0 0 0 / 75%);
+    flex: 1 1;
+    background-color: #fff;
+  }
+
+@media screen and (max-width: 575px) {
+  .productTopLeft {
+    margin: 0 0 20px 0;
+  }
+  .productTop {
+    flex-direction: column;
+  }
+  .addProductTitle{
+    font-size: 22px;
+  }
+}
+  

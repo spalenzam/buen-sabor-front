@@ -15,6 +15,103 @@ export const getArticuloInsumo = () => async () => {
     }
 }
 
+export const deleteArticulo = (id) => async (dispatch) => {
+
+    try {
+        await axios.put(`/api/buensabor/articuloinsumo/dar-de-baja/${id}`);
+
+        Swal.fire('Delete', 'Articulo eliminado con éxito', 'success')
+
+    } catch (e) {
+        console.log("No puede eliminar el usuario");
+    }
+}
+
+export const getArticuloById = (id) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/api/buensabor/articuloinsumo/${id}`);
+       
+        return res.data
+
+    } catch (e) {
+        Swal.fire('Error', 'No se encontró el artículo', 'error')
+
+    }
+}
+
+export const getRubroArticulo = () => async () => {
+    try {
+        //Obtengo el producto
+        const res = await axios.get(`/api/buensabor/rubroarticulo/alta`);
+        // localStorage.setItem('user', JSON.stringify(res.data))
+        return res.data
+
+    } catch (e) {
+        Swal.fire('Error', 'No se encontraron los rubros', 'error')
+    }
+}
+
+export const updateArticulo = (id, denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, cantidad, idRubro) => async () => {
+    try {
+
+        const rubro = {
+            id: idRubro
+        }
+
+        const articulo = {
+            denominacion: denominacion,
+            esInsumo: esInsumo,
+            precioCompra:precioCompra,
+            precioVenta: precioVenta,
+            stockActual:stockActual,
+            stockMinimo:stockMinimo,
+            unidadMedida: unidadMedida,
+            rubroarticulo:rubro
+        }
+
+        console.log(articulo);
+
+        const res = await axios.put(`/api/buensabor/articuloinsumo/${id}`, articulo);
+        console.log(res);
+
+        Swal.fire('Update', 'Artículo actualizado con éxito', 'success')
+
+        return res.data;
+
+    } catch (e) {
+        Swal.fire('Error', 'No se pudo guardar el artículo', 'error')
+    }
+}
+
+export const createArticulo = (denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, idRubro) => async () => {
+    try {
+
+        const rubro = {
+            id: idRubro,
+        }
+
+        const articulo = {
+            denominacion: denominacion,
+            esInsumo:esInsumo,
+            precioCompra:precioCompra,
+            precioVenta: precioVenta,
+            stockActual:stockActual,
+            stockMinimo:stockMinimo,
+            unidadMedida:unidadMedida,
+            rubroarticulo: rubro,
+        }
+        const res = await axios.post('/api/buensabor/articuloinsumo', articulo)
+
+        //Swal.fire('Create', 'Artículo creado con éxito', 'success')
+
+        return res.data
+    }
+    catch (e) {
+        throw { error: Swal.fire('Error', 'No se pudo guardar el artículo', 'error') }
+
+    }
+}
+
 export const getAllPedidos = () => async () => {
     try {
 

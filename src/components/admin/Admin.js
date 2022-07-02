@@ -20,6 +20,8 @@ import PedidoCocinero from './pages/pedido/PedidoCocinero';
 import PedidoDelivery from './pages/pedido/PedidoDelivery';
 import PedidoAdmin from './pages/pedido/PedidoAdmin';
 import FacturaAdmin from './pages/factura/FacturaAdmin';
+import Articulo from './pages/articulo/Articulo';
+import NewArticulo from './pages/articulo/NewArticulo';
 
 const Admin = () => {
   return (
@@ -39,6 +41,8 @@ const Admin = () => {
           <Route path="/articuloDetalle/:articuloId" element={<ArticuloDetalle />} />
           <Route path="/newArticuloDetalle" element={<NewArticuloDetalle />} />
           <Route path="/articulo" element={<ArticuloList />} />
+          <Route path="/articulo/:articuloId" element={<Articulo />} />
+          <Route path="/newarticulo" element={<NewArticulo />} />
           <Route path="/pedidoPagado" element={<PedidoCajeroPagado />} />
           <Route path="/pedidoTerminado" element={<PedidoCajeroTerminado />} />
           <Route path="/pedidoCocinero" element={<PedidoCocinero />} />
