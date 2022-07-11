@@ -5,14 +5,29 @@ import Swal from 'sweetalert2';
 export const getRubroGeneral = () => async (dispatch) => {
     
     try {
-        const res = await axios.get(`api/buensabor/rubrogeneral/alta`)
 
+        const rubro = []
+
+        const res = await axios.get(`api/buensabor/rubrogeneral/alta`)
+        
+        res.data.forEach((prod) => {
+            rubro.push(prod)
+        })
+
+        const resbebida = await axios.get(`api/buensabor/rubroarticulo/alta`)
+
+        resbebida.data.forEach((art) => {
+            if(art.id === 3){
+                rubro.push(art)
+            }
+        });
         dispatch({
             type: types.getRubroGeneral,
             payload: 
-                res.data     
+                rubro     
         })
-        return res.data;
+
+        return rubro;
 
     }
     catch (e) {

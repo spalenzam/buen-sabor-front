@@ -101,8 +101,8 @@ const DashBoardRoutes = () => {
         <>
             <NavBar totalItems={10} />
                 <Routes>
-                    <Route path="/" element={<Inicio rubro={rubroGeneral} />} />
-                    <Route path="/inicio" element={<Inicio rubro={rubroGeneral} />} />
+                    <Route path="/" element={<Inicio rubro={rubroGeneral}/>} />
+                    <Route path="/inicio" element={<Inicio rubro={rubroGeneral}/>} />
                     <Route path="/productos" element={
                         <>
                             <div className="container position-relative">
@@ -115,7 +115,7 @@ const DashBoardRoutes = () => {
                     <Route path="/Nosotros" element={<Nosotros />} />
                     <Route path='/tienda' element={<FinalProductList cart={cart}/> }/>
                 </Routes>
-            <Footer />
+            <Footer rubro={rubroGeneral}/>
         </>
     )
 }
