@@ -24,6 +24,9 @@ import NewArticulo from './pages/articulo/NewArticulo';
 import RubroGeneralList from './pages/rubroGeneral/RubroGeneralList';
 import RubroGeneral from './pages/rubroGeneral/RubroGeneral';
 import NewRubroGeneral from './pages/rubroGeneral/NewRubroGeneral';
+import RubroArticuloList from './pages/rubroArticulo/RubroArticuloList';
+import RubroArticulo from './pages/rubroArticulo/RubroArticulo';
+import NewRubroArticulo from './pages/rubroArticulo/NewRubroArticulo';
 
 const Admin = () => {
   return (
@@ -54,6 +57,9 @@ const Admin = () => {
           <Route path="/rubroGeneral" element={<RubroGeneralList />} />
           <Route path="/rubroGeneral/:rubroGeneralId" element={<RubroGeneral />} />
           <Route path="/newRubroGeneral" element={<NewRubroGeneral />} />
+          <Route path="/rubroArticulo" element={<RubroArticuloList />} />
+          <Route path="/rubroArticulo/:rubroArticuloId" element={<RubroArticulo />} />
+          <Route path="/newRubroArticulo" element={<NewRubroArticulo />} />
         </Routes>
       </div>
     </>

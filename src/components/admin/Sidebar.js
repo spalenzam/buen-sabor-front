@@ -73,7 +73,7 @@ const Sidebar = () => {
                 Productos
               </li>
             </Link>
-            <Link to="product" className="link">
+            <Link to="rubroArticulo" className="link">
               <li className='sidebarListItem'>
                 <LineWeightIcon className='sidebarIcon' />
                 Rubros Artículos

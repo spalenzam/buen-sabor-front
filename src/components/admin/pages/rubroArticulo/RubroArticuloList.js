@@ -5,23 +5,34 @@ import { useDispatch } from 'react-redux';
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { DeleteOutline } from '@material-ui/icons';
-import { deleteRubro, getRubroGeneral } from '../../../../actions/rubrogeneral';
+import { deleteRubroArticulo, getRubroArticulo } from '../../../../actions/rubroarticulo';
 
-
-const RubroGeneralList = () => {
+const RubroArticuloList = () => {
   const [rubros, setRubros] = useState([]);
 
   const dispatch = useDispatch();
 
   const handleDelete = async (id) => {
-    await dispatch(deleteRubro(id))
-    setRubros(await dispatch(getRubroGeneral()))
+    await dispatch(deleteRubroArticulo(id))
+    setRubros(await dispatch(getRubroArticulo()))
   };
 
 
   const columns = [
     { field: "id", headerName: "ID", width: 95 },
     { field: "denominacion", headerName: "Denominacion", width: 180 },
+    {
+      field: "rubroarticuloPadre",
+      headerName: "Rubro Padre",
+      width: 250,
+      renderCell: (params) => {
+        return (
+          <div className="productListItem">
+            {params.row.rubroarticuloPadre?.denominacion}
+          </div>
+        );
+      },
+    },
     { field: "fechaBaja", headerName: "Fecha de baja", width: 180 },
     {
       field: "action",
@@ -44,12 +55,12 @@ const RubroGeneralList = () => {
   ];
 
   useEffect(() => {
-    dispatch(getRubroGeneral()).then(setRubros)
+    dispatch(getRubroArticulo()).then(setRubros)
   }, []);
 
   return (
     <div className="userList">
-      <Link to="../newRubroGeneral">
+      <Link to="../newRubroArticulo">
         <button className="productAddButton">Crear Rubro</button>
       </Link>
       <DataGrid
@@ -63,4 +74,4 @@ const RubroGeneralList = () => {
   )
 }
 
-export default RubroGeneralList
+export default RubroArticuloList

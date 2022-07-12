@@ -47,7 +47,7 @@ const NewRubroGeneral = () => {
       <form onSubmit={handleCreate} className="newUserForm">
 
         <div className="newUserItem">
-          <label>Nombre de usuario</label>
+          <label>Nombre de Rubro</label>
           <input
             type="text"
             placeholder="Pizza"
