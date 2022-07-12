@@ -2,6 +2,8 @@ import React from 'react';
 import "./sidebar.css";
 import { Link } from "react-router-dom";
 import { FastfoodOutlined, StorefrontOutlined, ReceiptOutlined, ShoppingCartOutlined, PersonOutlineOutlined, AssessmentOutlined, AddShoppingCartOutlined } from "@material-ui/icons"
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import LineWeightIcon from '@mui/icons-material/LineWeight';
 
 const Sidebar = () => {
   return (
@@ -23,10 +25,12 @@ const Sidebar = () => {
                 Pedidos Listos
               </li>
             </Link>
-            <li className='sidebarListItem'>
-              <ReceiptOutlined className='sidebarIcon' />
-              Facturas
-            </li>
+            <Link to="facturaAdmin" className="link">
+              <li className='sidebarListItem'>
+                <ReceiptOutlined className='sidebarIcon' />
+                Facturas
+              </li>
+            </Link>
           </ul>
         </div>
 
@@ -66,7 +70,19 @@ const Sidebar = () => {
             <Link to="product" className="link">
               <li className='sidebarListItem'>
                 <FastfoodOutlined className='sidebarIcon' />
-                Artículos Manufacturados
+                Productos
+              </li>
+            </Link>
+            <Link to="rubroArticulo" className="link">
+              <li className='sidebarListItem'>
+                <LineWeightIcon className='sidebarIcon' />
+                Rubros Artículos
+              </li>
+            </Link>
+            <Link to="rubroGeneral" className="link">
+              <li className='sidebarListItem'>
+                <LineWeightIcon className='sidebarIcon' />
+                Rubros Productos
               </li>
             </Link>
             <Link to="pedidoAdmin" className="link">

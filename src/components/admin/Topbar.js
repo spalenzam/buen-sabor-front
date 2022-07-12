@@ -10,14 +10,14 @@ const Topbar = () => {
             <span className='logo'>Buen Sabor</span>
           </div>
           <div className='topRight'>
-            <div className='topbarIconContainer'>
+            {/* <div className='topbarIconContainer'>
               <NotificationsNone/>
               <span className='topIconBadge'>2</span>
             </div>
             <div className='topbarIconContainer'>
               <Settings/>
               <span className='topIconBadge'>2</span>
-            </div>
+            </div> */}
             <img src='https://w7.pngwing.com/pngs/363/698/png-transparent-avatar-female-others-purple-face-black-hair.png' alt='' className='topAvatar'/>
           </div>
         </div>

@@ -13,13 +13,20 @@ import NewProduct from './pages/product/NewProduct';
 import NewArticuloDetalle from './pages/articuloDetalle/NewArticuloDetalle';
 import ArticuloDetalle from './pages/articuloDetalle/ArticuloDetalle';
 import ArticuloList from './pages/articulo/ArticuloList';
-import PedidoList from './pages/pedido/PedidoList';
 import PedidoCajeroPagado from './pages/pedido/PedidoCajeroPagado';
 import PedidoCajeroTerminado from './pages/pedido/PedidoCajeroTerminado';
 import PedidoCocinero from './pages/pedido/PedidoCocinero';
 import PedidoDelivery from './pages/pedido/PedidoDelivery';
 import PedidoAdmin from './pages/pedido/PedidoAdmin';
 import FacturaAdmin from './pages/factura/FacturaAdmin';
+import Articulo from './pages/articulo/Articulo';
+import NewArticulo from './pages/articulo/NewArticulo';
+import RubroGeneralList from './pages/rubroGeneral/RubroGeneralList';
+import RubroGeneral from './pages/rubroGeneral/RubroGeneral';
+import NewRubroGeneral from './pages/rubroGeneral/NewRubroGeneral';
+import RubroArticuloList from './pages/rubroArticulo/RubroArticuloList';
+import RubroArticulo from './pages/rubroArticulo/RubroArticulo';
+import NewRubroArticulo from './pages/rubroArticulo/NewRubroArticulo';
 
 const Admin = () => {
   return (
@@ -39,12 +46,20 @@ const Admin = () => {
           <Route path="/articuloDetalle/:articuloId" element={<ArticuloDetalle />} />
           <Route path="/newArticuloDetalle" element={<NewArticuloDetalle />} />
           <Route path="/articulo" element={<ArticuloList />} />
+          <Route path="/articulo/:articuloId" element={<Articulo />} />
+          <Route path="/newarticulo" element={<NewArticulo />} />
           <Route path="/pedidoPagado" element={<PedidoCajeroPagado />} />
           <Route path="/pedidoTerminado" element={<PedidoCajeroTerminado />} />
           <Route path="/pedidoCocinero" element={<PedidoCocinero />} />
           <Route path="/pedidoDelivery" element={<PedidoDelivery />} />
           <Route path="/pedidoAdmin" element={<PedidoAdmin />} />
           <Route path="/facturaAdmin" element={<FacturaAdmin />} />
+          <Route path="/rubroGeneral" element={<RubroGeneralList />} />
+          <Route path="/rubroGeneral/:rubroGeneralId" element={<RubroGeneral />} />
+          <Route path="/newRubroGeneral" element={<NewRubroGeneral />} />
+          <Route path="/rubroArticulo" element={<RubroArticuloList />} />
+          <Route path="/rubroArticulo/:rubroArticuloId" element={<RubroArticulo />} />
+          <Route path="/newRubroArticulo" element={<NewRubroArticulo />} />
         </Routes>
       </div>
     </>

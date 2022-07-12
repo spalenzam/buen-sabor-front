@@ -3,38 +3,37 @@ import "./articuloList.css";
 import { DataGrid } from '@material-ui/data-grid';
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
-import { deleteArticulo, getArticuloInsumo } from '../../../../actions/articulos';
 import { Link } from 'react-router-dom';
 import { DeleteOutline } from '@material-ui/icons';
+import { deleteRubroArticulo, getRubroArticulo } from '../../../../actions/rubroarticulo';
 
-const ArticuloList = () => {
-
-  const [articulos, setArticulos] = useState([]);
+const RubroArticuloList = () => {
+  const [rubros, setRubros] = useState([]);
 
   const dispatch = useDispatch();
 
-  const fetchArticulos = useCallback(async () => {
-    setArticulos(await dispatch(getArticuloInsumo()))
-  }, [dispatch]);
-
   const handleDelete = async (id) => {
-    await dispatch(deleteArticulo(id))
-    setArticulos(await dispatch(getArticuloInsumo()))
+    await dispatch(deleteRubroArticulo(id))
+    setRubros(await dispatch(getRubroArticulo()))
   };
 
-  useEffect(() => {
-    fetchArticulos();
-  }, [fetchArticulos]);
 
   const columns = [
     { field: "id", headerName: "ID", width: 95 },
     { field: "denominacion", headerName: "Denominacion", width: 180 },
-    { field: "unidadMedida", headerName: "Unidad de medida", width: 150 },
-    { field: "precioCompra", headerName: "$ compra", width: 140 },
-    { field: "precioVenta", headerName: "$ venta", width: 130 },
-    { field: "stockActual", headerName: "Stock actual", width: 150 },
-    { field: "stockMinimo", headerName: "Stock mínimo", width: 150 },
-    { field: "esInsumo", headerName: "Es insumo", width: 150 },
+    {
+      field: "rubroarticuloPadre",
+      headerName: "Rubro Padre",
+      width: 250,
+      renderCell: (params) => {
+        return (
+          <div className="productListItem">
+            {params.row.rubroarticuloPadre?.denominacion}
+          </div>
+        );
+      },
+    },
+    { field: "fechaBaja", headerName: "Fecha de baja", width: 180 },
     {
       field: "action",
       headerName: "Acciones",
@@ -55,13 +54,17 @@ const ArticuloList = () => {
     },
   ];
 
+  useEffect(() => {
+    dispatch(getRubroArticulo()).then(setRubros)
+  }, []);
+
   return (
     <div className="userList">
-      <Link to="../newarticulo">
-        <button className="productAddButton">Crear artículo</button>
+      <Link to="../newRubroArticulo">
+        <button className="productAddButton">Crear Rubro</button>
       </Link>
       <DataGrid
-        rows={articulos}
+        rows={rubros}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
@@ -71,4 +74,4 @@ const ArticuloList = () => {
   )
 }
 
-export default ArticuloList
+export default RubroArticuloList
