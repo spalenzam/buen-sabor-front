@@ -13,7 +13,6 @@ import NewProduct from './pages/product/NewProduct';
 import NewArticuloDetalle from './pages/articuloDetalle/NewArticuloDetalle';
 import ArticuloDetalle from './pages/articuloDetalle/ArticuloDetalle';
 import ArticuloList from './pages/articulo/ArticuloList';
-import PedidoList from './pages/pedido/PedidoList';
 import PedidoCajeroPagado from './pages/pedido/PedidoCajeroPagado';
 import PedidoCajeroTerminado from './pages/pedido/PedidoCajeroTerminado';
 import PedidoCocinero from './pages/pedido/PedidoCocinero';
@@ -22,6 +21,9 @@ import PedidoAdmin from './pages/pedido/PedidoAdmin';
 import FacturaAdmin from './pages/factura/FacturaAdmin';
 import Articulo from './pages/articulo/Articulo';
 import NewArticulo from './pages/articulo/NewArticulo';
+import RubroGeneralList from './pages/rubroGeneral/RubroGeneralList';
+import RubroGeneral from './pages/rubroGeneral/RubroGeneral';
+import NewRubroGeneral from './pages/rubroGeneral/NewRubroGeneral';
 
 const Admin = () => {
   return (
@@ -49,6 +51,9 @@ const Admin = () => {
           <Route path="/pedidoDelivery" element={<PedidoDelivery />} />
           <Route path="/pedidoAdmin" element={<PedidoAdmin />} />
           <Route path="/facturaAdmin" element={<FacturaAdmin />} />
+          <Route path="/rubroGeneral" element={<RubroGeneralList />} />
+          <Route path="/rubroGeneral/:rubroGeneralId" element={<RubroGeneral />} />
+          <Route path="/newRubroGeneral" element={<NewRubroGeneral />} />
         </Routes>
       </div>
     </>
