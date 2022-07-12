@@ -10,9 +10,6 @@ import caracteristica3 from '../../assets/images/caracteristicas-03.png';
 
 const Inicio = ({rubro}) => {
 
-  const { id } = useParams();
-  let rub = rubro.filter((rub) => rub.id == id);
-
   return (
     <div className='buen-sabor__main-content paddt'>
       <div className="portada">
