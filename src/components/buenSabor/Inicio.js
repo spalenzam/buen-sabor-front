@@ -53,7 +53,9 @@ const Inicio = ({rubro}) => {
             {rubro.map((ru) => (       
               <Link key={ru.id} to="../productos/" state={{ ru }} >
                 <div className="tarjeta-categoria">
-                  <img src="#" alt="Categoría Ejemplo" />
+                  <div className="contImg">
+                    <img src="#" alt="Categoría Ejemplo" />
+                  </div> 
                   <h4>{ru?.denominacion}</h4>
                 </div> 
               </Link>

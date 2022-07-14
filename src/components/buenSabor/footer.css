@@ -14,22 +14,22 @@ footer ul{
 footer ul li{
     line-height: 35px;
 }
-footer ul li a{
+footer a{
     color: #fff;
 }
-footer ul li a:hover{
+footer a:hover{
     color:#fccd4d;
     text-decoration: none;
 }
 footer ul li{
     font-weight: 300;
 }
-footer ul li, footer p {
+footer ul li, footer p, footer a {
     line-height: 25px;
     font-size: 14px;
     letter-spacing: 1px;
 }
-footer p{
+footer p, footer a{
     margin-bottom: 0;
 }
 .text-copyright {
