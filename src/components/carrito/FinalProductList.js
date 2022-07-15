@@ -7,6 +7,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import { useSelector } from "react-redux";
+import './Cart.css';
 
 const FinalProductList = ({ cart }) => {
 
@@ -97,48 +98,57 @@ const FinalProductList = ({ cart }) => {
 
     return (
         <div className='buen-sabor__main-content'>
-            <Link to={"/productos"} >
-                <button> Volver </button>
-            </Link>
-            <h2>CARRITO</h2>
-            {cart.map((comida, i) => (
-                <div key={i}>
-                    <h4>{comida.denominacion}</h4>
-                    <h6>${comida.precioVenta} x {comida.cant} = ${comida.precioVenta * comida.cant}</h6>
-                </div>
-            ))}
-            <h3>Total: ${total} </h3>
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <h2 className="titulo-inicio">Carrito</h2>
+                        
+                        <div className="carrito-box">
+                            <div className="carrito-1">
+                                {cart.map((comida, i) => (
+                                    <div key={i}>
+                                        <h4>{comida.denominacion}</h4>
+                                        
+                                        <h6>${comida.precioVenta} x {comida.cant} = ${comida.precioVenta * comida.cant}</h6>
+                                    </div>
+                                ))}
 
-            <div>
-                <form onSubmit={handleCreatePedido}>
-                    <FormLabel id="demo-radio-buttons-group-label">Envío</FormLabel>
-                    <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue="female"
-                        name="radio-buttons-group"
-                    >
-                        <FormControlLabel value="Local" control={<Radio />} label="Retiro en el Local" onChange={handleChange} />
-                        <FormControlLabel value="Domicilio" control={<Radio />} label="Envío a domicilio" onChange={handleChange} />
-                        {
-                            envio === "" ?
-                                <div>
-                                    <button disabled={true}>EFECTIVO</button>
-                                    <button disabled={true}>MERCADO PAGO </button>
-                                </div>
-                                : envio === "Local" ?
-                                    <div>
-                                        <p>Pagando en efectivo se realiza el 10% de descuento</p>
-                                        <button onClick={handleClick}>EFECTIVO: ${total * 0.9}</button>
-                                        <button onClick={() => saveMP(total)} >MERCADO PAGO ${total}</button>
-                                    </div>
-                                    :
-                                    <div>
-                                        <button disabled={true}>EFECTIVO</button>
-                                        <button onClick={() => saveMP(total)}>MERCADO PAGO ${total}</button>
-                                    </div>
-                        }
-                    </RadioGroup>
-                </form>
+                                <h3>Total: ${total} </h3>
+                            </div>
+                            <div className="carrito-2">
+                                <form onSubmit={handleCreatePedido}>
+                                    <FormLabel id="demo-radio-buttons-group-label">Envío</FormLabel>
+                                    <RadioGroup
+                                        aria-labelledby="demo-radio-buttons-group-label"
+                                        defaultValue="female"
+                                        name="radio-buttons-group"
+                                    >
+                                        <FormControlLabel value="Local" control={<Radio />} label="Retiro en el Local" onChange={handleChange} />
+                                        <FormControlLabel value="Domicilio" control={<Radio />} label="Envío a domicilio" onChange={handleChange} />
+                                        {
+                                            envio === "" ?
+                                                <div>
+                                                    <button disabled={true}>Efectivo</button>
+                                                    <button disabled={true}>Mercado Pago </button>
+                                                </div>
+                                                : envio === "Local" ?
+                                                    <div>
+                                                        <p>Pagando en efectivo se realiza el 10% de descuento</p>
+                                                        <button onClick={handleClick}>Efectivo: ${total * 0.9}</button>
+                                                        <button onClick={() => saveMP(total)} >Mercado Pago ${total}</button>
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                        <button disabled={true}>Efectivo</button>
+                                                        <button onClick={() => saveMP(total)}>Mercado Pago ${total}</button>
+                                                    </div>
+                                        }
+                                    </RadioGroup>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

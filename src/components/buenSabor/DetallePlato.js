@@ -8,11 +8,24 @@ const DetallePlato = ({productos})=>{
      console.log(id)
      console.log(producto)
     return (
-        <div>
-        <img src={`http://localhost:8090/api/buensabor/articulosmanufacturados/uploads/img/${producto[0].articuloManufacturado.id}`} alt={producto[0].articuloManufacturado.denominacion} className="productInfoImg" /> 
-        {producto[0].articuloManufacturado.denominacion}
-        {producto[0].articuloManufacturado.precioVenta}
-        {producto[0].cantidadDisponible}
+        <div class= "buen-sabor__main-content">
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <h2 className="titulo-inicio">Detalle de Producto</h2>
+                        <div className="boxDetalle">
+                            <div className="boxDetalle1">
+                                <img src={`http://localhost:8090/api/buensabor/articulosmanufacturados/uploads/img/${producto[0].articuloManufacturado.id}`} alt={producto[0].articuloManufacturado.denominacion} /> 
+                            </div>
+                            <div className="boxDetalle2">
+                                <h2>{producto[0].articuloManufacturado.denominacion}</h2>
+                                <h3>{producto[0].articuloManufacturado.precioVenta}</h3>
+                                <p>{producto[0].cantidadDisponible}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
     

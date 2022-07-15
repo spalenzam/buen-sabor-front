@@ -144,10 +144,70 @@ h2 {
   border-radius: 20px;
 }
 
+.carrito-box{
+  border-radius: 15px;
+  padding: 20px 30px;
+  box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 16%);
+  -webkit-box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 16%);
+  -moz-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.16);
+  border: 1px solid rgba(0,0,0,.125);
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.carrito-1, .carrito-2{
+  width:50%;
+}
+.carrito-1 h4{
+  margin: 0 0 10px 0;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 51px;
+}
+.carrito-1 h6{
+  font-weight: 600;
+}
+.carrito-1 h3{
+  font-weight: 900;
+  color: #b83422;
+}
+.css-u4tvz2-MuiFormLabel-root {
+  font-weight: 800 !important;
+  font-size: 20px !important;
+}
+
+.carrito-2 button{
+  background-color: #b83422;
+  color: #fff;
+  padding: 9px 15px;
+  border-radius: 8px;
+  line-height: 1;
+  border: 0;
+  margin-right: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.css-vqmohf-MuiButtonBase-root-MuiRadio-root{
+  padding: 3px 9px !important;
+}
+
 @media screen and (max-width: 765px) {
   .cartContainer {
     width: 20%;
     margin-top: 20px;
+  }
+  .carrito-1, .carrito-2 {
+    width: 100%;
+  }
+  .carrito-box{
+    flex-direction: column;
+  }
+  .carrito-1{
+    margin-bottom: 10px;
+  }
+  .carrito-1 h4 {
+    font-size: 30px;
   }
 }
 @media screen and (max-width: 575px) {

@@ -28,13 +28,13 @@ const Footer = ({rubro}) => {
                 <li><a href="/nosotros">Sobre nosotros</a></li>
               </ul>  
             </div>
-            <div>
+            <div className="col-lg-2 col-md-6 mb-20">
               <h4>Categorías</h4>
               {console.log(rubro)}
               {rubro.map((ru) => (        
               <Link key={ru.id} to="../productos/" state={{ ru }} >
                 <div>
-                  <h4>{ru?.denominacion}</h4>
+                  {ru?.denominacion}
                 </div> 
               </Link>
               ))}
