@@ -27,6 +27,8 @@ import NewRubroGeneral from './pages/rubroGeneral/NewRubroGeneral';
 import RubroArticuloList from './pages/rubroArticulo/RubroArticuloList';
 import RubroArticulo from './pages/rubroArticulo/RubroArticulo';
 import NewRubroArticulo from './pages/rubroArticulo/NewRubroArticulo';
+import Reportes from './pages/reportes/Reportes';
+import ReportesIndividual from './pages/reportes/ReportesIndividual';
 
 const Admin = () => {
   return (
@@ -60,6 +62,8 @@ const Admin = () => {
           <Route path="/rubroArticulo" element={<RubroArticuloList />} />
           <Route path="/rubroArticulo/:rubroArticuloId" element={<RubroArticulo />} />
           <Route path="/newRubroArticulo" element={<NewRubroArticulo />} />
+          <Route path="/reportes" element={<Reportes/>} />
+          <Route path="/reportesIndividual" element={<ReportesIndividual/>} />
         </Routes>
       </div>
     </>
