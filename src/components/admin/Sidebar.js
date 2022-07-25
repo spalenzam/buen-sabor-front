@@ -97,10 +97,12 @@ const Sidebar = () => {
                 Facturas
               </li>
             </Link>
-            <li className='sidebarListItem'>
-              <AssessmentOutlined className='sidebarIcon' />
-              Reportes
-            </li>
+            <Link to="reportes" className="link">
+              <li className='sidebarListItem'>
+                <AssessmentOutlined className='sidebarIcon' />
+                Reportes
+              </li>
+            </Link>
             <Link to="user" className="link">
               <li className='sidebarListItem'>
                 <PersonOutlineOutlined className='sidebarIcon' />
