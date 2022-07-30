@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { createProductoManufacturado, getRubroGeneral, createProductoManufacturadoConImagen } from '../../../../actions/productos';
 import { getArticuloInsumo } from '../../../../actions/articulos';
 import "./newProduct.css";
 import List from '../../../../util/list';
 import Swal from 'sweetalert2';
+import { removeError, setError } from '../../../../actions/ui';
+import validator from 'validator';
 
 
 const SelectArticulo = (props) => {
@@ -32,16 +34,16 @@ const SelectArticulo = (props) => {
 }
 
 const SelectUnidadDeMedida = (props) => {
-console.log(props.input);
+  console.log(props.input);
   return (
-    <select name="unidadMedida" value={props.input.value} 
-    onChange={(e) => { props.input.onChange(e.target.value) }} >
-            <option>Seleccione una opción</option>
-            <option value="gr">gr</option>
-            <option value="kg">kg</option>
-            <option value="l">l</option>
-            <option value="ml">ml</option>
-          </select>
+    <select name="unidadMedida" value={props.input.value}
+      onChange={(e) => { props.input.onChange(e.target.value) }} >
+      <option>Seleccione una opción</option>
+      <option value="gr">gr</option>
+      <option value="kg">kg</option>
+      <option value="l">l</option>
+      <option value="ml">ml</option>
+    </select>
   )
 }
 
@@ -51,6 +53,8 @@ const NewProduct = () => {
 
   const dispatch = useDispatch();
 
+  const { msgError } = useSelector(state => state.ui)
+
   const [rubrosGeneral, setRubrosGeneral] = useState([]);
 
   const [productoManufacturado, setProductoManufacturado] = useState({});
@@ -58,7 +62,7 @@ const NewProduct = () => {
   const [bandera, setBandera] = useState(0);
 
   const [formValues, setFormValues] = useState({
-    denominacionProducto: ' ',
+    denominacionProducto: '',
     precioVenta: '',
     tiempoEstimadoCocina: '',
     fechaBaja: '',
@@ -92,24 +96,25 @@ const NewProduct = () => {
     //para que no haga la propagación del formulario
     e.preventDefault();
 
+    if (isFormValid()) {
     if (imagen) {
       await dispatch(createProductoManufacturadoConImagen(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles, imagen))
-      .then(setProductoManufacturado);
+        .then(setProductoManufacturado);
 
-     } else {
+    } else {
       await dispatch(createProductoManufacturado(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles))
-      .then(setProductoManufacturado);
+        .then(setProductoManufacturado);
 
-     }
+    }
 
-  Swal.fire({
-    title: 'Producto Creado con Éxito',
-    icon: 'success',
-    html:
-      'Volver a  ' +
-      '<a href="../admin/product">Productos Manufacturados</a> ',
-  })
-   
+    Swal.fire({
+      title: 'Producto Creado con Éxito',
+      icon: 'success',
+      html:
+        'Volver a  ' +
+        '<a href="../admin/product">Productos Manufacturados</a> ',
+    })
+  }
     // navigate("../product");
 
   }
@@ -118,11 +123,45 @@ const NewProduct = () => {
     dispatch(getRubroGeneral()).then(setRubrosGeneral);
   }, []);
 
+  const isFormValid = () => {
+
+    if (denominacionProducto.length < 2) {
+      dispatch(setError('El nombre no puede ser null'))
+      return false;
+
+    } else if (precioVenta.length < 2) {
+      dispatch(setError('El precio no puede ser null'))
+      return false;
+
+    }else if (tiempoEstimadoCocina.length < 2) {
+      dispatch(setError('El tiempo no puede ser null'))
+      return false;
+
+    }else if (idRubro < 2) {
+      dispatch(setError('Debe elegir un rubro'))
+      return false;
+
+    }else if (articulomanufacturadodetalles.length<1) {
+      dispatch(setError('Debe elegir un ingrediente'))
+      return false;
+
+    }
+
+    dispatch(removeError())
+    return true;
+
+  }
 
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">Producto nuevo</h1>
       <form onSubmit={handleCreateProducto} className="addProductForm">
+      {
+          msgError &&
+          <div className='auth__alert-error'>
+            {msgError}
+          </div>
+        }
         <div className="productTop">
           <div className="productTopLeft">
             <div className="addProductItem">
@@ -159,7 +198,7 @@ const NewProduct = () => {
               <br />
               <label>Rubro</label>
               <select name="idRubro" value={idRubro} id="rubro" onChange={handleInputChange}>
-              <option value="">Selecione una opción</option>
+                <option value="">Selecione una opción</option>
                 {rubrosGeneral.map((rubro, index) => (
                   <option key={index} value={rubro.id}>{rubro.denominacion}</option>
                 ))}

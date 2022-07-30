@@ -4,10 +4,10 @@ import { useForm } from '../../hooks/useForm'
 import { useDispatch, useSelector } from 'react-redux'
 import validator from 'validator';
 import { setError, removeError } from '../../actions/ui'
-import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth'
+import { startGoogleLogin, startLoginEmailPassword, startLoginEmailPasswordDataBase } from '../../actions/auth'
 import logo from '../../assets/images/buensabor.png';
 
-const LoginScreen = () => {
+const LoginScreen = ({ admin }) => {
 
   //Acá tenemos que crear el dispatch para poder enviar la action al reducer y que me devuelva lo que necesito 
   const dispatch = useDispatch();
@@ -31,7 +31,12 @@ const LoginScreen = () => {
     //dispatch( login(123, 'Macarena') );
     //En vez de hacer lo anterior vamos a llamar a otra función que es la que interiormente usa la función de login
     if (isFormValid()) {
-      dispatch( startLoginEmailPassword( email, password) )
+      //if(admin == false){
+        dispatch( startLoginEmailPassword( email, password) )
+      // }else{
+      //   dispatch( startLoginEmailPasswordDataBase( email, password) )
+      // }
+      
     }
   
   }
@@ -99,7 +104,10 @@ const LoginScreen = () => {
           Iniciar Sesión
         </button>
 
-        <div className='auth__social-networks'>
+        {
+          admin == false &&
+          <>
+          <div className='auth__social-networks'>
           <p className='p-title-networks'>Iniciar sesión con redes sociales</p>
 
           <div
@@ -121,6 +129,8 @@ const LoginScreen = () => {
         >
           Crear nueva cuenta
         </Link>
+        </>
+        }
 
       </form>
     </>

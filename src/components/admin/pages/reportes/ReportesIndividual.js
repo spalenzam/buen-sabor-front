@@ -120,7 +120,7 @@ const ReportesIndividual = () => {
                         <DatePicker
                             dateFormat="yyyy-MM-dd"
                             selected={startDate}
-                            onChange={(date) => setStartDate(date)}
+                            onChange={(date) => {setStartDate(date); setRankingComidas([]); setPedidoPorCliente([]); setGanancia([])}}
                             selectsStart
                             startDate={startDate}
                             endDate={endDate}
@@ -128,7 +128,7 @@ const ReportesIndividual = () => {
                         <DatePicker
                             dateFormat="yyyy-MM-dd"
                             selected={endDate}
-                            onChange={(date) => setEndDate(date)}
+                            onChange={(date) => {setEndDate(date); setRankingComidas([]); setPedidoPorCliente([]); setGanancia([])}}
                             selectsEnd
                             startDate={startDate}
                             endDate={endDate}
@@ -233,7 +233,7 @@ const ReportesIndividual = () => {
                             <DatePicker
                                 dateFormat="yyyy-MM-dd"
                                 selected={startDate}
-                                onChange={(date) => setStartDate(date)}
+                                onChange={(date) => {setStartDate(date); setIngresoDiario([]); setIngresoMensual([])}}
                                 selectsStart
                                 startDate={startDate}
                                 endDate={endDate}
@@ -271,7 +271,7 @@ const ReportesIndividual = () => {
                                         columns={columns}
                                         pageSize={8}
                                         rowsPerPageOptions={[8]}
-                                        getRowId={(row) => Math.random()}
+                                        getRowId={() => Math.random()}
                                     />
 
 

@@ -66,6 +66,22 @@ const RegisterScreen = () => {
       dispatch( setError ( 'Las contraseñas no coinciden' ) )
       return false;
 
+    } else if (telefono.length < 7) {
+      dispatch( setError ( 'El teléfono debe ser válido' ) )
+      return false;
+
+    } else if (numeroCalle.length < 1) {
+      dispatch( setError ( 'El número de calle es requerido' ) )
+      return false;
+
+    } else if (calle.length < 1) {
+      dispatch( setError ( 'La calle es requerida' ) )
+      return false;
+
+    } else if (localidad.length < 1) {
+      dispatch( setError ( 'La localidad es requerida' ) )
+      return false;
+
     } 
       
     dispatch( removeError () )

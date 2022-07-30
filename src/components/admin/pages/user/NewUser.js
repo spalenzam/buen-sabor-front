@@ -7,6 +7,7 @@ import { removeError, setError } from '../../../../actions/ui';
 import { guardarUsuario } from '../../../../actions/usuarios';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { startRegisterWithEmailPasswordNameEmpleado } from '../../../../actions/auth';
 
 const NewUser = () => {
 
@@ -30,6 +31,8 @@ const NewUser = () => {
 
     if (isFormValid()) {
       dispatch(guardarUsuario(email, clave, rol));
+      dispatch(startRegisterWithEmailPasswordNameEmpleado(rol, rol, email, clave));
+      
     }
 
     Swal.fire({

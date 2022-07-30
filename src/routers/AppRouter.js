@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import AuthRouter from './AuthRouter';
 import { firebase } from "../firebase/firebase-config"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../actions/auth';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import DashBoardRoutes from './DashBoardRoutes';
 import Admin from "../components/admin/Admin"
+import AuthRouterAdmin from './AuthRouterAdmin';
 
 
 const AppRouter = () => {
@@ -35,7 +36,7 @@ const AppRouter = () => {
         }
         //Si entró acá es porque está logueado, entonces lo pongo en true
         setIsLoggedIn(true)
-      } else {
+      }else {
         setIsLoggedIn(false)
       }
 
@@ -58,7 +59,7 @@ const AppRouter = () => {
 
         {/* Cuando la persona está logueada */}
         <Route path="/*" element={
-          <PrivateRoute isAuthenticated={isLoggedIn}>
+          <PrivateRoute isAuthenticated={isLoggedIn} admin={false}>
             <DashBoardRoutes />
           </PrivateRoute>
         }
@@ -66,14 +67,24 @@ const AppRouter = () => {
 
         {/* Cuando la persona NO está logueada */}
         <Route path="auth/*" element={
-          <PublicRoute isAuthenticated={isLoggedIn}>
+          <PublicRoute isAuthenticated={isLoggedIn} admin={false}>
             <AuthRouter />
           </PublicRoute>
         }
         />
 
         <Route path="admin/*" element={
+          <PrivateRoute isAuthenticated={isLoggedIn} admin={true}>
           <Admin />
+          </PrivateRoute>
+        }
+        />
+
+        {/* Cuando la persona NO está logueada */}
+        <Route path="admin/auth/*" element={
+          <PublicRoute isAuthenticated={isLoggedIn} admin={true}>
+            <AuthRouterAdmin />
+          </PublicRoute>
         }
         />
 
