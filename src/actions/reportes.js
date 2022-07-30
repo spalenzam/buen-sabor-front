@@ -5,16 +5,17 @@ import moment from "moment";
 
 export const getRankingComidas = (desde, hasta) => async () => {
     try {
-        //const ormatteddesde = desde.ToString("yyyyMMdd")
-        //const formattedhasta = hasta.ToString("yyyyMMdd")
 
-        console.log(desde)
         const res = await axios.get(`/api/buensabor/detallepedido/ranking`, {
             params: {
                 desde: moment(desde).format("yyyy-MM-DD"),
                 hasta: moment(hasta).format("yyyy-MM-DD")
             }
         });
+
+        console.log(res.data.length);
+
+        res.data.length == 0 && Swal.fire('No se encontraron datos en ese rango de fecha', '', 'info')
 
         return res.data
 
@@ -47,7 +48,7 @@ export const generarExcelRankingComidas = (desde, hasta) => async () => {
                 const fecha = moment(Date.now()).format("yyyy-MM-DD")
                 var a = document.createElement("a");
                 a.href = URL.createObjectURL(file);
-                a.download = "Ranking-Comidas-"+fecha;
+                a.download = "Ranking-Comidas-" + fecha;
                 a.click();
             })
             .catch(error => {
@@ -60,7 +61,7 @@ export const generarExcelRankingComidas = (desde, hasta) => async () => {
 }
 
 export const getPedidoPorCliente = (desde, hasta) => async () => {
-    try { 
+    try {
 
         const res = await axios.get(`/api/buensabor/pedidos/pedidos-por-cliente`, {
             params: {
@@ -68,6 +69,8 @@ export const getPedidoPorCliente = (desde, hasta) => async () => {
                 hasta: moment(hasta).format("yyyy-MM-DD")
             }
         });
+
+        res.data.length == 0 && Swal.fire('No se encontraron datos en ese rango de fecha', '', 'info')
 
         return res.data
 
@@ -100,7 +103,7 @@ export const generarExcelPedidoPorCliente = (desde, hasta) => async () => {
                 const fecha = moment(Date.now()).format("yyyy-MM-DD")
                 var a = document.createElement("a");
                 a.href = URL.createObjectURL(file);
-                a.download = "Pedidos-Por-Cliente-"+fecha;
+                a.download = "Pedidos-Por-Cliente-" + fecha;
                 a.click();
             })
             .catch(error => {
@@ -121,6 +124,8 @@ export const getGanancia = (desde, hasta) => async () => {
                 hasta: moment(hasta).format("yyyy-MM-DD")
             }
         });
+
+        res.data.factura.length == 0 && Swal.fire('No se encontraron datos en ese rango de fecha', '', 'info')
 
         return res.data
 
@@ -153,7 +158,7 @@ export const generarExcelGanancia = (desde, hasta) => async () => {
                 const fecha = moment(Date.now()).format("yyyy-MM-DD")
                 var a = document.createElement("a");
                 a.href = URL.createObjectURL(file);
-                a.download = "Ganancias-"+fecha;
+                a.download = "Ganancias-" + fecha;
                 a.click();
             })
             .catch(error => {
@@ -172,7 +177,8 @@ export const getIngresoDiario = (desde) => async () => {
                 fecha: moment(desde).format("yyyy-MM-DD")
             }
         });
-
+        console.log(res.data);
+        res.data.factura.length == 0 && Swal.fire('No se encontraron datos en esa fecha', '', 'info')
         return res.data
 
     } catch (e) {
@@ -203,7 +209,7 @@ export const generarExcelIngresoDiario = (desde) => async () => {
                 const fecha = moment(Date.now()).format("yyyy-MM-DD")
                 var a = document.createElement("a");
                 a.href = URL.createObjectURL(file);
-                a.download = "IngresosDiarios-"+fecha;
+                a.download = "IngresosDiarios-" + fecha;
                 a.click();
             })
             .catch(error => {
@@ -222,6 +228,8 @@ export const getIngresoMensual = (desde) => async () => {
                 fecha: moment(desde).format("yyyy-MM-DD")
             }
         });
+
+        res.data.factura.length == 0 && Swal.fire('No se encontraron datos en esa fecha', '', 'info')
 
         return res.data
 
@@ -253,7 +261,7 @@ export const generarExcelIngresoMensual = (desde) => async () => {
                 const fecha = moment(Date.now()).format("yyyy-MM-DD")
                 var a = document.createElement("a");
                 a.href = URL.createObjectURL(file);
-                a.download = "IngresosMensual-"+fecha;
+                a.download = "IngresosMensual-" + fecha;
                 a.click();
             })
             .catch(error => {

@@ -19,6 +19,18 @@ export const getUsuarios = () => async (dispatch) => {
     }
 }
 
+export const getUsuariobyMail = (email) => async (dispatch) => {
+    try {
+        //Obtengo los usuarios
+        const rol = await axios.get(`/api/buensabor/usuarios/usuario/${email}`);
+        console.log(rol);
+        return rol.data.rol
+
+    } catch (e) {
+        console.log("No puede traer los usuarios");
+    }
+}
+
 // export const usuariosActivos = (usuariosList) => {
 //     return {
 //         type: types.getAllUsuarios,
@@ -119,7 +131,11 @@ export const guardarUsuario = (email, clave, rol) => async (dispatch) => {
             rol: rol
         }
         console.log(usuario);
-        await axios.post('/api/buensabor/usuarios', usuario)
+        //await axios.post('/api/buensabor/usuarios', usuario)
+
+        rol == 'Cocinero' ?
+        await axios.post('/api/buensabor/usuarios/conCocinero', usuario)
+        : await axios.post('/api/buensabor/usuarios', usuario)
 
         //Swal.fire('Creado', 'Usuario creado con éxito', 'success')
     }

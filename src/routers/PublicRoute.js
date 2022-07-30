@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 
-const PublicRoute = ({ isAuthenticated, children }) => {
+const PublicRoute = ({ isAuthenticated, children, admin }) => {
 
-    return isAuthenticated ? <Navigate to="/" /> : children
+    return !isAuthenticated ? children : admin == true ? <Navigate to="/admin" /> : <Navigate to="/" />
 
 };
 
