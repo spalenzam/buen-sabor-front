@@ -19,8 +19,30 @@ export const getProductos = () => async (dispatch) => {
     catch (e) {
         Swal.fire('Error', 'No se pueden traer los productos', 'error')
     }
+}
 
+export const getBebidas = () => async (dispatch) => {
 
+    try {
+
+        //Obtengo los articulos insumo/bebidas
+        const res = await axios.get(`/api/buensabor/articuloinsumo/alta`)
+        
+        const bebidas = res.data.filter(articulo => articulo.esInsumo === false);
+
+        //Actualizo el state del store
+        dispatch({
+            type: types.getAllBebidas,
+            payload:
+                bebidas
+        })
+       
+        return bebidas;
+
+    }
+    catch (e) {
+        Swal.fire('Error', 'No se pueden traer los productos', 'error')
+    }
 }
 
 export const deleteProducto = (id) => async (dispatch) => {

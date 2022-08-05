@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './Cart.css';
 import ProductosItem from "./ProductosItems";
 
-const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible }) => {
+const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible, cantDispBebidas, close }) => {
 
   const [cartOpen, setCartOpen] = useState(false);
   const [productsLength, setProductsLength] = useState(0);
@@ -26,6 +26,14 @@ const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible }) => {
     cantDisponible.find((cantDisp) => {
       if (cantDisp.articuloManufacturado.id === comidaId) {
         cantidadDisponible = (parseInt(cantDisp.cantidadDisponible, 10))
+        return cantidadDisponible
+      } else {
+        return 0;
+      }
+    })
+    cantDispBebidas.find((cantDispBeb) => {
+      if (cantDispBeb.id === comidaId) {
+        cantidadDisponible = (parseInt(cantDispBeb.stockActual - cantDispBeb.stockMinimo, 10))
         return cantidadDisponible
       } else {
         return 0;
@@ -107,9 +115,12 @@ const Cart = ({ cart, agregarACarrito, eliminarDeCarrito, cantDisponible }) => {
             <div>
               <h2 className='total'>Total: ${total}</h2>
               <Link to={"/tienda"} >
-                <button className="btnConfirmar">Confirmar pedido</button>
+                {close ?
+                  <button disabled={true} className="btnConfirmar">El local se encuentra cerrado</button>
+                  :
+                  <button disabled={false} className="btnConfirmar">Confirmar pedido</button>}
               </Link>
-            </div> 
+            </div>
           }
         </div>
       )}

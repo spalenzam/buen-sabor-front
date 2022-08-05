@@ -8,13 +8,13 @@ export const getRubroGeneral = () => async (dispatch) => {
 
         const rubro = []
 
-        const res = await axios.get(`api/buensabor/rubrogeneral/alta`)
+        const res = await axios.get(`/api/buensabor/rubrogeneral/alta`)
         
         res.data.forEach((prod) => {
             rubro.push(prod)
         })
 
-        const resbebida = await axios.get(`api/buensabor/rubroarticulo/alta`)
+        const resbebida = await axios.get(`/api/buensabor/rubroarticulo/alta`)
 
         resbebida.data.forEach((art) => {
             if(art.id === 3){

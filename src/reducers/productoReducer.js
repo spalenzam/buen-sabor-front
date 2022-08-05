@@ -17,6 +17,12 @@ export const productoReducer = (state = initialState, action) => {
 
             }
 
+        case types.getAllBebidas:
+            return {
+                ...state,
+                bebidaList: [...action.payload]
+            }
+
         case types.deleteProducto:
             return {
                 ...state,

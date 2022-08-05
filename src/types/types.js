@@ -9,6 +9,7 @@ export const types = {
 
     getAllProducto:'[Prod] Get All Producto',
     deleteProducto:'[Prod] Delete Producto',
+    getAllBebidas:'[Prod] Get All Bebidas',
     
     getAllUsuarios:'[User] Get All Usuarios',
     deleteUsuario:'[User] Delete Usuario',
