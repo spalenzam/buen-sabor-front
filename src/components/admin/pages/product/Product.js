@@ -17,6 +17,8 @@ const Product = () => {
 
     const dispatch = useDispatch();
 
+    const [nombreImagen, setNombreImagen] = useState();
+
     const { productId: id } = useParams();
 
     const [formValues, setFormValues] = useState({
@@ -37,6 +39,11 @@ const Product = () => {
             ...formValues,
             [target.name]: target.type == "file" ? target.files[0] : target.value
         })
+
+        if(target.type == "file"){
+            console.log(target.files[0]);
+          setNombreImagen(target.files[0].name)
+          }
     }
 
     const handleUpdateProducto = (e) => {
@@ -177,7 +184,8 @@ const Product = () => {
                                     <img alt={producto?.denominacion} className="productInfoImg" />
                             }
                             <label htmlFor="imagen">
-                                <Publish />
+                                <Publish />&nbsp;
+                                <label>{nombreImagen}</label>
                             </label>
                             <input type="file" id="imagen" name='imagen' value={imagen?.files?.at(0).path || ""} style={{ display: "none" }} onChange={handleInputChange} />
                         </div>

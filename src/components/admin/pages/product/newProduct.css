@@ -13,7 +13,7 @@
   }
   
   .addProductItem {
-    width: 250px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;

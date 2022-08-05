@@ -8,6 +8,7 @@ import List from '../../../../util/list';
 import Swal from 'sweetalert2';
 import { removeError, setError } from '../../../../actions/ui';
 import validator from 'validator';
+import { Publish } from '@material-ui/icons';
 
 
 const SelectArticulo = (props) => {
@@ -61,6 +62,8 @@ const NewProduct = () => {
 
   const [bandera, setBandera] = useState(0);
 
+  const [nombreImagen, setNombreImagen] = useState();
+
   const [formValues, setFormValues] = useState({
     denominacionProducto: '',
     precioVenta: '',
@@ -82,6 +85,11 @@ const NewProduct = () => {
       ...formValues,
       [target.name]: target.type == "file" ? target.files[0] : target.value
     })
+
+    if(target.type == "file"){
+      console.log(target.files[0]);
+    setNombreImagen(target.files[0].name)
+    } 
   }
 
   const handleInputSelectArticulo = (values) => {
@@ -97,24 +105,24 @@ const NewProduct = () => {
     e.preventDefault();
 
     if (isFormValid()) {
-    if (imagen) {
-      await dispatch(createProductoManufacturadoConImagen(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles, imagen))
-        .then(setProductoManufacturado);
+      if (imagen) {
+        await dispatch(createProductoManufacturadoConImagen(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles, imagen))
+          .then(setProductoManufacturado);
 
-    } else {
-      await dispatch(createProductoManufacturado(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles))
-        .then(setProductoManufacturado);
+      } else {
+        await dispatch(createProductoManufacturado(denominacionProducto, precioVenta, tiempoEstimadoCocina, fechaBaja, idRubro, articulomanufacturadodetalles))
+          .then(setProductoManufacturado);
 
+      }
+
+      Swal.fire({
+        title: 'Producto Creado con Éxito',
+        icon: 'success',
+        html:
+          'Volver a  ' +
+          '<a href="../admin/product">Productos Manufacturados</a> ',
+      })
     }
-
-    Swal.fire({
-      title: 'Producto Creado con Éxito',
-      icon: 'success',
-      html:
-        'Volver a  ' +
-        '<a href="../admin/product">Productos Manufacturados</a> ',
-    })
-  }
     // navigate("../product");
 
   }
@@ -133,15 +141,15 @@ const NewProduct = () => {
       dispatch(setError('El precio no puede ser null'))
       return false;
 
-    }else if (tiempoEstimadoCocina.length < 2) {
+    } else if (tiempoEstimadoCocina.length < 2) {
       dispatch(setError('El tiempo no puede ser null'))
       return false;
 
-    }else if (idRubro < 2) {
+    } else if (idRubro < 2) {
       dispatch(setError('Debe elegir un rubro'))
       return false;
 
-    }else if (articulomanufacturadodetalles.length<1) {
+    } else if (articulomanufacturadodetalles.length < 1) {
       dispatch(setError('Debe elegir un ingrediente'))
       return false;
 
@@ -156,7 +164,7 @@ const NewProduct = () => {
     <div className="newProduct">
       <h1 className="addProductTitle">Producto nuevo</h1>
       <form onSubmit={handleCreateProducto} className="addProductForm">
-      {
+        {
           msgError &&
           <div className='auth__alert-error'>
             {msgError}
@@ -165,8 +173,12 @@ const NewProduct = () => {
         <div className="productTop">
           <div className="productTopLeft">
             <div className="addProductItem">
-              <label>Image</label>
-              <input type="file" id="imagen" name='imagen' value={imagen?.files?.at(0).path || ""} onChange={handleInputChange} />
+              <label>Imagen</label>
+              <label htmlFor="imagen">
+                <Publish fontSize="large"/> &nbsp;
+                <label>{nombreImagen}</label>
+              </label>
+              <input type="file" id="imagen" name='imagen' onChange={handleInputChange} value={imagen?.files?.at(0).path || ""} style={{ display: "none" }} />
             </div>
             <div className="addProductItem">
               <label>Nombre del producto</label>
@@ -210,7 +222,7 @@ const NewProduct = () => {
             <span className="productName">INGREDIENTES</span>
 
             <List input={{ value: formValues.articulomanufacturadodetalles, onChange: handleInputSelectArticulo }}
-              options={{ articuloinsumo: { component: SelectArticulo, showAttr: "denominacion" }, cantidad: { input: {} }, unidadMedida: { input: {} } }}
+              options={{ articuloinsumo: { component: SelectArticulo, showAttr: "denominacion" }, cantidad: { input: {} }, unidadMedida: { component: SelectUnidadDeMedida } }}
             />
 
             {/* <Link to="../newArticuloDetalle" state={{ productoManufacturado }}> */}
