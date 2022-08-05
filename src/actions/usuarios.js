@@ -135,7 +135,7 @@ export const guardarUsuario = (email, clave, rol) => async (dispatch) => {
 
         rol == 'Cocinero' ?
         await axios.post('/api/buensabor/usuarios/conCocinero', usuario)
-        : await axios.post('/api/buensabor/usuarios', usuario)
+        : await axios.post('/api/buensabor/usuarios/pass', usuario)
 
         //Swal.fire('Creado', 'Usuario creado con éxito', 'success')
     }

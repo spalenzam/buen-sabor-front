@@ -309,7 +309,7 @@ const User = () => {
                         type="password"
                         placeholder='Clave'
                         name='clave'
-                        className="userUpdateInput"
+                        className="userUpdateInput clave"
                         value={clave}
                         onChange={handleInputChange}
                       />
