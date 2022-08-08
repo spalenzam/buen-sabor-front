@@ -19,8 +19,8 @@ const DetallePlato = ({productos})=>{
                             </div>
                             <div className="boxDetalle2">
                                 <h2>{producto[0].articuloManufacturado.denominacion}</h2>
-                                <h3>{producto[0].articuloManufacturado.precioVenta}</h3>
-                                <p>{producto[0].cantidadDisponible}</p>
+                                <h3>{"$ " + producto[0].articuloManufacturado.precioVenta}</h3>
+                                <h3>{"Ingredientes: " + producto[0].articuloManufacturado.precioVenta}</h3>
                             </div>
                         </div>
                     </div>
