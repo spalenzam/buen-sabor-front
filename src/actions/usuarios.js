@@ -73,8 +73,9 @@ export const deleteUsuarioStore = (id) => ({
 export const updateUsuario = (id, usuario, clave, rol, apellido, nombre, email, telefono, calle, numero, localidad) => async (dispatch) => {
 
     try {
+        let domicilio = null
 
-        const domicilio = {
+        domicilio = {
             calle: calle,
             numero: numero,
             localidad: localidad
@@ -85,7 +86,7 @@ export const updateUsuario = (id, usuario, clave, rol, apellido, nombre, email, 
             nombre: nombre,
             email: email,
             telefono: telefono,
-            domicilio: domicilio
+            domicilio: domicilio? domicilio : null
         }
 
         const user = {

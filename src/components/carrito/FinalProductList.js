@@ -9,7 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 import { useSelector } from "react-redux";
 import './Cart.css';
 
-const FinalProductList = ({ cart }) => {
+const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido }) => {
 
     const total = cart.reduce(
         (previous, product) => previous + product.cant * product.precioVenta, 0);
@@ -18,6 +18,10 @@ const FinalProductList = ({ cart }) => {
 
     const handleChange = (e) => {
         setEnvio(e.target.value)
+        setFormPedido({
+            ...formPedido,
+            [e.target.name]: e.target.value,
+        })
     };
 
     //! MERCADO PAGO 
@@ -42,13 +46,13 @@ const FinalProductList = ({ cart }) => {
         }).then(function (response) {
             return Promise.resolve(response.json());
         })
-        .then(function (preference) {
-            console.log(preference)
-            createCheckoutButton(preference.id)
-        })
-        .catch(function () {
-            console.log('Error al ejecutar Mercado Pago');
-        })
+            .then(function (preference) {
+                console.log(preference)
+                createCheckoutButton(preference.id)
+            })
+            .catch(function () {
+                console.log('Error al ejecutar Mercado Pago');
+            })
     }
 
     function createCheckoutButton(preferenceId) {
@@ -67,11 +71,11 @@ const FinalProductList = ({ cart }) => {
         numeroPedido: '',
         fechaPedido: new Date(),
         horaEstimadaFinPedido: '',
-        tipoEnvioPedido: 'Local',
-        estado: 'Pagado',
+        tipoEnvioPedido: '',
+        estado: '',
         estadoInterno: 'Cajero',
-        cliente: null,
-        domicilio: null,
+        cliente: '',
+        domicilio: '',
         mercadoPagoDatos: null
     });
 
@@ -80,16 +84,25 @@ const FinalProductList = ({ cart }) => {
     const handleClick = ({ target }) => {
         setFormPedido({
             ...formPedido,
-            // [target.name]: target.value ,
+            [target.name]: target.value
         })
     }
-    
+
+    const handleClickMP = ({ target }) => {
+        setFormPedido({
+            ...formPedido,
+            [target.name]: target.value,
+        })
+
+        saveMP(total);
+    }
 
     const handleCreatePedido = (e) => {
-        e.preventDefault();
-        if (estado === 'Pagado') {
-            dispatch(crearPedido(numeroPedido, fechaPedido, horaEstimadaFinPedido, tipoEnvioPedido, estado, estadoInterno, cliente, domicilio, mercadoPagoDatos, cart));
-        }
+        e.preventDefault()
+        dispatch(crearPedido(numeroPedido, fechaPedido, horaEstimadaFinPedido, tipoEnvioPedido, estado, estadoInterno, usuarioSeleccionado.cliente.id, usuarioSeleccionado.cliente.domicilio.id, mercadoPagoDatos, cart, setNpedido));
+        setCarrito(
+            cart = []
+        );
     }
 
     // !CLIENTE - verificar si está toda la info o completar
@@ -102,13 +115,11 @@ const FinalProductList = ({ cart }) => {
                 <div className="row">
                     <div className="col-12">
                         <h2 className="titulo-inicio">Carrito</h2>
-                        
                         <div className="carrito-box">
                             <div className="carrito-1">
                                 {cart.map((comida, i) => (
                                     <div key={i}>
                                         <h4>{comida.denominacion}</h4>
-                                        
                                         <h6>${comida.precioVenta} x {comida.cant} = ${comida.precioVenta * comida.cant}</h6>
                                     </div>
                                 ))}
@@ -119,28 +130,30 @@ const FinalProductList = ({ cart }) => {
                                 <form onSubmit={handleCreatePedido}>
                                     <FormLabel id="demo-radio-buttons-group-label">Envío</FormLabel>
                                     <RadioGroup
+                                        value={tipoEnvioPedido}
+                                        name='tipoEnvioPedido'
                                         aria-labelledby="demo-radio-buttons-group-label"
                                         defaultValue="female"
-                                        name="radio-buttons-group"
                                     >
                                         <FormControlLabel value="Local" control={<Radio />} label="Retiro en el Local" onChange={handleChange} />
                                         <FormControlLabel value="Domicilio" control={<Radio />} label="Envío a domicilio" onChange={handleChange} />
                                         {
-                                            envio === "" ?
+                                            (envio === "" || usuarioSeleccionado?.cliente?.domicilio === null || usuarioSeleccionado?.telefono === 1 ) ?
                                                 <div>
+                                                    <p>Faltan datos o seleccionar el método de envío</p>
                                                     <button disabled={true}>Efectivo</button>
                                                     <button disabled={true}>Mercado Pago </button>
                                                 </div>
                                                 : envio === "Local" ?
                                                     <div>
                                                         <p>Pagando en efectivo se realiza el 10% de descuento</p>
-                                                        <button onClick={handleClick}>Efectivo: ${total * 0.9}</button>
-                                                        <button onClick={() => saveMP(total)} >Mercado Pago ${total}</button>
+                                                        <button name='estado' value='Pagado' onClick={handleClick}>Efectivo: ${total * 0.9}</button>
+                                                        <button name='estado' value='Pendiente' onClick={handleClickMP} >Mercado Pago ${total}</button>
                                                     </div>
                                                     :
                                                     <div>
                                                         <button disabled={true}>Efectivo</button>
-                                                        <button onClick={() => saveMP(total)}>Mercado Pago ${total}</button>
+                                                        <button name='estado' value='Pendiente' onClick={handleClickMP}>Mercado Pago ${total}</button>
                                                     </div>
                                         }
                                     </RadioGroup>
@@ -154,6 +167,4 @@ const FinalProductList = ({ cart }) => {
     )
 }
 
-
 export default FinalProductList
-

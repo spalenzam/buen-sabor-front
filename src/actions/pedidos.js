@@ -5,8 +5,8 @@ import Swal from 'sweetalert2';
 export const getCliente = (email) => async () => {
     try {
 
-        const res = await axios.get(`api/buensabor/clientes/cliente/${email}`)
-        const datosCliente = res.data
+        const res = await axios.get(`api/buensabor/usuarios/usuario/${email}`)
+        return res.data
 
     }
     catch (e) {
@@ -19,7 +19,7 @@ export const getEstadoPago = (id) => async () => {
     try{
         const res = await axios.get(`https://api.mercadopago.com/v1/payments/${id}`)
         console.log (res)
-        return ('mp:', res)
+
     } catch {
         console.log('No se puede obtener el estado del pago realizado con Mercado Pago');
     }
@@ -50,7 +50,10 @@ export const getPedidosCocina = (tiempoElaboracion) => async (dispatch) => {
                 enCocina.forEach((tiempo) => {
                     tiempoPedidosCocina = tiempoPedidosCocina + (tiempo.articulomanufacturado.tiempoEstimadoCocina) * tiempo.cantidad
                 })
+            } else {
+                tiempoPedidosCocina = tiempoPedidosCocina
             }
+
         })    
 
         // !CAMBIAR POR COCINEROS DE CONFIGURACIÓN
@@ -61,11 +64,17 @@ export const getPedidosCocina = (tiempoElaboracion) => async (dispatch) => {
         let hoy = new Date();
         let horaActual = hoy.getHours() 
         let minActual = hoy.getMinutes()
+        let horas = 0
+        let minutos = 0
 
         //Cálculo en hora, min y seg
-        let horas = Math.floor(((tiempoPedidosCocina/cocineros) + tiempoElaboracion ) / 60) + horaActual;
-        let minutos = Math.floor(((tiempoPedidosCocina/cocineros) + tiempoElaboracion + minActual) % 60);
-
+        if (tiempoPedidosCocina < 0) {
+            horas = Math.floor(((tiempoPedidosCocina / cocineros) + tiempoElaboracion) / 60) + horaActual;
+            minutos = Math.floor(((tiempoPedidosCocina / cocineros) + tiempoElaboracion + minActual) % 60);
+        } else {
+            horas = Math.floor(tiempoElaboracion / 60) + horaActual;
+            minutos = Math.floor((tiempoElaboracion + minActual) % 60);
+        }
         //Si son pasadas las 24
         horas = horas >= 24 ? horas - 24 : horas;
 
@@ -107,23 +116,35 @@ export const getArtManufacturado = (id, cant) => async (dispatch) => {
         const res = await axios.get(`/api/buensabor/articulosmanufacturados/${id}`)
         const insumosNecesarios = res.data.articulomanufacturadodetalles
 
+        const listaInsumos = [];
+        let insu = [];
+
         insumosNecesarios.forEach((insumo) => {
+            listaInsumos.push(insu = axios.get(`/api/buensabor/articuloinsumo/${insumo.articuloinsumo.id}`))
+        })
+        Promise.all(listaInsumos).then(responses => {
+            responses.forEach(response => {
 
-            const insumoUsado = {
-                denominacion: insumo.articuloinsumo.denominacion,
-                esInsumo: insumo.articuloinsumo.esInsumo,
-                precioCompra: insumo.articuloinsumo.precioCompra,
-                precioVenta: insumo.articuloinsumo.precioVenta,
-                stockMinimo: insumo.articuloinsumo.stockMinimo,
-                unidadMedida: insumo.unidadMedida,
-                stockActual: (insumo.articuloinsumo.stockActual - insumo.cantidad * cant).toFixed(2),
-            }
+                insumosNecesarios.forEach((ins) => {
+                    if (ins.articuloinsumo.id === response.data.id) {
+                        const insumoUsado = {
+                            denominacion: response.data.denominacion,
+                            esInsumo: response.data.esInsumo,
+                            precioCompra: response.data.precioCompra,
+                            precioVenta: response.data.precioVenta,
+                            stockMinimo: response.data.stockMinimo,
+                            unidadMedida: response.data.unidadMedida,
+                            stockActual: (response.data.stockActual) - (ins.cantidad * cant)
+                        }
+                        axios.put(`api/buensabor/articuloinsumo/${ins.articuloinsumo.id}`, insumoUsado);
+                    }
+                })
 
-            axios.put(`api/buensabor/articuloinsumo/${insumo.articuloinsumo.id}`, insumoUsado);
-
-        });
+            })
+        })
 
     }
+
     catch (e) {
         console.log('No se puede obtener art manf')
     }
@@ -138,7 +159,11 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
         //**TIEMPO DE ELABORACIÓN DE PROD MANUFACTURADOS
         let tiempoElaboracion = 0
         cart.forEach((tiempo) => {
-            tiempoElaboracion = tiempoElaboracion + (tiempo.tiempoEstimadoCocina) * tiempo.cant
+            if (tiempo.rubroarticulo?.id === 3 ) {
+                tiempoElaboracion = tiempoElaboracion 
+            } else {
+                tiempoElaboracion = tiempoElaboracion + (tiempo.tiempoEstimadoCocina) * tiempo.cant
+            }
         })
         
         // **TIEMPO DE PEDIDOS EN COCINA
@@ -146,6 +171,30 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
         
         // **PEDIDO
         const pedidoNuevo = await dispatch(getPedidos())
+        
+        const fkcliente = {
+            id: idCliente
+        }
+
+        const fkdomicilio = {
+            id: idDomicilio
+        }
+
+        let fkmercadopago = null
+        
+        if (estado === 'Pendiente') {
+            
+            const mercadoPago = {
+                estado: estado,
+                formaPago: 'Debito',
+                metodoPago: tipoEnvioPedido,
+            }
+            const resmp = await axios.post('api/buensabor/mercadoPagoDatos', mercadoPago)
+            
+            fkmercadopago = {
+                identificadorPago: resmp.data.identificadorPago
+            }
+        }
 
         const pedido = {
             numeroPedido: pedidoNuevo,
@@ -154,6 +203,9 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
             tipoEnvioPedido: tipoEnvioPedido,
             estado: estado,
             estadoInterno: estadoInterno,
+            cliente: fkcliente,
+            domicilio: fkdomicilio,
+            mercadoPagoDatos: fkmercadopago 
         }
         const res = await axios.post('/api/buensabor/pedidos', pedido)
 
@@ -163,23 +215,45 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
 
         cart.forEach((detpedido) => {
 
-            const artManufacturado = {
-                id: detpedido.id
+            //si as articulo manufacturado
+            if (detpedido.articulomanufacturadodetalles) {
+                const artManufacturado = {
+                    id: detpedido.id
+                }
+
+                const fkpedido = {
+                    id: res.data.id
+                }
+
+                const detallePedido = {
+                    cantidad: detpedido?.cant,
+                    subtotal: detpedido?.precioVenta,
+                    articulomanufacturado: artManufacturado,
+                    pedido: fkpedido,
+                }
+                detallesPedido.push(detallePedido)
+                promesas.push(axios.post('api/buensabor/detallepedido', detallePedido));
             }
 
-            const fkpedido = {
-                id: res.data.id
-            }
+            //si as articulo insumo
+            else {
+                const artInsumo = {
+                    id: detpedido.id
+                }
 
-            const detallePedido = {
-                cantidad: detpedido?.cant,
-                subtotal: detpedido?.precioVenta,
-                articulomanufacturado: artManufacturado,
-                pedido: fkpedido,
-            }
+                const fkpedido = {
+                    id: res.data.id
+                }
 
-            detallesPedido.push(detallePedido)
-            promesas.push(axios.post('api/buensabor/detallepedido', detallePedido));
+                const detallePedido = {
+                    cantidad: detpedido?.cant,
+                    subtotal: detpedido?.precioVenta,
+                    articuloinsumo: artInsumo,
+                    pedido: fkpedido,
+                }
+                detallesPedido.push(detallePedido)
+                promesas.push(axios.post('api/buensabor/detallepedido', detallePedido));
+            }
 
         })
 
@@ -188,31 +262,89 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
 
         await axios.put(`/api/buensabor/pedidos/${res.data.id}`, res.data);
 
-        // **genero [] de ART MANUFACTURADOS
-        const artManufComprados = [];
-        detallesPedido.forEach((detinsumo) => {
+        //ESTADO = PAGADO disminuyo insumos
+        if (estado === 'Pagado') {
+            await axios.put(`/api/buensabor/detallepedido/actualizar/${res.data.id}`);
+            window.location.replace(`http://localhost:3000/compra/${res.data.id}`)
+        } 
 
-            const detManufComprado = {
-                cantidad: detinsumo?.cantidad,
-                idArtManufacturado: detinsumo.articulomanufacturado.id,
-            }
-
-            artManufComprados.push(detManufComprado)
-        })
-
-        // **ARTICULO MANUFACTURADO según id para ver insumos        
-        artManufComprados.forEach((detManufacturado) => {
-            dispatch(getArtManufacturado(detManufacturado.idArtManufacturado, detManufacturado.cantidad))
-        })
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Número de pedido: ' + pedido.numeroPedido,
-            text: 'Su pedido estará listo a las: ' + horarioEntrega + 'hs'
-        })
+        // Swal.fire({
+        //     icon: 'success',
+        //     title: 'Número de pedido: ' + pedido.numeroPedido,
+        //     text: 'Su pedido estará listo a las: ' + horarioEntrega + 'hs'
+        // })
     }
     catch (e) {
         Swal.fire('Error', 'No se pudo realizar el pedido', 'error')
     }
 
+}
+
+// !DATOS DEL PEDIDO
+export const getPedidoById = (id) => async () => {
+    try {
+        const res = await axios.get(`/api/buensabor/pedidos/${id}`)
+        return res.data;
+    }
+    catch (e) {
+        console.log('No se puede obtener los datos del pedido')
+    }
+}
+
+// !DATOS PEDIDO MP
+export const getPedidoMP = () => async () => {
+    try {
+
+        const res = await axios.get(`/api/buensabor/pedidos/ultimoPedido`)
+        return res.data
+
+    }
+    catch (e) {
+        console.log('No se puede obtener el cliente')
+    }
+}
+
+// !ESTADO DE PAGO - MERCADO PAGO
+export const getEstadoPedido = (status, nro) => async () => {
+
+    try {
+        const res = await axios.get(`/api/buensabor/pedidos/ultimoPedido`)
+
+        if (status === 'approved') {
+            res.data.estado = 'Pagado'
+
+            //Disminuyo insumos
+            await axios.put(`/api/buensabor/detallepedido/actualizar/${res.data.id}`);
+
+            //Actualizo estado del pedido
+            await axios.put(`/api/buensabor/pedidos/${res.data.id}`, res.data);
+
+            //obtengo mp
+            const resmp = await axios.get(`/api/buensabor/mercadoPagoDatos/${res.data.mercadoPagoDatos.identificadorPago}`)
+
+            resmp.data.fechaAprobacion = new Date();
+            resmp.data.estado = 'Aprobado';
+            resmp.data.nroTarjeta = nro;
+
+            await axios.put(`/api/buensabor/mercadoPagoDatos/${resmp.data.identificadorPago}`, resmp.data);
+            return res.data
+
+        } else {
+            res.data.estado = 'Rechazado'
+
+            //Actualizo estado del pedido
+            await axios.put(`/api/buensabor/pedidos/${res.data.id}`, res.data);
+
+            //obtengo mp
+            const resmp = await axios.get(`/api/buensabor/mercadoPagoDatos/${res.data.mercadoPagoDatos.identificadorPago}`)
+
+            resmp.data.estado = 'Rechazado';
+
+            await axios.put(`/api/buensabor/mercadoPagoDatos/${resmp.data.identificadorPago}`, resmp.data);
+        }
+
+        // return ('mp:', res)
+    } catch {
+        console.log('No se puede obtener el estado del pago realizado con Mercado Pago');
+    }
 }

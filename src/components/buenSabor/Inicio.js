@@ -54,7 +54,7 @@ const Inicio = ({rubro}) => {
               <Link key={ru.id} to="../productos/" state={{ ru }} >
                 <div className="tarjeta-categoria">
                   <div className="contImg">
-                    <img src="#" alt="Categoría Ejemplo" />
+                    <img src={`http://localhost:8090/api/buensabor/articulosmanufacturados/imagen/${ru.id}`} alt="Categoría" />
                   </div> 
                   <h4>{ru?.denominacion}</h4>
                 </div> 
