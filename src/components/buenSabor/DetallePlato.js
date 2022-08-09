@@ -7,6 +7,7 @@ const DetallePlato = ({productos})=>{
     let producto = productos.filter((producto) => producto.articuloManufacturado.id == id);
      console.log(id)
      console.log(producto)
+    const ingredientes = producto[0].articuloManufacturado.articulomanufacturadodetalles;
     return (
         <div class= "buen-sabor__main-content">
             <div className="container">
@@ -19,8 +20,13 @@ const DetallePlato = ({productos})=>{
                             </div>
                             <div className="boxDetalle2">
                                 <h2>{producto[0].articuloManufacturado.denominacion}</h2>
-                                <h3>{producto[0].articuloManufacturado.precioVenta}</h3>
-                                <p>{producto[0].cantidadDisponible}</p>
+                                <h3>{"$ " + producto[0].articuloManufacturado.precioVenta}</h3>
+                                <h3>Ingredientes:</h3>
+                                <ul>
+                                {ingredientes.map(element => 
+                               <li>{element.articuloinsumo.denominacion}</li>
+                              )}
+                                </ul>
                             </div>
                         </div>
                     </div>
