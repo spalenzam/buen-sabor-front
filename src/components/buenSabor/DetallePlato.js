@@ -22,13 +22,11 @@ const DetallePlato = ({productos})=>{
                                 <h2>{producto[0].articuloManufacturado.denominacion}</h2>
                                 <h3>{"$ " + producto[0].articuloManufacturado.precioVenta}</h3>
                                 <h3>Ingredientes:</h3>
-                                <p> 
+                                <ul>
                                 {ingredientes.map(element => 
-                               
-                               element.articuloinsumo.denominacion
-                              
+                               <li>{element.articuloinsumo.denominacion}</li>
                               )}
-                                </p>
+                                </ul>
                             </div>
                         </div>
                     </div>
