@@ -29,6 +29,7 @@ import RubroArticulo from './pages/rubroArticulo/RubroArticulo';
 import NewRubroArticulo from './pages/rubroArticulo/NewRubroArticulo';
 import Reportes from './pages/reportes/Reportes';
 import ReportesIndividual from './pages/reportes/ReportesIndividual';
+import Avatar from './pages/avatar/Avatar';
 
 const Admin = () => {
   return (

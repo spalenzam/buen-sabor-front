@@ -31,6 +31,17 @@ export const getUsuariobyMail = (email) => async (dispatch) => {
     }
 }
 
+export const getUserbyMail = (email) => async (dispatch) => {
+    try {
+        //Obtengo los usuarios
+        const user = await axios.get(`/api/buensabor/usuarios/usuario/${email}`);
+        return user.data
+
+    } catch (e) {
+        console.log("No puede traer los usuarios");
+    }
+}
+
 // export const usuariosActivos = (usuariosList) => {
 //     return {
 //         type: types.getAllUsuarios,

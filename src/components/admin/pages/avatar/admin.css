@@ -1,0 +1,20 @@
+.containerAdmin{
+    display: flex;
+}
+
+.link{
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (min-width: 1200px){
+    .containerAdmin {
+        max-width: 1300px;
+    }
+}
+@media screen and (max-width: 575px) {
+    .containerAdmin {
+        flex-direction: column;
+        height: auto;
+    }
+}
