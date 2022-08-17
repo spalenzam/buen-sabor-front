@@ -110,8 +110,8 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
     dispatch(getCliente(usuario.email))
 
     return (
-        <div className='buen-sabor__main-content'>
-            <div className="container">
+        <div className=''>
+            <div className="user">
                 <div className="row">
                     <div className="col-12">
                         <h2 className="titulo-inicio">Carrito</h2>

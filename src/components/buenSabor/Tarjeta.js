@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import './tarjeta.css';
 
-const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedida }) => {
+const Tarjeta = ({ product, agregarACarrito, close, cantidadDisponible, cantPedida, bebidas }) => {
     
     return (
         <>
