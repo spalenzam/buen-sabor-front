@@ -124,6 +124,22 @@ export const getAllPedidos = () => async () => {
     }
 }
 
+export const facturasPorPedidos = (usuario) => async (dispatch) => {
+    try {
+
+        const pedidos = await dispatch(getAllPedidos())
+        console.log(pedidos);
+        const pedidosFiltrados = pedidos.filter(x => x.cliente.id == usuario?.cliente?.id)
+        console.log(pedidosFiltrados);
+        const facturas = await dispatch(getFacturasByPedidos(pedidosFiltrados))
+        console.log(facturas);
+        return facturas
+
+    } catch (e) {
+        Swal.fire('Error', 'No se encontraron los pedidos', 'error')
+    }
+}
+
 export const getPedidos = () => async () => {
     try {
 
@@ -259,6 +275,32 @@ export const getAllFacturas = () => async () => {
         const res = await axios.get('/api/buensabor/facturas')
 
         return res.data
+    }
+    catch (e) {
+        throw { error: Swal.fire('Error', 'No se pudo obtener ninguna factura', 'error') }
+
+    }
+}
+
+export const getFacturasByPedidos = (pedidos) => async () => {
+    try {
+
+        const res = await axios.get('/api/buensabor/facturas')
+
+        const facturas = [];
+
+        pedidos.forEach((ped) => {
+
+            res.data.forEach((fac) => {
+                if(fac.pedido.id == ped?.id){
+                    facturas.push(fac)
+                }
+            })
+
+        })
+        return facturas;
+
+
     }
     catch (e) {
         throw { error: Swal.fire('Error', 'No se pudo obtener ninguna factura', 'error') }

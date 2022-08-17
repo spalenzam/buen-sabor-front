@@ -66,18 +66,18 @@ const UserData = ({ usuarioLog, usuarioSeleccionado, setUsuarioSeleccionado }) =
       setUsuarioSeleccionado(data)
       setFormValues({
         ...data,
-        clave: data.clave,
-        clave2: data.clave,
-        apellido: data.cliente?.apellido,
-        nombre: data.cliente?.nombre,
-        email: data.cliente?.email,
-        telefono: data.cliente?.telefono === 1 ? " " : data.cliente?.telefono,
-        calle: data.cliente?.domicilio?.calle !== null ? data.cliente?.domicilio?.calle : " ",
-        numero: data.cliente?.domicilio?.numero !== null ? data.cliente?.domicilio?.numero : "",
-        localidad: data.cliente?.domicilio?.localidad !== null ? data.cliente?.domicilio?.localidad : ""
+        clave: data?.clave,
+        clave2: data?.clave,
+        apellido: data?.cliente?.apellido,
+        nombre: data?.cliente?.nombre,
+        email: data?.cliente?.email,
+        telefono: data?.cliente?.telefono === 1 ? " " : data?.cliente?.telefono,
+        calle: data?.cliente?.domicilio?.calle !== null ? data?.cliente?.domicilio?.calle : " ",
+        numero: data?.cliente?.domicilio?.numero !== null ? data?.cliente?.domicilio?.numero : "",
+        localidad: data?.cliente?.domicilio?.localidad !== null ? data?.cliente?.domicilio?.localidad : ""
       })
     })
-  }, []);
+  }, [usuarioLog]);
 
   return (
     <div className="user">

@@ -15,9 +15,12 @@ import FinalProductList from '../components/carrito/FinalProductList';
 import moment from 'moment';
 import UserData from '../components/carrito/UserData';
 import { getCliente } from '../actions/pedidos';
-import { getUsuarioById } from '../actions/usuarios';
+import { getUserbyMail, getUsuarioById } from '../actions/usuarios';
 import Compra from '../components/carrito/Compra';
 import CompraMP from '../components/carrito/CompraMP';
+import Avatar from '../components/admin/pages/avatar/Avatar';
+import PedidosAvatar from '../components/admin/pages/avatar/PedidosAvatar';
+import FacturasAvatar from '../components/admin/pages/avatar/FacturasAvatar';
 
 const DashBoardRoutes = () => {
 
@@ -177,6 +180,9 @@ const DashBoardRoutes = () => {
                 } />
                 <Route path="/compra/:id" element={<Compra />} />
                 <Route path="/compra" element={<CompraMP />} />
+                <Route path="/pedidos" element={<PedidosAvatar usuario={usuarioLog}/>} />
+                <Route path="/facturas" element={<FacturasAvatar usuario={usuarioLog}/>} />
+                <Route path="/usuario" element={<UserData usuarioLog={usuarioLog} usuarioSeleccionado={usuarioSeleccionado} setUsuarioSeleccionado={setUsuarioSeleccionado} />} />
             </Routes>
             <Footer rubro={rubroGeneral} />
         </>
