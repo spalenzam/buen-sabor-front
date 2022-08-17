@@ -126,7 +126,7 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
 
                                 <h3>Total: ${total} </h3>
                             </div>
-                            <div className="carrito-2">
+                            <div >
                                 <form onSubmit={handleCreatePedido}>
                                     <FormLabel id="demo-radio-buttons-group-label">Envío</FormLabel>
                                     <RadioGroup
@@ -140,20 +140,21 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
                                         {
                                             (envio === "" || usuarioSeleccionado?.cliente?.domicilio === null || usuarioSeleccionado?.telefono === 1 ) ?
                                                 <div>
-                                                    <p>Faltan datos o seleccionar el método de envío</p>
-                                                    <button disabled={true}>Efectivo</button>
-                                                    <button disabled={true}>Mercado Pago </button>
+                                                    <p><strong>Faltan datos o seleccionar el método de envío.</strong></p>
+                                                    <button className="carrito-button-disabled" disabled={true}>Efectivo</button>
+                                                    <button className="carrito-button-disabled" disabled={true}>Mercado Pago </button>
                                                 </div>
                                                 : envio === "Local" ?
                                                     <div>
-                                                        <p>Pagando en efectivo se realiza el 10% de descuento</p>
-                                                        <button name='estado' value='Pagado' onClick={handleClick}>Efectivo: ${total * 0.9}</button>
-                                                        <button name='estado' value='Pendiente' onClick={handleClickMP} >Mercado Pago ${total}</button>
+                                                        <p><strong>Pagando en efectivo se realiza el 10% de descuento.</strong></p>
+                                                        <button className="carrito-button-enabled" name='estado' value='Pagado' onClick={handleClick}>Efectivo: ${total * 0.9}</button>
+                                                        <button className="carrito-button-enabled" name='estado' value='Pendiente' onClick={handleClickMP} >Mercado Pago ${total}</button>
                                                     </div>
                                                     :
                                                     <div>
-                                                        <button disabled={true}>Efectivo</button>
-                                                        <button name='estado' value='Pendiente' onClick={handleClickMP}>Mercado Pago ${total}</button>
+                                                        <p><strong>Cuando el pedido es con envío a domicilio no puede abonarse en efectivo.</strong></p>
+                                                        <button className="carrito-button-disabled" disabled={true}>Efectivo</button>
+                                                        <button className="carrito-button-enabled" name='estado' value='Pendiente' onClick={handleClickMP}>Mercado Pago ${total}</button>
                                                     </div>
                                         }
                                     </RadioGroup>
