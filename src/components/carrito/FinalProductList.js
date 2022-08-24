@@ -135,8 +135,8 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
                                         aria-labelledby="demo-radio-buttons-group-label"
                                         defaultValue="female"
                                     >
-                                        <FormControlLabel value="Local" control={<Radio />} label="Retiro en el Local" onChange={handleChange} />
-                                        <FormControlLabel value="Domicilio" control={<Radio />} label="Envío a domicilio" onChange={handleChange} />
+                                        <FormControlLabel value="Domicilio" control={<Radio />} label="Retiro en el Local" onChange={handleChange} />
+                                        <FormControlLabel value="Delivery" control={<Radio />} label="Envío a domicilio" onChange={handleChange} />
                                         {
                                             (envio === "" || usuarioSeleccionado?.cliente?.domicilio === null || usuarioSeleccionado?.telefono === 1 ) ?
                                                 <div>
@@ -144,7 +144,7 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
                                                     <button className="carrito-button-disabled" disabled={true}>Efectivo</button>
                                                     <button className="carrito-button-disabled" disabled={true}>Mercado Pago </button>
                                                 </div>
-                                                : envio === "Local" ?
+                                                : envio === "Domicilio" ?
                                                     <div>
                                                         <p><strong>Pagando en efectivo se realiza el 10% de descuento.</strong></p>
                                                         <button className="carrito-button-enabled" name='estado' value='Pagado' onClick={handleClick}>Efectivo: ${total * 0.9}</button>

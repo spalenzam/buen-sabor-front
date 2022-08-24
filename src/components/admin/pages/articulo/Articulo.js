@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import "./product.css";
+import { Publish } from "@material-ui/icons";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getRubroGeneral } from '../../../../actions/productos';
-import { getArticuloById, getRubroArticulo, updateArticulo } from '../../../../actions/articulos';
+import { getArticuloById, getRubroArticulo, updateArticulo, updateInsumoConImagen } from '../../../../actions/articulos';
 
 const Articulo = () => {
-
+    
     const [articuloSeleccionado, setArticuloSeleccionado] = useState({});
 
     const [rubroArticulo, setRubroArticulo] = useState([]);
 
     const { articuloId: id } = useParams();
 
+    const [keyImg, setKeyImg] = useState(0);
+
     const dispatch = useDispatch();
+
+    const [nombreImagen, setNombreImagen] = useState();
 
     const [formValues, setFormValues] = useState({
         denominacion: '',
@@ -24,30 +29,42 @@ const Articulo = () => {
         stockMinimo: '',
         unidadMedida: '',
         cantidad: '',
-        idRubro: ''
+        idRubro: '',
+        imagen: ''
     });
 
-    const { denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, cantidad, idRubro } = formValues;
+    const { denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, idRubro, imagen } = formValues;
 
     const handleInputChange = ({ target }) => {
         setFormValues({
             //Todos los valores que tiene actualmente el formValues, pero cambio el que recibo en el evento (con la segunda línea)
             ...formValues,
-            [target.name]: target.value
+            [target.name]: target.type === "file" ? target.files[0] : target.value
         })
+
+        if (target.type === "file") {
+            console.log(target.files[0]);
+            setNombreImagen(target.files[0].name)
+        }
     }
 
     const handleUpdateArticulo = (e) => {
         //para que no haga la propagación del formulario
         e.preventDefault();
 
-        dispatch(updateArticulo(id, denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, cantidad, idRubro)).then(setArticuloSeleccionado);
-
-
+        if (imagen) {
+            dispatch(updateInsumoConImagen(id, denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, idRubro, imagen)).then((data) => {
+                setArticuloSeleccionado(data);
+                setKeyImg(keyImg + 1)
+            });
+        } else {
+            dispatch(updateArticulo(id, denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, idRubro)).then((data) => {
+                setArticuloSeleccionado(data);
+            });
+        }
     }
 
     useEffect(() => {
-
         dispatch(getArticuloById(id)).then((data) => {
             setArticuloSeleccionado(data)
             setFormValues({
@@ -129,8 +146,26 @@ const Articulo = () => {
                             ))}
 
                         </select>
-
                     </div>
+
+                    {articuloSeleccionado?.rubroarticulo?.id === 3
+                        &&
+                        <div className="productFormRight">
+                            <div className="productUpload">
+                                {
+                                    articuloSeleccionado?.id ?
+                                        <img src={`http://localhost:8090/api/buensabor/articuloinsumo/uploads/img/${articuloSeleccionado?.id}?${keyImg}`} alt={articuloSeleccionado?.denominacion} className="productUploadImg" />
+                                        :
+                                        <img alt={articuloSeleccionado?.denominacion} className="productInfoImg" />
+                                }
+                                <label htmlFor="imagen">
+                                    <Publish />&nbsp;
+                                    <label>{nombreImagen}</label>
+                                </label>
+                                <input type="file" id="imagen" name='imagen' value={imagen?.files?.at(0).path || ""} style={{ display: "none" }} onChange={handleInputChange} />
+                            </div>
+                        </div>
+                    }
                     <button type="submit " className="productButton">Actualizar</button>
                 </form>
 
