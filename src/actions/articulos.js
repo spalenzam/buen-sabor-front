@@ -51,7 +51,7 @@ export const getRubroArticulo = () => async () => {
     }
 }
 
-export const updateArticulo = (id, denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, cantidad, idRubro) => async () => {
+export const updateArticulo = (id, denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, idRubro) => async () => {
     try {
 
         const rubro = {
@@ -109,6 +109,35 @@ export const createArticulo = (denominacion, esInsumo, precioCompra, precioVenta
     catch (e) {
         throw { error: Swal.fire('Error', 'No se pudo guardar el artículo', 'error') }
 
+    }
+}
+
+export const updateInsumoConImagen = (id, denominacion, esInsumo, precioCompra, precioVenta, stockActual, stockMinimo, unidadMedida, idRubro, imagen) => async () => {
+    try {
+
+        const formData = new FormData();
+        formData.append('denominacion', denominacion);
+        formData.append('esInsumo', esInsumo);
+        formData.append('precioCompra', precioCompra);
+        formData.append('precioVenta', precioVenta);
+        formData.append('stockActual', stockActual);
+        formData.append('stockMinimo', stockMinimo);
+        formData.append('unidadMedida', unidadMedida);
+        formData.append('rubroarticulo.id', idRubro);
+        formData.append('archivo', imagen);
+        const res = await axios.put(`/api/buensabor/articuloinsumo/editar-con-imagen/${id}`, formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+        Swal.fire('Update', 'Insumo actualizado con éxito', 'success')
+
+        return res.data;
+
+    } catch (e) {
+        Swal.fire('Error', 'No se pudo guardar el insumo', 'error')
     }
 }
 
@@ -500,4 +529,3 @@ export const enviarMail = (numfactura, mail) => async () =>{
 
     }
 }
-
