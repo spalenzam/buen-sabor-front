@@ -112,7 +112,7 @@ const ReportesIndividual = () => {
 
     return (
 
-        <div className="productList">
+        <div className="productList btnbuscar">
             {
                 bandera == "ranking" || bandera == "cliente" || bandera == "ganancia" ?
 

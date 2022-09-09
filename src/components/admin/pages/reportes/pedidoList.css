@@ -24,6 +24,13 @@
     cursor: pointer;
     margin-right: 20px;
 }
+.btnbuscar .productListEdit{
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    display: block;
+    position: relative
+}
 
 .productListButton{
     border: none;
@@ -38,4 +45,9 @@
 .productListDelete{
     color: red;
     cursor: pointer;
+}
+
+.listbutton button{
+    margin-right: 20px;
+    margin-bottom: 20px;
 }

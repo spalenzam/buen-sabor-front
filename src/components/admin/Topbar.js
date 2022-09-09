@@ -23,7 +23,7 @@ const Topbar = () => {
           </button>
           </Link> */}
           <button
-            className='btn-nav'
+            className='btn-nav cs-admin'
             onClick={handleLogout}
           >
             Cerrar Sesión

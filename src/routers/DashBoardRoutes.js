@@ -126,7 +126,7 @@ const DashBoardRoutes = () => {
     end.setMinutes(59);
     startWeekend.setHours(11);
     startWeekend.setMinutes(0);
-    endtWeekend.setHours(21);
+    endtWeekend.setHours(15);
     endtWeekend.setMinutes(0);
 
     today.setHours(21);

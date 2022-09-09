@@ -156,6 +156,11 @@
   margin-top: 200px;
 }
 
+@media screen and (max-width: 992px) {
+  .productForm {
+    padding-right: 0;
+  }
+}
 @media screen and (max-width: 575px) {
   .MuiDataGrid-root {
       height: 450px !important;
@@ -165,5 +170,8 @@
   }
   .productForm {
     flex-direction: column;
+  }
+  .productButton {
+    margin-top: 20px;
   }
 }

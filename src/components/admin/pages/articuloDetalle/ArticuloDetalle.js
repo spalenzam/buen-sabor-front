@@ -60,7 +60,7 @@ const ArticuloDetalle = () => {
             </div>
             <div className="userContainer">
                 <div className="userUpdate">
-                    <span className="userUpdateTitle">Edit</span>
+                    <span className="userUpdateTitle">Editar</span>
                     <form onSubmit={handleUpdateArticuloDetalle} className="userUpdateForm">
                         <div className="userUpdateLeft">
                             <div className="userUpdateItem">
