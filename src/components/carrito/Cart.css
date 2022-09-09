@@ -202,6 +202,19 @@ h2 {
 .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
   padding: 3px 9px !important;
 }
+.npedido{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 22px;
+}
+.pedidoListo{
+  text-align: center;
+  font-size: 22px;
+}
+.npedido span{
+  font-weight: 800;
+  color:#b83422;
+}
 
 @media screen and (max-width: 765px) {
   .cartContainer {
@@ -227,5 +240,8 @@ h2 {
     margin-right: 0px;
     border-radius: 20px;
     width: 287px;
+  }
+  .pedidoListo{
+    font-size: 18px;
   }
 }

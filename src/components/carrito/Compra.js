@@ -18,10 +18,17 @@ const Compra = () => {
     }, []);
 
   return (
-    <div>
-        <h2>Su compra se realizó con éxito</h2>
-        <h3>Número de pedido: {pedido.numeroPedido}</h3>
-        <h4>Su pedido estará listo a las: {pedido.horaEstimadaFinPedido} hs </h4>
+    <div className='buen-sabor__main-content'>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>Su compra se realizó con éxito</h2>
+            <h3 className='npedido'>Número de pedido: <span>{pedido.numeroPedido}</span></h3>
+            <h4 className='pedidoListo'>Su pedido estará listo a las: {pedido.horaEstimadaFinPedido} hs </h4>
+          </div>
+        </div>
+      </div>
+        
     </div>
   )
 }

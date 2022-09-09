@@ -60,7 +60,7 @@ const Productos = ({ bebidas, productos, agregarACarrito, cantPedida = 0, close 
 
     return (
         <>
-            <div className='buen-sabor__main-content'>
+            <div className='buen-sabor__main-content title-productos'>
                 <input
                     type="text"
                     placeholder="Buscar"

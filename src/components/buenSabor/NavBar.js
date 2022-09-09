@@ -50,17 +50,7 @@ const NavBar = ({ totalItems }) => {
                         <Nav.Link href="/productos">Productos</Nav.Link>
                         <Nav.Link href="/nosotros">Sobre nosotros</Nav.Link>
                     </Nav>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="danger" id="dropdown-basic">
-                            <img src='https://w7.pngwing.com/pngs/363/698/png-transparent-avatar-female-others-purple-face-black-hair.png' alt='' className='topAvatar' />
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="/pedidos">Pedidos</Dropdown.Item>
-                            <Dropdown.Item href="/facturas">Facturas</Dropdown.Item>
-                            <Dropdown.Item href="/usuario">Editar perfil</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    
                     <button
                         className='btn-nav'
                         onClick={handleLogout}
@@ -69,6 +59,17 @@ const NavBar = ({ totalItems }) => {
                     </button>
                 </div>
 
+                <Dropdown>
+                    <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                        <img src='https://w7.pngwing.com/pngs/363/698/png-transparent-avatar-female-others-purple-face-black-hair.png' alt='' className='topAvatar' />
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item href="/pedidos">Pedidos</Dropdown.Item>
+                        <Dropdown.Item href="/facturas">Facturas</Dropdown.Item>
+                        <Dropdown.Item href="/usuario">Editar perfil</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
 
             </Navbar>
         </>

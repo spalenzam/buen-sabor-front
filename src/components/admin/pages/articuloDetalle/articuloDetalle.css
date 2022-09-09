@@ -164,6 +164,25 @@
       margin-top: 220px;
   }
 
+@media screen and (max-width: 992px) {
+  .user {
+    flex: inherit;
+    width: calc(100% - 200px);
+  }
+  .userUpdate {
+    flex: inherit;
+    margin-left: 0;
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 20px;
+  }
+  .userContainer, .userUpdateForm {
+    display: inherit !important;
+  }
+  .userUpdateButton{
+    margin-top: 20px !important;
+  }
+}
 @media screen and (max-width: 575px) {
   .userUpdateForm, .userContainer {
     flex-direction: column;
@@ -175,5 +194,8 @@
   .userUpdate {
     margin-left: 0;
     margin-top: 20px;
+  }
+  .user {
+    width: 100%;
   }
 }

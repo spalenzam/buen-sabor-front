@@ -3,6 +3,8 @@
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.16);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.16);
     box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.16);
+    position: relative;
+    z-index: 9999;
 }
 .logoHeader{
     width: 250px;
@@ -46,7 +48,7 @@
     transition: background-color 0.2s ease-in-out;
     position: absolute;
     top: 50%;
-    right: 25px;
+    right: 85px;
     transform: translateY(-50%);
     display: none;
     outline: none !important;
@@ -220,6 +222,23 @@
 .boxDetalle2 p{
     font-weight: 600;
 }
+.title-productos h2{
+    margin-bottom: 30px;
+}
+.dropdown-toggle{
+    margin-left: 10px;
+}
+.topAvatar {
+    width: 32px !important;
+    height: 32px !important;
+}
+.dropdown-toggle:hover{
+    background-color: #b83422 !important;
+}
+.dropdown-menu.show {
+    right: 0 !important;
+    left: inherit;
+}
 
 @media screen and (max-width: 992px){
     .titulo-inicio {
@@ -292,6 +311,10 @@
     .display-tarjeta a{
         width: 33.33%;
     }
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -337,5 +360,12 @@
     .boxDetalle2 h2 {
         font-size: 30px;
         line-height: 40px;
+    }
+    .logo {
+        font-size: 20px !important;
+    }
+    .cs-admin{
+        margin-top: 0 !important;
+        font-size: 11px !important;
     }
 }

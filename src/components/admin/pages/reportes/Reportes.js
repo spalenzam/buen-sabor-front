@@ -27,7 +27,7 @@ const Reportes = () => {
     }
     return (
 
-        <div className="productList">
+        <div className="productList listbutton">
             <button
                 className="addProductButton"
                 onClick={() => handleBuscarRanking()}
