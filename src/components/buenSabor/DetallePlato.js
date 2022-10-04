@@ -1,5 +1,6 @@
 import React from 'react'; 
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const DetallePlato = ({productos})=>{
 
@@ -10,6 +11,9 @@ const DetallePlato = ({productos})=>{
     const ingredientes = producto[0].articuloManufacturado.articulomanufacturadodetalles;
     return (
         <div class= "buen-sabor__main-content">
+            <Link to={"/productos"}>
+                <button className="detalleTarjeta">Volver</button>
+            </Link>
             <div className="container">
                 <div className="row">
                     <div className="col-12">

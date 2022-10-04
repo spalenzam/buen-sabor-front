@@ -33,7 +33,7 @@ const CompraMP = () => {
             {pedido.estado === 'Pagado'
               ? <>
                 <h2>Su compra se realizó con éxito</h2>
-                <h3 className='npedido'>Número de pedido: <span>{pedido.numeroPedido}</span>{pedido.numeroPedido}</h3>
+                <h3 className='npedido'>Número de pedido: <span>{pedido.numeroPedido}</span></h3>
                 <h4 className='pedidoListo'>Su pedido estará listo a las: {pedido.horaEstimadaFinPedido} hs </h4>
               </>
               : <>
