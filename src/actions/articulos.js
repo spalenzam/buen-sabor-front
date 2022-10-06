@@ -188,12 +188,12 @@ export const getPedidosCajeroPagado = () => async (dispatch) => {
 
         console.log(res);
 
-        const pedidosCajero = res.filter((x) => x?.estadoInterno == "Cajero" && x?.estado == "Pagado")
+        const pedidosCajero = res.filter((x) => x?.estadoInterno == "Cajero" && x?.estado == "Pagado" || x?.estado == "Pendiente")
 
         return pedidosCajero
 
     } catch (e) {
-        Swal.fire('Error', 'No se encontraron los pedidos pagados', 'error')
+        Swal.fire('Error', 'No se encontraron los pedidos del cajero', 'error')
     }
 }
 

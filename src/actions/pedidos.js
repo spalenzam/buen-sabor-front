@@ -98,7 +98,7 @@ export const getPedidosCocina = (tiempoElaboracion) => async (dispatch) => {
         //Si son menos de 10' coloco un 0 adelante
         minutos = minutos < 10 ? '0' + minutos : minutos;
         tiempoCocina = horas + ":" + minutos + ":00"
-        
+        console.log(tiempoCocina);
         return tiempoCocina;
     }
     catch (e) {
@@ -182,9 +182,10 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
                 tiempoElaboracion = tiempoElaboracion + (tiempo.tiempoEstimadoCocina) * tiempo.cant
             }
         })
-        
+        console.log(tiempoElaboracion);
         // **TIEMPO DE PEDIDOS EN COCINA
         const horarioEntrega = await dispatch(getPedidosCocina(tiempoElaboracion));
+        console.log(horarioEntrega);
 
         // **PEDIDO
         const pedidoNuevo = await dispatch(getPedidos())
