@@ -8,6 +8,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { generarExcelGanancia, generarExcelIngresoDiario, generarExcelIngresoMensual, generarExcelPedidoPorCliente, generarExcelRankingComidas, getGanancia, getIngresoDiario, getIngresoMensual, getPedidoPorCliente, getRankingComidas } from '../../../../actions/reportes';
 import { useLocation, Link } from 'react-router-dom'
 import moment from "moment";
+import { Stack } from '@mui/material';
+import { List, ListItem } from '@material-ui/core';
 
 const ReportesIndividual = () => {
 
@@ -70,12 +72,36 @@ const ReportesIndividual = () => {
             { field: "cantidadTotal", headerName: "Cantidad Vendida", width: 200 },
 
         ];
-    } else if (bandera == "diario" || bandera == "mensual" || bandera == "ganancia") {
+    } else if (bandera == "ganancia") {
         columns = [
             { field: "numeroFactura", headerName: "N° Factura", width: 170, },
             { field: "fechaFactura", type: 'dateTime', valueGetter: ({ value }) => value && new Date(value), headerName: "Fecha", width: 180 },
             { field: "formaPago", headerName: "Forma de Pago", width: 220 },
             { field: "totalVenta", headerName: "Venta", width: 150 },
+        ];
+    } else if (bandera == "diario" || bandera == "mensual") {
+        columns = [
+            { field: "numeroFactura", headerName: "N° Factura", width: 170, },
+            { field: "fechaFactura", type: 'dateTime', valueGetter: ({ value }) => value && new Date(value), headerName: "Fecha", width: 180 },
+            { field: "formaPago", headerName: "Forma de Pago", width: 220 },
+            { field: "totalVenta", headerName: "Venta", width: 130 },
+            {
+                field: "detallefacturas", headerName: "Detalle",  width: 600,
+                renderCell: (params) => {
+                    
+                    {console.log(params)}
+                    return (
+                        
+                        <List className="productListItem">
+                        {params.row.detallefacturas?.map((detalle, index) => (
+                            <ListItem key={index}>{detalle?.cantidad + " - " + detalle?.artmanufacturado?.denominacion}</ListItem> 
+                            
+                        ))}
+                   </List>
+                    );
+                    
+                },
+            },
         ];
     } else if (bandera == "cliente") {
         columns = [
@@ -109,7 +135,7 @@ const ReportesIndividual = () => {
             { field: "cantidadDePedidos", headerName: "Cantidad de pedido", width: 250 },
         ];
     }
-
+    console.log(ingresoDiario)
     return (
 
         <div className="productList btnbuscar">
@@ -120,7 +146,7 @@ const ReportesIndividual = () => {
                         <DatePicker
                             dateFormat="yyyy-MM-dd"
                             selected={startDate}
-                            onChange={(date) => {setStartDate(date); setRankingComidas([]); setPedidoPorCliente([]); setGanancia([])}}
+                            onChange={(date) => { setStartDate(date); setRankingComidas([]); setPedidoPorCliente([]); setGanancia([]) }}
                             selectsStart
                             startDate={startDate}
                             endDate={endDate}
@@ -128,7 +154,7 @@ const ReportesIndividual = () => {
                         <DatePicker
                             dateFormat="yyyy-MM-dd"
                             selected={endDate}
-                            onChange={(date) => {setEndDate(date); setRankingComidas([]); setPedidoPorCliente([]); setGanancia([])}}
+                            onChange={(date) => { setEndDate(date); setRankingComidas([]); setPedidoPorCliente([]); setGanancia([]) }}
                             selectsEnd
                             startDate={startDate}
                             endDate={endDate}
@@ -233,7 +259,7 @@ const ReportesIndividual = () => {
                             <DatePicker
                                 dateFormat="yyyy-MM-dd"
                                 selected={startDate}
-                                onChange={(date) => {setStartDate(date); setIngresoDiario([]); setIngresoMensual([])}}
+                                onChange={(date) => { setStartDate(date); setIngresoDiario([]); setIngresoMensual([]) }}
                                 selectsStart
                                 startDate={startDate}
                                 endDate={endDate}
@@ -272,6 +298,7 @@ const ReportesIndividual = () => {
                                         pageSize={8}
                                         rowsPerPageOptions={[8]}
                                         getRowId={() => Math.random()}
+                                        getRowHeight={() => 'auto'}
                                     />
 
 
@@ -292,6 +319,7 @@ const ReportesIndividual = () => {
                                             pageSize={8}
                                             rowsPerPageOptions={[8]}
                                             getRowId={(row) => Math.random()}
+                                            getRowHeight={() => 'auto'}
                                         />
 
 

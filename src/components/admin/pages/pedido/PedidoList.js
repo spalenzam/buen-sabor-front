@@ -18,6 +18,7 @@ const PedidoList = (props) => {
     let estadoInternoCocinero = estadosInternos.filter((x) => x?.codigo == 2)
     let estadoInternoDelivery = estadosInternos.filter((x) => x?.codigo == 3)
 
+    let estadoPagado = estados.filter((x) => x?.codigo == 2)
     let estadoTerminado = estados.filter((x) => x?.codigo == 3)
     let estadoDelivery = estados.filter((x) => x?.codigo == 4)
     let estadoFacturado = estados.filter((x) => x?.codigo == 5)
@@ -27,7 +28,12 @@ const PedidoList = (props) => {
     const handleUpdate = async (id) => {
         const pedido = await dispatch(getPedidoById(id))
 
-        if (pedido.estado == "Pagado" && pedido.estadoInterno == "Cajero") {
+        if (pedido.estado == "Pendiente" && pedido.estadoInterno == "Cajero") {
+            await dispatch(updateEstadoPedido(id, estadoPagado.at(0)?.nombre, null))
+            setPedidos(await dispatch(getPedidosCajeroPagado()))
+            Swal.fire('Pedido pagado', '', 'success')
+
+        } else if (pedido.estado == "Pagado" && pedido.estadoInterno == "Cajero") {
 
             await dispatch(updateEstadoPedido(id, null, estadoInternoCocinero.at(0)?.nombre))
             setPedidos(await dispatch(getPedidosCajeroPagado()))
@@ -81,7 +87,11 @@ const PedidoList = (props) => {
                             className="productListEdit"
                             onClick={() => handleUpdate(params.row.id)}
                         >
-                            {props.boton}
+                            {
+                                params.row.estado == "Pendiente" ?
+                                "Pagado" :
+                                props.boton
+                            }
                         </button>
                     </>
                 );

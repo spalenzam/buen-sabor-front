@@ -100,9 +100,7 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
     const handleCreatePedido = (e) => {
         e.preventDefault()
         dispatch(crearPedido(numeroPedido, fechaPedido, horaEstimadaFinPedido, tipoEnvioPedido, estado, estadoInterno, usuarioSeleccionado.cliente.id, usuarioSeleccionado.cliente.domicilio.id, mercadoPagoDatos, cart, setNpedido));
-        setCarrito(
-            cart = []
-        );
+        
     }
 
     // !CLIENTE - verificar si está toda la info o completar
