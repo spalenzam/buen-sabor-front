@@ -34,12 +34,17 @@
 
 .productListButton{
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px 10px;
     background-color: #4668b3;
     color: white;
     cursor: pointer;
-    margin-right: 20px;
+    margin:10px 20px 10px 0;
+}
+
+.react-datepicker-wrapper {
+    width: fit-content;
+    margin-right: 10px;
 }
 
 .productListDelete{

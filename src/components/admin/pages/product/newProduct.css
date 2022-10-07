@@ -59,6 +59,24 @@
     box-shadow: 0px 0px 15px -10px rgb(0 0 0 / 75%);
     background-color: #fff;
   }
+  .productTopRight .listAddPro{
+    margin-bottom: 20px;
+  }
+  .productTopRight .li-style li{
+    list-style: none;
+    margin-right: 15px;
+    font-weight: 600;
+  }
+  .productTopRight .li-style div, .productTopRight .listAddPro div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .productTopRight .listAddPro div label{
+    margin-bottom: 0;
+    margin-right: 8px;
+    text-transform: capitalize;
+  }
   .productTopRight .userList{
     padding: 20px 0;
   }
