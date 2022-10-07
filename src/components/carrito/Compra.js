@@ -10,6 +10,8 @@ const Compra = () => {
 
     const [pedido, setPedido] = useState({}); 
 
+    localStorage.cartProducts = [];
+
     useEffect(() => {
         dispatch(getPedidoById(id)).then((data) => {
             console.log(data);

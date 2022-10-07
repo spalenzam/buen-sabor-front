@@ -75,7 +75,8 @@ const Articulo = () => {
 
         dispatch(getRubroArticulo()).then(setRubroArticulo);
     }, []);
-
+console.log("articuloSeleccionado",articuloSeleccionado)
+console.log("rubroArticulo",rubroArticulo)
     return (
         <div className="product">
             <div className="productBottom">
@@ -133,16 +134,23 @@ const Articulo = () => {
                         />
                         <label>Unidad de Medida</label>
                         <select name="unidadMedida" value={unidadMedida} onChange={handleInputChange}>
-                            <option value="gr">gr</option>
-                            <option value="kg">kg</option>
-                            <option value="l">l</option>
-                            <option value="ml">ml</option>
+                            {/* <option value="gr">gr</option> */}
+                            <option value="Kg">Kg</option>
+                            <option value="l">Litro</option>
+                            <option value="Unidad">Unidad</option>
+                            {/* <option value="ml">ml</option> */}
                         </select>
 
                         <label>Rubro</label>
                         <select name="idRubro" value={idRubro} id="rubro" onChange={handleInputChange}>
                             {rubroArticulo.map((rubro, index) => (
-                                <option key={index} value={rubro.id}>{rubro.denominacion}</option>
+                                rubro.rubroarticuloPadre == null
+                                &&  <option key={index} value={rubro.id}>
+                                    {articuloSeleccionado?.rubroarticulo?.id === 3
+                                    ? articuloSeleccionado?.rubroarticulo?.denominacion
+                                    :articuloSeleccionado?.rubroarticulo?.rubroarticuloPadre?.denominacion
+                                    }
+                                    </option>
                             ))}
 
                         </select>

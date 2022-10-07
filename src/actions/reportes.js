@@ -188,7 +188,7 @@ export const getIngresoDiario = (desde) => async () => {
 
 export const generarExcelIngresoDiario = (desde) => async () => {
     try {
-        const res = axios(`/api/buensabor/facturas//ingreso-diario/generar-excel`, {
+        const res = axios(`/api/buensabor/facturas/ingreso-diario/generar-excel`, {
             params: {
                 fecha: moment(desde).format("yyyy-MM-DD")
             },

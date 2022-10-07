@@ -41,6 +41,7 @@ export const getPedidosCocina = (tiempoElaboracion) => async (dispatch) => {
     try {
         const res = await axios.get(`api/buensabor/pedidos`)
         const pedidosCocina = res.data
+        console.log("pedidosCocina", pedidosCocina)
 
         let tiempoPedidosCocina = 0
         let tiempoCocina = 0
@@ -57,9 +58,15 @@ export const getPedidosCocina = (tiempoElaboracion) => async (dispatch) => {
         })    
 
         // !CAMBIAR POR COCINEROS DE CONFIGURACIÓN
-        //Obtengo la cantidad de Cocineros
-        const cocineros = await dispatch(getRolUsuario())
-        
+        //Obtengo la cantidad de Cocineros 
+        // const promCocinero = 0;
+        // const cocineros = await dispatch(getRolUsuario())
+        // promCocinero= cocineros
+        // Promise.all(promCocinero)
+
+        const cantCocineros = await axios.get(`api/buensabor/configuracion`)
+        const cocineros = cantCocineros.data[0].cantidadCocineros
+
         //Hora Actual
         let hoy = new Date();
         let horaActual = hoy.getHours() 
@@ -68,20 +75,30 @@ export const getPedidosCocina = (tiempoElaboracion) => async (dispatch) => {
         let minutos = 0
 
         //Cálculo en hora, min y seg
-        if (tiempoPedidosCocina < 0) {
+        if (tiempoPedidosCocina > 0) {
             horas = Math.floor(((tiempoPedidosCocina / cocineros) + tiempoElaboracion) / 60) + horaActual;
-            minutos = Math.floor(((tiempoPedidosCocina / cocineros) + tiempoElaboracion + minActual) % 60);
+            minutos = Math.floor(((((tiempoPedidosCocina / cocineros) + tiempoElaboracion) % 60) + minActual) % 60);
+            if (minutos >= 60) {
+                horas = Math.floor(horas + (minutos/60))
+                minutos = Math.floor( minutos % 60)
+            } 
+
         } else {
             horas = Math.floor(tiempoElaboracion / 60) + horaActual;
-            minutos = Math.floor((tiempoElaboracion + minActual) % 60);
+            minutos = Math.floor((tiempoElaboracion % 60 + minActual));
+            if (minutos >= 60) {
+                horas = Math.floor(horas + (minutos/60))
+                minutos = Math.floor( minutos % 60)
+            } 
         }
+
         //Si son pasadas las 24
         horas = horas >= 24 ? horas - 24 : horas;
 
         //Si son menos de 10' coloco un 0 adelante
         minutos = minutos < 10 ? '0' + minutos : minutos;
         tiempoCocina = horas + ":" + minutos + ":00"
-
+        console.log(tiempoCocina);
         return tiempoCocina;
     }
     catch (e) {
@@ -97,7 +114,7 @@ export const getRolUsuario = () => async () => {
         let cantCocineros = 0
 
         roles.forEach(rol => {
-            if (rol.rol === 'Cocinero') {
+            if (rol.rol == 'Cocinero') {
                 cantCocineros = cantCocineros + 1
             }
         })
@@ -165,10 +182,11 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
                 tiempoElaboracion = tiempoElaboracion + (tiempo.tiempoEstimadoCocina) * tiempo.cant
             }
         })
-        
+        console.log(tiempoElaboracion);
         // **TIEMPO DE PEDIDOS EN COCINA
-        const horarioEntrega = await dispatch(getPedidosCocina(tiempoElaboracion))
-        
+        const horarioEntrega = await dispatch(getPedidosCocina(tiempoElaboracion));
+        console.log(horarioEntrega);
+
         // **PEDIDO
         const pedidoNuevo = await dispatch(getPedidos())
         
@@ -182,7 +200,7 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
 
         let fkmercadopago = null
         
-        if (estado === 'Pendiente') {
+        if (estado === 'PendienteMP') {
             
             const mercadoPago = {
                 estado: estado,
@@ -263,7 +281,7 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
         await axios.put(`/api/buensabor/pedidos/${res.data.id}`, res.data);
 
         //ESTADO = PAGADO disminuyo insumos
-        if (estado === 'Pagado') {
+        if (estado === 'Pendiente') {
             await axios.put(`/api/buensabor/detallepedido/actualizar/${res.data.id}`);
             window.location.replace(`http://localhost:3000/compra/${res.data.id}`)
         } 
@@ -271,7 +289,7 @@ export const crearPedido = (numeroPedido, fechaPedido, horaEstimadaFinPedido, ti
         // Swal.fire({
         //     icon: 'success',
         //     title: 'Número de pedido: ' + pedido.numeroPedido,
-        //     text: 'Su pedido estará listo a las: ' + horarioEntrega + 'hs'
+        //      text: 'Su pedido estará listo a las: ' + horarioEntrega + 'hs'
         // })
     }
     catch (e) {
