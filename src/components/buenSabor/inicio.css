@@ -239,6 +239,19 @@
     right: 0 !important;
     left: inherit;
 }
+.btnVolver{
+    font-size: 16px;
+    cursor: pointer;
+    border: 0;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    width: fit-content;
+    background-color: #b83422;
+    color: #fff;
+    padding: 11px 25px 13px;
+    border-radius: 8px;
+    line-height: 1;
+}
 
 @media screen and (max-width: 992px){
     .titulo-inicio {

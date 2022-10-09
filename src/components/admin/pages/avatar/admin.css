@@ -9,7 +9,7 @@
 
 @media (min-width: 1200px){
     .containerAdmin {
-        max-width: 1300px;
+        max-width: 100%;
     }
 }
 @media screen and (max-width: 575px) {

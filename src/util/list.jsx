@@ -62,13 +62,14 @@ export default function (props){
     return (
         <>
           
-           {!props.renderInput && <Row>
+           {!props.renderInput && <Row className="listAddPro">
 
                 {Object.keys(props.options).map((key,index)=>{
                     const option=props.options[key];
-                    const Component=option.component ;
                     const inputProps=option.props || {};
-                    if (Component)return (<div><Col lg={3} md={6} sm={12} key={index} className="col-input-1">
+                    const Component=option.component ;
+                    
+                    if (Component)return (<Col md={6} sm={12} key={index}>
                         <Component 
                             input={{
                                 onChange:(value)=>onChange(key,value),
@@ -76,10 +77,10 @@ export default function (props){
                             }}
                             {...inputProps}
                         />
-                    </Col></div>)
+                    </Col>)
                     else return (
-                        <Col lg={3} md={6} sm={12} className="col-input-2"  key={index}>
-                            <label>{option.caption || key}</label><br/>
+                        <Col md={6} sm={12} key={index}>
+                            <label>{option.caption || key}</label>
                             <input 
                             {...option.input} 
                             value={state.actualForm[key] || ""} 
@@ -87,10 +88,10 @@ export default function (props){
                         </Col>
                     )
                 })}
-                        <Col lg={1}>
-                        <button type="button" disabled={!valid()} className="btn btn-primary plus mt-4" onClick={AddToList}>
-                        <i className="fa fa-plus"></i>
-                        </button>
+                        <Col lg={3}>
+                            <button type="button" disabled={!valid()} className="btn btn-primary plus" onClick={AddToList}>
+                                <i className="fa fa-plus"></i>
+                            </button>
                         </Col>
             </Row>
             }
@@ -102,7 +103,7 @@ export default function (props){
             {!props.renderRows && state.optionList.map((option,index)=>{
                 return (
                     <Row className="li-style ">
-
+                        <Col md={12}>
                             {Object.keys(props.options).map(key=>{
                                 return (
                                 <li>
@@ -113,6 +114,7 @@ export default function (props){
                             <button type="button" onClick={()=>{state.optionList.splice(index,1);createValue()}}>
                             <i className="fa fa-times"></i>
                             </button>
+                        </Col>
                     </Row>
             )})}
             {props.renderRows && props.renderRows(

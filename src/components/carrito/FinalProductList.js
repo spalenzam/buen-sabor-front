@@ -110,9 +110,6 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
     return (
         <div className=''>
             <div className="user">
-            <Link to={"/productos"}>
-                <button className="detalleTarjeta">Volver</button>
-            </Link>
                 <div className="row">
                     <div className="col-12">
                         <h2 className="titulo-inicio">Carrito</h2>
@@ -127,7 +124,7 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
 
                                 <h3>Total: ${total} </h3>
                             </div>
-                            <div >
+                            <div className="carrito-2">
                                 <form onSubmit={handleCreatePedido}>
                                     <FormLabel id="demo-radio-buttons-group-label">Envío</FormLabel>
                                     <RadioGroup
@@ -160,6 +157,9 @@ const FinalProductList = ({ cart, setCarrito, usuarioSeleccionado, setNpedido })
                                         }
                                     </RadioGroup>
                                 </form>
+                                <Link to={"/productos"}>
+                                    <button className="btnVolver">Volver</button>
+                                </Link>
                             </div>
                         </div>
                     </div>

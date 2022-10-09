@@ -174,30 +174,26 @@ h2 {
   font-weight: 800 !important;
   font-size: 20px !important;
 }
-
+.carrito-2 form{
+  margin-bottom:20px
+}
 .carrito-button-enabled{
   background-color: #b83422;
-  color: #fff;
-  padding: 9px 15px;
-  border-radius: 8px;
-  line-height: 1;
-  border: 0;
-  margin-right: 10px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
 }
 .carrito-button-disabled{
   background-color: #858585;
+}
+.carrito-button-enabled, .carrito-button-disabled{
   color: #fff;
-  padding: 9px 15px;
+  padding: 11px 25px 13px;
   border-radius: 8px;
   line-height: 1;
   border: 0;
   margin-right: 10px;
-  font-weight: 700;
-  font-size: 13px;
+  font-size: 16px;
   cursor: pointer;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
   padding: 3px 9px !important;

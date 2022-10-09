@@ -11,9 +11,7 @@ const DetallePlato = ({productos})=>{
     const ingredientes = producto[0].articuloManufacturado.articulomanufacturadodetalles;
     return (
         <div class= "buen-sabor__main-content">
-            <Link to={"/productos"}>
-                <button className="detalleTarjeta">Volver</button>
-            </Link>
+            
             <div className="container">
                 <div className="row">
                     <div className="col-12">
@@ -31,6 +29,9 @@ const DetallePlato = ({productos})=>{
                                <li>{element.articuloinsumo.denominacion}</li>
                               )}
                                 </ul>
+                                <Link to={"/productos"}>
+                                    <button className="btnVolver">Volver</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
